@@ -24,8 +24,24 @@ if(update == "J"){
 }
 
 ####Opsplitsen Volgens eulist status####
-EuConc <- subset(Brondata, euConcernStatus == "listed")
-EuPrep <- subset(Brondata, euConcernStatus == "under preparation")
-EuCons <- subset(Brondata, euConcernStatus == "under consideration")
+EuConc_ruw <- subset(Brondata, euConcernStatus == "listed")
+EuPrep_ruw <- subset(Brondata, euConcernStatus == "under preparation")
+EuCons_ruw <- subset(Brondata, euConcernStatus == "under consideration")
 
+####Vereenvoudiging EUConcern####
+EuConc <- subset(EuConc_ruw, !is.na(gis_utm1_code))
+EuConc <- subset(EuConc, !is.na(gbifapi_acceptedScientificName))
+EuConc <- subset(EuConc, !is.na(year))
 
+####aanwezigheid bepalen####
+soorten <- unique(EuConc$gbifapi_acceptedScientificName)
+presence <- data.frame()
+
+for(s in soorten){
+  temp <- subset(EuConc, gbifapi_acceptedScientificName == s)
+  utmhokken <- unique(temp$gis_utm1_code)
+  temp2 <- data.frame(,c("utm1","species"))
+  temp2$utm1 <- utmhokken
+  temp2$species <- s
+  Presence <- rbind(presence, temp2)
+}
