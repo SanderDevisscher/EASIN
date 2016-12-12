@@ -21,7 +21,7 @@ remove(token) #Remove token
 remove(dataset_url)
 
 print("step 3/8: Check success of import")
-if(exists(invasive_occ)){
+if(exists("invasive_occ")){
   print("import succesfull")
 }else{
   print("import failed")
