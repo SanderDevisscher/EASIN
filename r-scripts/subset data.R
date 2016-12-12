@@ -41,8 +41,13 @@ presence <- data.frame()
 for(s in soorten){
   temp <- subset(EuConc, gbifapi_acceptedScientificName == s)
   utmhokken <- unique(temp$gis_utm1_code)
-  temp2 <- data.frame(,c("utm1","species"))
-  temp2$utm1 <- utmhokken
-  temp2$species <- s
-  Presence <- rbind(presence, temp2)
+  for(u in utmhokken){
+    temp2 <- subset(temp, gis_utm1_code == u) #Temporary 
+    temp3$utm1 <- u
+    temp3$species <- s
+    presence <- rbind(presence, temp3)
+  }
 }
+
+presence$X.utm1.....u <- NULL
+presence$X.species.....s <- NULL
