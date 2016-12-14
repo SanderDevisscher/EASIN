@@ -1,11 +1,11 @@
 
 ####Data Importeren####
-update <- "J"
+update <- "N"
 setwd("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/r-scripts/")
 iteration <- read.csv("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/r-scripts/Private/iteration.csv", sep=",")
 iteration$date <- as.character(iteration$date)
-nieuw <- head(iteration$date,1)
-filename <- paste("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/r-scripts/Data/T0_Source_", nieuw, ".csv")
+nieuw <- tail(iteration$date,1)
+filename <- paste("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/Data/T0_SourceData_", nieuw, ".csv", sep="")
 
 if(update == "J"){
   print("updating source data")
@@ -37,6 +37,7 @@ EuConc <- subset(EuConc, !is.na(year))
 ####aanwezigheid bepalen####
 soorten <- unique(EuConc$gbifapi_acceptedScientificName)
 presence <- data.frame()
+temp3 <- data.frame("x")
 
 for(s in soorten){
   temp <- subset(EuConc, gbifapi_acceptedScientificName == s)
