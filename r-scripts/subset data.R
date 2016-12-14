@@ -25,6 +25,7 @@ if(update == "J"){
 }
 
 ####Opsplitsen Volgens eulist status####
+Brondata$euConcernStatus <- sort(Brondata$euConcernStatus, decreasing = T)
 EuConc_ruw <- subset(Brondata, euConcernStatus == "listed")
 EuPrep_ruw <- subset(Brondata, euConcernStatus == "under preparation")
 EuCons_ruw <- subset(Brondata, euConcernStatus == "under consideration")
@@ -52,3 +53,25 @@ for(s in soorten){
 
 presence$X.utm1.....u <- NULL
 presence$X.species.....s <- NULL
+presence$X.x <- NULL
+
+remove(temp)
+remove(temp2)
+remove(temp3)
+
+#Duplicaten controle####
+anyDuplicated(presence$utm1)
+utmhokken2 <- unique(presence$utm1)
+temp3 <- data.frame("x")
+
+for(v in utmhokken2){
+  temp <- subset(presence, utm1 == v)
+  soorten2 <- unique(temp$species)
+  for(r in soorten2){
+    temp2 <- subset(temp, species == r)
+    if(nrow(temp2)>1){
+      temp3 <- rbind(temp3,temp2)
+    }
+  }
+} 
+
