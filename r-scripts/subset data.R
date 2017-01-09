@@ -1,11 +1,18 @@
 
 ####Data Importeren####
 update <- "N"
-setwd("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/r-scripts/")
+#setwd("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/r-scripts/")
 iteration <- read.csv("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/r-scripts/Private/iteration.csv", sep=",")
 iteration$date <- as.character(iteration$date)
 nieuw <- tail(iteration$date,1)
+today <- Sys.Date()
+today <- format(today,"%d_%m_%y")
+#Import filename
 filename <- paste("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/Data/T0_SourceData_", nieuw, ".csv", sep="")
+#Export filename
+filename2 <- paste("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/Data/UTM1Data_Source_", nieuw,"_Export_", today, ".csv", sep="")
+filename3 <- paste("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/Data/UTM1Data_Source_", nieuw,"_Export_", today, ".dbf", sep="")
+
 
 if(update == "J"){
   print("updating source data")
@@ -15,12 +22,10 @@ if(update == "J"){
   source("Update Source.R")
   Brondata <- invasive_occ
 }else{
-  today <- Sys.Date()
-  today <- format(today,"%d_%m_%y")
   Brondata <- read.csv(filename)
   if(today!=nieuw){
     print("Data is not up to date! Laatste update van:")
-    print(today)
+    print(nieuw)
   }
 }
 
@@ -35,6 +40,7 @@ EuConc <- subset(EuConc_ruw, !is.na(gis_utm1_code))
 EuConc <- subset(EuConc, !is.na(gbifapi_acceptedScientificName))
 EuConc <- subset(EuConc, !is.na(year))
 
+
 ####aanwezigheid bepalen####
 soorten <- unique(EuConc$gbifapi_acceptedScientificName)
 presence <- data.frame()
@@ -47,6 +53,7 @@ for(s in soorten){
     temp2 <- subset(temp, gis_utm1_code == u) #Temporary 
     temp3$utm1 <- u
     temp3$species <- s
+    temp3$wnmn <- nrow(temp2)
     presence <- rbind(presence, temp3)
   }
 }
@@ -74,4 +81,9 @@ for(v in utmhokken2){
     }
   }
 } 
+
+####Data Exporteren####
+library(foreign)
+write.csv2(presence, filename2)
+write.dbf(presence, filename3)
 
