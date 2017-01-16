@@ -1,6 +1,6 @@
 
 ####Data Importeren####
-update <- "N"
+update <- "J"
 #setwd("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/r-scripts/")
 iteration <- read.csv("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/r-scripts/Private/iteration.csv", sep=",")
 iteration$date <- as.character(iteration$date)
@@ -21,6 +21,13 @@ if(update == "J"){
   print(t)
   source("Update Source.R")
   Brondata <- invasive_occ
+  print("update filenames")
+  iteration <- read.csv("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/r-scripts/Private/iteration.csv", sep=",")
+  iteration$date <- as.character(iteration$date)
+  nieuw <- tail(iteration$date,1)
+  filename <- paste("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/Data/T0_SourceData_", nieuw, ".csv", sep="")
+  filename2 <- paste("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/Data/UTM1Data_Source_", nieuw,"_Export_", today, ".csv", sep="")
+  filename3 <- paste("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/Data/UTM1Data_Source_", nieuw,"_Export_", today, ".dbf", sep="")
 }else{
   Brondata <- read.csv(filename)
   if(today!=nieuw){
@@ -28,6 +35,8 @@ if(update == "J"){
     print(nieuw)
   }
 }
+
+table(Brondata$gbifapi_acceptedScientificName,Brondata$euConcernStatus)
 
 ####Opsplitsen Volgens eulist status####
 Brondata$euConcernStatus <- sort(Brondata$euConcernStatus, decreasing = T)
@@ -40,9 +49,24 @@ EuConc <- subset(EuConc_ruw, !is.na(gis_utm1_code))
 EuConc <- subset(EuConc, !is.na(gbifapi_acceptedScientificName))
 EuConc <- subset(EuConc, !is.na(year))
 
+####Datum afkap####
+#t.e.m. 31/01/2016
+
+EuConc$eventDate2 <- as.Date(EuConc$eventDate)
+EuConc$Month <- format(EuConc$eventDate2, "%m")
+EuConc$Month <- as.numeric(EuConc$Month)
+EuConc$Day <- format(EuConc$eventDate2, "%d")
+
+temp_voor2016 <- subset(EuConc, year < 2016)
+temp_2016 <- subset(EuConc, year == 2016)
+temp_voorfeb16 <- subset(temp_2016, Month < 2)
+
+EuConc2 <- rbind(temp_voor2016, temp_voorfeb16)
+
 
 ####aanwezigheid bepalen####
-soorten <- unique(EuConc$gbifapi_acceptedScientificName)
+soorten <- unique(EuConc2$gbifapi_acceptedScientificName)
+print(soorten)
 presence <- data.frame()
 temp3 <- data.frame("x")
 
