@@ -47,6 +47,7 @@ Valid <- subset(Valid,identificationVerificationStatus != "Niet te beoordelen")
 Valid <- subset(Valid,identificationVerificationStatus != "non validÃ©")
 
 table(Valid$identificationVerificationStatus)
+table(Valid$basisOfRecord)
 ####Opsplitsen Volgens eulist status####
 
 EuConc_ruw <- subset(Valid, euConcernStatus == "listed")
@@ -54,7 +55,7 @@ EuPrep_ruw <- subset(Valid, euConcernStatus == "under preparation")
 EuCons_ruw <- subset(Valid, euConcernStatus == "under consideration")
 
 table(EuConc_ruw$gbifapi_acceptedScientificName,EuConc_ruw$euConcernStatus)
-
+table(EuConc_ruw$basisOfRecord)
 ####Vereenvoudiging EUConcern####
 EuConc <- subset(EuConc_ruw, !is.na(gis_utm1_code))
 EuConc <- subset(EuConc, !is.na(gbifapi_acceptedScientificName))
@@ -64,13 +65,16 @@ table(EuConc$gbifapi_acceptedScientificName,EuConc$euConcernStatus)
 
 
 ####Datum afkap####
-#t.e.m. 31/01/2016
+#vanaf... t.e.m. 31/01/2016
+
+table(EuConc$year)
 
 EuConc$eventDate2 <- as.Date(EuConc$eventDate)
 EuConc$Month <- format(EuConc$eventDate2, "%m")
 EuConc$Month <- as.numeric(EuConc$Month)
 EuConc$Day <- format(EuConc$eventDate2, "%d")
 
+#temp_na... <- subset(EuConc, year > ...)
 temp_voor2016 <- subset(EuConc, year < 2016)
 temp_2016 <- subset(EuConc, year == 2016)
 temp_voorfeb16 <- subset(temp_2016, Month < 2)
