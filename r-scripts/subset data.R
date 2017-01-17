@@ -60,6 +60,8 @@ table(EuConc_ruw$basisOfRecord)
 EuConc <- subset(EuConc_ruw, !is.na(gis_utm1_code))
 EuConc <- subset(EuConc, !is.na(gbifapi_acceptedScientificName))
 EuConc <- subset(EuConc, !is.na(year))
+EuConc <- subset(EuConc, basisOfRecord != "PRESERVED_SPECIMEN")
+
 
 table(EuConc$gbifapi_acceptedScientificName,EuConc$euConcernStatus)
 
