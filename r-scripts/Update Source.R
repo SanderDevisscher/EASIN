@@ -19,6 +19,7 @@ dataset_url <- paste("https://raw.githubusercontent.com/inbo/invasive-t0-occurre
 invasive_occ <- read.csv(dataset_url)
 remove(token) #Remove token
 remove(dataset_url)
+table(invasive_occ$gbifapi_acceptedScientificName,invasive_occ$euConcernStatus)
 
 print("step 3/8: Check success of import")
 if(exists("invasive_occ")){
