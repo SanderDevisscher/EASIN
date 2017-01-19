@@ -34,6 +34,7 @@ soorten <- unique(EuConc$gbifapi_acceptedScientificName)
   for(s in soorten){
     temp2 <- subset(EuConc, gbifapi_acceptedScientificName == s)
     somtotaal <- nrow(temp2)
+    #total number of observations per species
     Jaren <- unique(temp2$year)
     for(j in Jaren){
       temp3 <- subset(temp2, year == j)
@@ -41,8 +42,11 @@ soorten <- unique(EuConc$gbifapi_acceptedScientificName)
       temp4$year <- j
       temp4$soort <- s
       temp4$somjaar <- somjaar
+      #number of observations of species s per year
       temp4$somtotaal <- somtotaal
       temp4$Percentage_observations <- (somjaar/somtotaal)*100
+      #Percentage of observations, number of observations of species s per year divided by 
+      #total number of observations per species
       temp5 <- temp4
       temp6 <- rbind(temp6, temp5)
       }
@@ -53,12 +57,13 @@ temp <- subset(temp6, year >= t)
 
 plot <- ggplot(temp, aes(year, Percentage_observations))
 plot <- plot + geom_bar( stat="identity")
-plot <- plot + facet_wrap(~soort)
+plot <- plot + facet_wrap(~soort, ncol = 2, scales = "fixed")
+plot <- plot + theme_bw()
 print(plot)
 
 plotname <- paste("Percentagewnmn_na", t, ".jpeg", sep = "")
 
-ggsave(plotname, plot = plot, width = 20/2.54, height = 20/2.54)
+ggsave(plotname, plot = plot, width = 20/2.54, height = 40/2.54)
 }
 
 remove(temp)
@@ -83,6 +88,7 @@ for(s in soorten){
       temp3$jaar <- j
       temp3$utm1 <- h
       temp3$uniekeutm <- 1
+      #uniekeutm = Unique location for species s in year j
       temp4 <- rbind(temp4, temp3)
     }
     
@@ -92,17 +98,20 @@ for(s in soorten){
 temp5 <- temp4[order(temp4$soort, temp4$jaar),]
 
 temp5 <- mutate(group_by(temp5, soort, jaar), cumsum = cumsum(uniekeutm))
+#Cumsum = Cumulative sum of unique locations for species s in year j
 
 temp7 <- data.frame()
 soorten <- unique(temp5$soort)
 for (s in soorten){
   temp6 <- subset(temp5, soort == s)
   maxhokken <- length(unique(temp6$utm1))
+  #maxhokken = Maximum number of unique locations for species s = Maximum extent of species s
   temp6$maxhokken <- maxhokken
   temp7 <- rbind(temp7, temp6)
 }
 
 temp7$Percentage_Locations <- (temp7$cumsum/temp7$maxhokken)*100
+#Percentage_Locations = Cumulative share of maximum extent reached
 
 temp11 <- data.frame()
 temp10 <- data.frame("x")
@@ -112,10 +121,11 @@ for(s in soorten){
   jaren <- unique(temp8$jaar)
   for(j in jaren){
     temp9 <- subset(temp8, jaar == j)
-    Percentage_Locations <- max(temp9$Percentage_Locations)
+    Percentage_Locations2 <- max(temp9$Percentage_Locations)
+    #Percentage_Locations2 = Maximum achieved percentage of maximum extent for species s in year j
     temp10$soort <- s
     temp10$jaar <- j
-    temp10$Percentage_Locations <- Percentage_Locations
+    temp10$Percentage_Locations <- Percentage_Locations2
     temp11 <- rbind(temp11, temp10)
   }
 }
@@ -127,6 +137,7 @@ for(t in Afkap){
   plot <- ggplot(temp, aes(jaar, Percentage_Locations))
   plot <- plot + geom_bar(stat="identity")
   plot <- plot + facet_wrap(~soort, ncol = 2, scales = "fixed")
+  plot <- plot + theme_bw()
   print(plot)
   
   plotname <- paste("Percentagelocs_na", t, ".jpeg", sep = "")
@@ -139,10 +150,11 @@ for(t in Afkap){
   
   plot <- ggplot(temp, aes(jaar, uniekeutm))
   plot <- plot + geom_bar(stat="identity")
-  plot <- plot + facet_wrap(~soort)
+  plot <- plot + facet_wrap(~soort, ncol = 2, scales = "fixed")
+  plot <- plot + theme_bw()
   print(plot)
   
   plotname <- paste("locs_na", t, ".jpeg", sep = "")
   
-  ggsave(plotname, plot = plot, width = 20/2.54, height = 20/2.54)
+  ggsave(plotname, plot = plot, width = 20/2.54, height = 40/2.54)
 }
