@@ -1,7 +1,9 @@
 library(dplyr)
 library(ggplot2)
 
-
+iteration <- read.csv("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/r-scripts/Private/iteration.csv", sep=",")
+iteration$date <- as.character(iteration$date)
+nieuw <- tail(iteration$date,1)
 filename <- paste("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/Data/T0_SourceData_", nieuw, ".csv", sep="")
 
 Brondata <- read.csv(filename)
@@ -158,3 +160,21 @@ for(t in Afkap){
   
   ggsave(plotname, plot = plot, width = 20/2.54, height = 40/2.54)
 }
+
+remove(temp)
+remove(temp2)
+remove(temp3)
+remove(temp4)
+remove(temp5)
+remove(temp6)
+remove(temp7)
+remove(temp8)
+remove(temp9)
+remove(temp10)
+remove(temp11)
+
+####Validatiestatus per soort####
+
+temp <- EuConc
+
+
