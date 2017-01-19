@@ -67,7 +67,7 @@ table(EuConc$gbifapi_acceptedScientificName,EuConc$euConcernStatus)
 
 
 ####Datum afkap####
-#vanaf... t.e.m. 31/01/2016
+#vanaf 31/12/2005 t.e.m. 31/01/2016
 
 table(EuConc$year)
 
@@ -76,8 +76,8 @@ EuConc$Month <- format(EuConc$eventDate2, "%m")
 EuConc$Month <- as.numeric(EuConc$Month)
 EuConc$Day <- format(EuConc$eventDate2, "%d")
 
-#temp_na... <- subset(EuConc, year > ...)
-temp_voor2016 <- subset(EuConc, year < 2016)
+temp_na2005 <- subset(EuConc, year > 2005)
+temp_voor2016 <- subset(temp_na2005, year < 2016)
 temp_2016 <- subset(EuConc, year == 2016)
 temp_voorfeb16 <- subset(temp_2016, Month < 2)
 
