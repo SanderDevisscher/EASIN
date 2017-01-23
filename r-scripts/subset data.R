@@ -36,6 +36,12 @@ if(update == "J"){
   }
 }
 
+####Remove data from the netherlands####
+Brondata <- subset(Brondata, gis_utm1_code != "FS7090" )
+Brondata <- subset(Brondata, gis_utm1_code != "GS0588" )
+ 
+#--------
+
 table(Brondata$gbifapi_acceptedScientificName,Brondata$euConcernStatus)
 table(Brondata$identificationVerificationStatus)
 
@@ -130,7 +136,7 @@ doc_Listed <- data.frame(table(EuConc2$gbifapi_acceptedScientificName, EuConc2$i
 doc_Listed <- subset(doc_Listed, Freq != 0)
 write.csv2(doc_Listed, "//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/Data/Overview_Species_Verificationstatus.csv")
 
-####Determine presence####
+####Determine presence UTM1x1####
 #For each individual UTM 1x1 square the presence of species s is determined
 
 soorten <- unique(EuConc2$gbifapi_acceptedScientificName)
@@ -179,9 +185,45 @@ for(v in utmhokken2){
   }
 } 
 
-####Export Data####
+####Export Data UTM1####
 #This data is used as input into GIS - Models
 library(foreign)
 write.csv2(presence, filename2)
 write.dbf(presence, filename3)
 
+####Determine presence 10kGrid####
+#For each individual 1km square the presence of species s is determined
+
+soorten <- unique(EuConc2$gbifapi_acceptedScientificName)
+print(soorten)
+presence2 <- data.frame()
+temp3 <- data.frame("x")
+
+for(s in soorten){
+  temp <- subset(EuConc2, gbifapi_acceptedScientificName == s)
+  GRID <- unique(temp$gis_EUgrid_cellcode)
+  for(g in GRID){
+    temp2 <- subset(temp, gis_EUgrid_cellcode == g) #Temporary 
+    temp3$EUgrid_cellcode <- g
+    temp3$species <- s
+    temp3$wnmn <- nrow(temp2)
+    presence2 <- rbind(presence2, temp3)
+  }
+}
+
+sum(presence2$wnmn)
+presence2$X.x. <- NULL
+#Should be equal to the number of observations of EuConc2
+#Expected: 36310/ Result: 36310 => OK 
+
+remove(temp)
+remove(temp2)
+remove(temp3)
+
+####Export Data 10k GRID####
+#This data is used as input into GIS - Models
+library(foreign)
+filename4 <- paste("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/Data/GRID10kData_Source_", nieuw,"_Export_", today, ".csv", sep="")
+filename5 <- paste("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/Data/GRID10kData_Source_", nieuw,"_Export_", today, ".dbf", sep="")
+write.csv2(presence2, filename4)
+write.dbf(presence2, filename5)
