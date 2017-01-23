@@ -31,7 +31,7 @@ if(update == "J"){
 }else{
   Brondata <- read.csv(filename)
   if(today!=nieuw){
-    print("Data is not up to date! Laatste update van:")
+    print("Data is not up to date! Last update from:")
     print(nieuw)
   }
 }
@@ -76,11 +76,11 @@ nrow(Valid1)#Expected: 91116 - 13 = 91103/ Result: 91103 => OK
 Valid1 <- subset(Valid1,identificationVerificationStatus != "Niet te beoordelen")
 nrow(Valid1)#Expected: 91103 - 31 = 91072/ Result: 91072 => OK
 Valid1 <- subset(Valid1,identificationVerificationStatus != "non validÃ©")
-nrow(Valid1)#Expected: 91072 - 24257 = 66815/ Result: 81255 => OK
+nrow(Valid1)#Expected: 91072 - 24257 = 66815/ Result: 66815 => OK
 
 Valid <- data.frame() #Empty first
 Valid <- rbind(Valid1,Valid2)
-#Expected: 66815 + 26041 = 92856/ Result: 92856 => OK
+nrow(Valid)#Expected: 66815 + 26041 = 92856/ Result: 92856 => OK
 table(Valid$identificationVerificationStatus, Valid$gbifapi_acceptedScientificName)
 table(Valid$basisOfRecord)
 table(Valid$euConcernStatus)
@@ -125,6 +125,10 @@ temp_voorfeb16 <- subset(temp_2016, Month < 2)
 EuConc2 <- rbind(temp_voor2016, temp_voorfeb16)
 
 table(EuConc2$gbifapi_acceptedScientificName,EuConc2$euConcernStatus)
+table(EuConc2$gbifapi_acceptedScientificName, EuConc2$identificationVerificationStatus)
+doc_Listed <- data.frame(table(EuConc2$gbifapi_acceptedScientificName, EuConc2$identificationVerificationStatus))
+doc_Listed <- subset(doc_Listed, Freq != 0)
+write.csv2(doc_Listed, "//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/Data/Overview_Species_Verificationstatus.csv")
 
 ####Determine presence####
 #For each individual UTM 1x1 square the presence of species s is determined
@@ -151,6 +155,8 @@ presence$X.species.....s <- NULL
 presence$X.x <- NULL
 
 sum(presence$wnmn)
+#Should be equal to the number of observations of EuConc2
+#Expected: 36310/ Result: 36310 => OK 
 
 remove(temp)
 remove(temp2)
