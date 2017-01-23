@@ -42,36 +42,50 @@ table(Brondata$identificationVerificationStatus)
 ####Enkel gevalideerde####
 #Certain more common and recognisable species are non-propotionally not treated, under treatment 
 #or not treatable.
-#Experts judgement selected the following species to have all validation statuses included.
+#Experts selected the following species to have all validation statuses included.
 table(Brondata$gbifapi_acceptedScientificName)
 temp_ok <- data.frame()
 valid_soorten <- c("Threskiornis aethiopicus (Latham, 1790)", "Oxyura jamaicensis (Gmelin, 1789)"
              ,"Procyon lotor (Linnaeus, 1758)", "Cabomba caroliniana A. Gray"
              ,"Tamias sibiricus (Laxmann, 1769)", "Nasua nasua (Linnaeus, 1766)"
              ,"Lysichiton americanus HultÃ©n & H.St.John", "Orconectes limosus (Rafinesque, 1817)"
-             ,"Pacifastacus leniusculus (Dana, 1852)", "Procambarus clarkii (Girard, 1852)")
+             ,"Pacifastacus leniusculus (Dana, 1852)", "Procambarus clarkii (Girard, 1852)"
+             ,"Pseudorasbora parva (Temminck & Schlegel, 1846)")
 for(v in valid_soorten){
   temp <- subset(Brondata, gbifapi_acceptedScientificName == v)
   temp_ok <- rbind(temp_ok, temp)
 }
+temp_ok$gbifapi_acceptedScientificName <- factor(temp_ok$gbifapi_acceptedScientificName)
 table(temp_ok$gbifapi_acceptedScientificName)
 table(temp_ok$identificationVerificationStatus)
-nrow(temp_ok) #12323 
-#"non validÃ©" remain incorrect and should be removed
-temp_ok2 <- subset(temp_ok, identificationVerificationStatus != "non validÃ©")
-nrow(temp_ok2) #Expected: 12323 - 983 = 11340/ Result: 11340 => OK
-####Aangepast tot hier !!!####
-#Remove non treated, under treatment, not treatable records 
-Valid <- subset(Brondata,identificationVerificationStatus != "Onbehandeld")
-Valid <- subset(Valid,identificationVerificationStatus != "In behandeling")
-Valid <- subset(Valid,identificationVerificationStatus != "Niet te beoordelen")
-Valid <- subset(Valid,identificationVerificationStatus != "non validÃ©")
+nrow(temp_ok) #27196 
+#Records with identificationVerificationStatus ="non validÃ©" remain incorrect 
+#and should still be removed
+Valid2 <- subset(temp_ok, identificationVerificationStatus != "non validÃ©")
+nrow(Valid2) #Expected: 27196 - 1155 = 26041/ Result: 26041 => OK
+#Remove non treated, under treatment, not treatable records from remaining species
+temp_nok <- subset(Brondata, !(gbifapi_acceptedScientificName %in% valid_soorten))
+nrow(temp_nok)#Expected: 206824 - 27196 = 179628/ Result: 179628 => OK
+table(temp_nok$identificationVerificationStatus)
+Valid1 <- subset(temp_nok,identificationVerificationStatus != "Onbehandeld")
+nrow(Valid1) #Expected: 179628 - 88512 = 91116/ Result: 91116 => OK
+Valid1 <- subset(Valid1,identificationVerificationStatus != "In behandeling")
+nrow(Valid1)#Expected: 91116 - 13 = 91103/ Result: 91103 => OK
+Valid1 <- subset(Valid1,identificationVerificationStatus != "Niet te beoordelen")
+nrow(Valid1)#Expected: 91103 - 31 = 91072/ Result: 91072 => OK
+Valid1 <- subset(Valid1,identificationVerificationStatus != "non validÃ©")
+nrow(Valid1)#Expected: 91072 - 24257 = 66815/ Result: 81255 => OK
 
-table(Valid$identificationVerificationStatus)
+Valid <- data.frame() #Empty first
+Valid <- rbind(Valid1,Valid2)
+#Expected: 66815 + 26041 = 92856/ Result: 92856 => OK
+table(Valid$identificationVerificationStatus, Valid$gbifapi_acceptedScientificName)
 table(Valid$basisOfRecord)
+table(Valid$euConcernStatus)
 ####Opsplitsen Volgens eulist status####
 
 EuConc_ruw <- subset(Valid, euConcernStatus == "listed")
+nrow(EuConc_ruw) #Xpected 43312/ Result: 43312 => OK
 EuPrep_ruw <- subset(Valid, euConcernStatus == "under preparation")
 EuCons_ruw <- subset(Valid, euConcernStatus == "under consideration")
 
