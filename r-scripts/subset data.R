@@ -39,10 +39,11 @@ if(update == "J"){
 table(Brondata$gbifapi_acceptedScientificName,Brondata$euConcernStatus)
 table(Brondata$identificationVerificationStatus)
 
-####Enkel gevalideerde####
+####Validation####
 #Certain more common and recognisable species are non-propotionally not treated, under treatment 
 #or not treatable.
 #Experts selected the following species to have all validation statuses included.
+
 table(Brondata$gbifapi_acceptedScientificName)
 temp_ok <- data.frame()
 valid_soorten <- c("Threskiornis aethiopicus (Latham, 1790)", "Oxyura jamaicensis (Gmelin, 1789)"
@@ -63,6 +64,7 @@ nrow(temp_ok) #27196
 #and should still be removed
 Valid2 <- subset(temp_ok, identificationVerificationStatus != "non validÃ©")
 nrow(Valid2) #Expected: 27196 - 1155 = 26041/ Result: 26041 => OK
+
 #Remove non treated, under treatment, not treatable records from remaining species
 temp_nok <- subset(Brondata, !(gbifapi_acceptedScientificName %in% valid_soorten))
 nrow(temp_nok)#Expected: 206824 - 27196 = 179628/ Result: 179628 => OK
@@ -82,7 +84,8 @@ Valid <- rbind(Valid1,Valid2)
 table(Valid$identificationVerificationStatus, Valid$gbifapi_acceptedScientificName)
 table(Valid$basisOfRecord)
 table(Valid$euConcernStatus)
-####Opsplitsen Volgens eulist status####
+
+####Subset according to euconcernstatus####
 
 EuConc_ruw <- subset(Valid, euConcernStatus == "listed")
 nrow(EuConc_ruw) #Xpected 43312/ Result: 43312 => OK
@@ -91,18 +94,19 @@ EuCons_ruw <- subset(Valid, euConcernStatus == "under consideration")
 
 table(EuConc_ruw$gbifapi_acceptedScientificName,EuConc_ruw$euConcernStatus)
 table(EuConc_ruw$basisOfRecord)
-####Vereenvoudiging EUConcern####
+
+####Only EU - Listed species#### 
+####Clean-up EUConcern####
+
 EuConc <- subset(EuConc_ruw, !is.na(gis_utm1_code))
 EuConc <- subset(EuConc, !is.na(gbifapi_acceptedScientificName))
 EuConc <- subset(EuConc, !is.na(year))
 EuConc <- subset(EuConc, basisOfRecord != "PRESERVED_SPECIMEN")
 
-
 table(EuConc$gbifapi_acceptedScientificName,EuConc$euConcernStatus)
 
-
-####Datum afkap####
-#vanaf 01/01/2000 t.e.m. 31/01/2016
+####Date Limitations####
+#Only observations between 01/01/2000 and 31/01/2016 are withheld
 
 table(EuConc$year)
 tempNA <- subset(EuConc, eventDate == "")
@@ -122,7 +126,9 @@ EuConc2 <- rbind(temp_voor2016, temp_voorfeb16)
 
 table(EuConc2$gbifapi_acceptedScientificName,EuConc2$euConcernStatus)
 
-####aanwezigheid bepalen####
+####Determine presence####
+#For each individual UTM 1x1 square the presence of species s is determined
+
 soorten <- unique(EuConc2$gbifapi_acceptedScientificName)
 print(soorten)
 presence <- data.frame()
@@ -150,7 +156,8 @@ remove(temp)
 remove(temp2)
 remove(temp3)
 
-#Duplicaten controle####
+#Duplicate Check####
+
 anyDuplicated(presence$utm1)
 utmhokken2 <- unique(presence$utm1)
 temp3 <- data.frame("x")
@@ -166,7 +173,8 @@ for(v in utmhokken2){
   }
 } 
 
-####Data Exporteren####
+####Export Data####
+#This data is used as input into GIS - Models
 library(foreign)
 write.csv2(presence, filename2)
 write.dbf(presence, filename3)
