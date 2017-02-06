@@ -55,9 +55,8 @@ temp_ok <- data.frame()
 valid_soorten <- c("Threskiornis aethiopicus (Latham, 1790)", "Oxyura jamaicensis (Gmelin, 1789)"
              ,"Procyon lotor (Linnaeus, 1758)", "Cabomba caroliniana A. Gray"
              ,"Tamias sibiricus (Laxmann, 1769)", "Nasua nasua (Linnaeus, 1766)"
-             ,"Lysichiton americanus HultÃ©n & H.St.John", "Orconectes limosus (Rafinesque, 1817)"
-             ,"Pacifastacus leniusculus (Dana, 1852)", "Procambarus clarkii (Girard, 1852)"
-             ,"Pseudorasbora parva (Temminck & Schlegel, 1846)")
+             , "Eriocheir sinensis H. Milne Edwards, 1853"
+             ,"Pseudorasbora parva (Temminck & Schlegel, 1846)","Trachemys scripta Schoepff, 1792")
 for(v in valid_soorten){
   temp <- subset(Brondata, gbifapi_acceptedScientificName == v)
   temp_ok <- rbind(temp_ok, temp)
@@ -65,28 +64,25 @@ for(v in valid_soorten){
 temp_ok$gbifapi_acceptedScientificName <- factor(temp_ok$gbifapi_acceptedScientificName)
 table(temp_ok$gbifapi_acceptedScientificName)
 table(temp_ok$identificationVerificationStatus)
-nrow(temp_ok) #27196 
-#Records with identificationVerificationStatus ="non validÃ©" remain incorrect 
-#and should still be removed
-Valid2 <- subset(temp_ok, identificationVerificationStatus != "non validÃ©")
-nrow(Valid2) #Expected: 27196 - 1155 = 26041/ Result: 26041 => OK
+nrow(temp_ok) #29228 
+Valid2 <- temp_ok
 
 #Remove non treated, under treatment, not treatable records from remaining species
 temp_nok <- subset(Brondata, !(gbifapi_acceptedScientificName %in% valid_soorten))
-nrow(temp_nok)#Expected: 206824 - 27196 = 179628/ Result: 179628 => OK
+nrow(temp_nok)#Expected: 163812 - 29228 = 134584/ Result: 134584 => OK
 table(temp_nok$identificationVerificationStatus)
 Valid1 <- subset(temp_nok,identificationVerificationStatus != "Onbehandeld")
-nrow(Valid1) #Expected: 179628 - 88512 = 91116/ Result: 91116 => OK
+nrow(Valid1) #Expected: 134584 - 79847 = 54737/ Result: 54737 => OK
 Valid1 <- subset(Valid1,identificationVerificationStatus != "In behandeling")
-nrow(Valid1)#Expected: 91116 - 13 = 91103/ Result: 91103 => OK
+nrow(Valid1)#Expected: 54737 - 13 = 54724/ Result: 54724 => OK
 Valid1 <- subset(Valid1,identificationVerificationStatus != "Niet te beoordelen")
-nrow(Valid1)#Expected: 91103 - 31 = 91072/ Result: 91072 => OK
-Valid1 <- subset(Valid1,identificationVerificationStatus != "non validÃ©")
-nrow(Valid1)#Expected: 91072 - 24257 = 66815/ Result: 66815 => OK
+nrow(Valid1)#Expected: 54724 - 31 = 54693/ Result: 54693 => OK
+Valid1 <- subset(Valid1,identificationVerificationStatus != 0)
+nrow(Valid1)#Expected: 54693 - 343 = 54350/ Result: 54350 => OK
 
 Valid <- data.frame() #Empty first
 Valid <- rbind(Valid1,Valid2)
-nrow(Valid)#Expected: 66815 + 26041 = 92856/ Result: 92856 => OK
+nrow(Valid)#Expected: 54350 + 29228 = 83578/ Result: 83578 => OK
 table(Valid$identificationVerificationStatus, Valid$gbifapi_acceptedScientificName)
 table(Valid$basisOfRecord)
 table(Valid$euConcernStatus)
@@ -94,7 +90,7 @@ table(Valid$euConcernStatus)
 ####Subset according to euconcernstatus####
 
 EuConc_ruw <- subset(Valid, euConcernStatus == "listed")
-nrow(EuConc_ruw) #Xpected 43312/ Result: 43312 => OK
+nrow(EuConc_ruw) #Xpected 40737/ Result: 40737 => OK
 EuPrep_ruw <- subset(Valid, euConcernStatus == "under preparation")
 EuCons_ruw <- subset(Valid, euConcernStatus == "under consideration")
 
@@ -135,6 +131,10 @@ table(EuConc2$gbifapi_acceptedScientificName, EuConc2$identificationVerification
 doc_Listed <- data.frame(table(EuConc2$gbifapi_acceptedScientificName, EuConc2$identificationVerificationStatus))
 doc_Listed <- subset(doc_Listed, Freq != 0)
 write.csv2(doc_Listed, "//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/Data/Overview_Species_Verificationstatus.csv")
+
+####Export subsetted data####
+filename6 <- paste("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/Data/Data_", nieuw,"_Subsetted_", today, ".csv", sep="")
+write.csv2(EuConc2, filename6)
 
 ####Determine presence UTM1x1####
 #For each individual UTM 1x1 square the presence of species s is determined
