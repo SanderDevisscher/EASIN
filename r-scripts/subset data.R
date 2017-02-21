@@ -64,25 +64,25 @@ for(v in valid_soorten){
 temp_ok$gbifapi_acceptedScientificName <- factor(temp_ok$gbifapi_acceptedScientificName)
 table(temp_ok$gbifapi_acceptedScientificName)
 table(temp_ok$identificationVerificationStatus)
-nrow(temp_ok) #29228 
+nrow(temp_ok) #31813 
 Valid2 <- temp_ok
 
 #Remove non treated, under treatment, not treatable records from remaining species
 temp_nok <- subset(Brondata, !(gbifapi_acceptedScientificName %in% valid_soorten))
-nrow(temp_nok)#Expected: 163812 - 29228 = 134584/ Result: 134584 => OK
+nrow(temp_nok)#Expected: 162953 - 31813 = 131140/ Result: 131140 => OK
 table(temp_nok$identificationVerificationStatus)
 Valid1 <- subset(temp_nok,identificationVerificationStatus != "Onbehandeld")
-nrow(Valid1) #Expected: 134584 - 79847 = 54737/ Result: 54737 => OK
+nrow(Valid1) #Expected: 131140 - 79847 = 51293/ Result: 51293 => OK
 Valid1 <- subset(Valid1,identificationVerificationStatus != "In behandeling")
-nrow(Valid1)#Expected: 54737 - 13 = 54724/ Result: 54724 => OK
+nrow(Valid1)#Expected: 51293 - 13 = 51280/ Result: 51280 => OK
 Valid1 <- subset(Valid1,identificationVerificationStatus != "Niet te beoordelen")
-nrow(Valid1)#Expected: 54724 - 31 = 54693/ Result: 54693 => OK
+nrow(Valid1)#Expected: 51280 - 31 = 51249/ Result: 51249 => OK
 Valid1 <- subset(Valid1,identificationVerificationStatus != 0)
-nrow(Valid1)#Expected: 54693 - 343 = 54350/ Result: 54350 => OK
+nrow(Valid1)#Expected: 51249 - 343 = 50906/ Result: 50906 => OK
 
 Valid <- data.frame() #Empty first
 Valid <- rbind(Valid1,Valid2)
-nrow(Valid)#Expected: 54350 + 29228 = 83578/ Result: 83578 => OK
+nrow(Valid)#Expected: 50906 + 31813 =  82719/ Result:  82719 => OK
 table(Valid$identificationVerificationStatus, Valid$gbifapi_acceptedScientificName)
 table(Valid$basisOfRecord)
 table(Valid$euConcernStatus)
@@ -90,7 +90,7 @@ table(Valid$euConcernStatus)
 ####Subset according to euconcernstatus####
 
 EuConc_ruw <- subset(Valid, euConcernStatus == "listed")
-nrow(EuConc_ruw) #Xpected 40737/ Result: 40737 => OK
+nrow(EuConc_ruw) #Xpected 39747/ Result: 39747 => OK
 EuPrep_ruw <- subset(Valid, euConcernStatus == "under preparation")
 EuCons_ruw <- subset(Valid, euConcernStatus == "under consideration")
 
@@ -128,6 +128,15 @@ EuConc2 <- rbind(temp_voor2016, temp_voorfeb16)
 
 table(EuConc2$gbifapi_acceptedScientificName,EuConc2$euConcernStatus)
 table(EuConc2$gbifapi_acceptedScientificName, EuConc2$identificationVerificationStatus)
+
+#Subset faulty data####
+#Experts determined that all observations of "Orconectes virilis" are incorrect 
+#and thus should be removed manually untill the faulty record has been discovered and fixed
+
+EuConc2 <- subset(EuConc2, gbifapi_acceptedScientificName != "Orconectes virilis (Hagen, 1870)")
+nrow(EuConc2) #expected: 35382 - 1 = 35381/ result:35381 
+table(EuConc2$gbifapi_acceptedScientificName,EuConc2$euConcernStatus)
+
 doc_Listed <- data.frame(table(EuConc2$gbifapi_acceptedScientificName, EuConc2$identificationVerificationStatus))
 doc_Listed <- subset(doc_Listed, Freq != 0)
 write.csv2(doc_Listed, "//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/Data/Overview_Species_Verificationstatus.csv")
