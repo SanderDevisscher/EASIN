@@ -141,6 +141,19 @@ doc_Listed <- data.frame(table(EuConc2$gbifapi_acceptedScientificName, EuConc2$i
 doc_Listed <- subset(doc_Listed, Freq != 0)
 write.csv2(doc_Listed, "//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/Data/Overview_Species_Verificationstatus.csv")
 
+####Remove incorrect squares####
+#During review of the maps produced some squares showed a presence for the species below while they shouldn't
+#The decision was made by experts to remove these squares from the dataset.
+
+#Tamias sibiricus
+temp <- subset(EuConc2, gbifapi_acceptedScientificName == "Tamias sibiricus (Laxmann, 1769)")
+temp <- subset(temp, gis_EUgrid_cellcode != "10kmE387N307")
+temp2 <- subset(EuConc2, gbifapi_acceptedScientificName != "Tamias sibiricus (Laxmann, 1769)")
+EuConc2 <- rbind(temp, temp2)
+
+remove(temp)
+remove(temp2)
+
 ####Export subsetted data####
 filename6 <- paste("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/Data/Data_", nieuw,"_Subsetted_", today, ".csv", sep="")
 write.csv2(EuConc2, filename6)
@@ -229,18 +242,7 @@ remove(temp)
 remove(temp2)
 remove(temp3)
 
-####Remove incorrect squares####
-#During review of the maps produced some squares showed a presence for the species below while they shouldn't
-#The decision was made by experts to remove these squares from the dataset.
 
-#Tamias sibiricus
-temp <- subset(presence2, species == "Tamias sibiricus (Laxmann, 1769)")
-temp <- subset(temp, EUgrid_cellcode != "10kmE387N307")
-temp2 <- subset(presence2, species != "Tamias sibiricus (Laxmann, 1769)")
-presence2 <- rbind(temp, temp2)
-
-remove(temp)
-remove(temp2)
 
 ####Export Data 10k GRID####
 #This data is used as input into GIS - Models
