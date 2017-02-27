@@ -229,6 +229,19 @@ remove(temp)
 remove(temp2)
 remove(temp3)
 
+####Remove incorrect squares####
+#During review of the maps produced some squares showed a presence for the species below while they shouldn't
+#The decision was made by experts to remove these squares from the dataset.
+
+#Tamias sibiricus
+temp <- subset(presence2, species == "Tamias sibiricus (Laxmann, 1769)")
+temp <- subset(temp, EUgrid_cellcode != "10kmE387N307")
+temp2 <- subset(presence2, species != "Tamias sibiricus (Laxmann, 1769)")
+presence2 <- rbind(temp, temp2)
+
+remove(temp)
+remove(temp2)
+
 ####Export Data 10k GRID####
 #This data is used as input into GIS - Models
 library(foreign)
