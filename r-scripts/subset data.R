@@ -99,8 +99,11 @@ table(EuConc_ruw$basisOfRecord)
 
 ####Only EU - Listed species#### 
 ####Clean-up EUConcern####
+#Retain only records with at least Grid 10k square match, gbifapi_acceptedScientificName and year
+#Which are not preserved specimens
 
-EuConc <- subset(EuConc_ruw, !is.na(gis_utm1_code))
+EuConc <- subset(EuConc_ruw, !is.na(gis_EUgrid_cellcode))
+EuConc <- subset(EuConc, gis_EUgrid_cellcode != "")
 EuConc <- subset(EuConc, !is.na(gbifapi_acceptedScientificName))
 EuConc <- subset(EuConc, !is.na(year))
 EuConc <- subset(EuConc, basisOfRecord != "PRESERVED_SPECIMEN")
@@ -155,8 +158,11 @@ remove(temp)
 remove(temp2)
 
 ####Export subsetted data####
+library(foreign)
 filename6 <- paste("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/Data/Data_", nieuw,"_Subsetted_", today, ".csv", sep="")
+filename7 <- paste("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/Data/Data_", nieuw,"_Subsetted_", today, ".dbf", sep="")
 write.csv2(EuConc2, filename6)
+write.dbf(EuConc2, filename7)
 
 ####Determine presence UTM1x1####
 #For each individual UTM 1x1 square the presence of species s is determined
