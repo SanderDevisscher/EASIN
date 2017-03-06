@@ -1,3 +1,4 @@
+library(plyr)
 library(dplyr)
 library(ggplot2)
 
@@ -177,4 +178,53 @@ remove(temp11)
 
 temp <- EuConc
 
+####Overview sources used####
+temp <- EuConc2
 
+temp2 <- temp[c("gbifapi_acceptedScientificName", "verbatimDatasetName", "datasetName", "ownerOrganization", "institutionCode", "ownerInstitutionCode")]
+temp2$ownerOrganization <- as.character(temp2$ownerOrganization)
+temp2$institutionCode <- as.character(temp2$institutionCode)
+temp2$ownerInstitutionCode <- as.character(temp2$ownerInstitutionCode)
+temp2$verbatimDatasetName <- as.character(temp2$verbatimDatasetName)
+temp2$datasetName <- as.character(temp2$datasetName)
+
+temp2$Source <- ifelse(temp2$ownerOrganization != "", temp2$ownerOrganization,
+                       ifelse(temp2$institutionCode != "", temp2$institutionCode, 
+                              ifelse(temp2$ownerInstitutionCode != "", temp2$ownerInstitutionCode, "Unknown")))
+temp2$Dataset <- ifelse(temp2$datasetName != "", temp2$datasetName, 
+                        ifelse(temp2$verbatimDatasetName != "", temp2$verbatimDatasetName, 
+                               "Unknown"))
+temp2$Source <- ifelse(temp2$Dataset == "Ecologische inventarisatie en -visievorming van de Begijnenbeek", "INBO", temp2$Source)
+temp2$Source <- ifelse(temp2$Dataset == "opnames voor habitat 3260-kartering", "INBO", temp2$Source)
+temp2$Source <- ifelse(temp2$Dataset == "opnames voor monitoring habitat 3260", "INBO", temp2$Source)
+temp2$Source <- ifelse(temp2$Dataset == "opnames voor rapportage KRW", "INBO", temp2$Source)
+temp2$Source <- ifelse(temp2$Dataset == "INBODATAVR119_divers_HYLA_NieuweEU-RegulatieExoten_GIS_font_point", "HYLA", temp2$Source)
+
+temp3 <- subset(temp2, is.na(Source))
+temp3$datasetName <- as.character(temp3$Dataset)
+table(temp3$Dataset)
+remove(temp3)
+temp4 <- temp2[c("gbifapi_acceptedScientificName", "Source", "Dataset")]
+temp8 <- data.frame("X")
+temp9 <- data.frame()
+Species <- unique(temp4$gbifapi_acceptedScientificName)
+for (s in Species){
+  temp5 <- subset(temp4, gbifapi_acceptedScientificName == s)
+  Sources <- unique(temp5$Source)
+  for (t in Sources){
+    temp6 <- subset(temp5, Source == t)
+    Datasets <- unique(temp6$Dataset)
+    for (d in Datasets){
+      temp7 <- subset(temp6, Dataset == d)
+      temp8$Species <- s
+      temp8$Source <- t
+      temp8$Dataset <- d
+      temp8$Frequency <- nrow(temp7) 
+      temp9 <- rbind(temp9, temp8)
+    }
+  }
+}
+sum(temp9$Frequency)
+temp9$X.X. <- NULL
+
+write.csv2(temp9, "./Outputs/NRecordsSpeciesSource.csv")
