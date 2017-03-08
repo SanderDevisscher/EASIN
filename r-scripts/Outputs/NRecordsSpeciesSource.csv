@@ -1,175 +1,178 @@
 "";"Species";"Source";"Dataset";"Frequency"
-"1";"Baccharis halimifolia L.";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";60
-"2";"Baccharis halimifolia L.";"INBO";"FLORABANK 1: a grid-based database on vascular plant distribution in the northern part of Belgium (Flanders and the Brussels Capital region)";49
-"3";"Callosciurus erythraeus (Pallas, 1779)";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";12
-"4";"Eichhornia crassipes (Mart.) Solms";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";6
-"5";"Eichhornia crassipes (Mart.) Solms";"INBO";"FLORABANK 1: a grid-based database on vascular plant distribution in the northern part of Belgium (Flanders and the Brussels Capital region)";4
-"6";"Hydrocotyle ranunculoides L. fil.";"Unknown";"MF1";2
-"7";"Hydrocotyle ranunculoides L. fil.";"INBO";"opnames voor habitat 3260-kartering";14
-"8";"Hydrocotyle ranunculoides L. fil.";"INBO";"opnames voor rapportage KRW";35
-"9";"Hydrocotyle ranunculoides L. fil.";"INBO";"invasive-other-occurrences";5
-"10";"Hydrocotyle ranunculoides L. fil.";"Provincie Oost-Vlaanderen - dienst Integraal Waterbeleid";"shpexotenoostvlaanderen";43
-"11";"Hydrocotyle ranunculoides L. fil.";"VMM | INBO";"Databank macrofyten in waterlopen";55
-"12";"Hydrocotyle ranunculoides L. fil.";"Provincie Limburg - dienst waterlopen";"waarnemingen_InvasieveExoten_v2";23
-"13";"Hydrocotyle ranunculoides L. fil.";"DEMNA-SPW";"Encodage en ligne OFFH";52
-"14";"Hydrocotyle ranunculoides L. fil.";"DEMNA-SPW";"Enquetes OFFH";20
-"15";"Hydrocotyle ranunculoides L. fil.";"DEMNA-SPW";"Contrats Rivières";13
-"16";"Hydrocotyle ranunculoides L. fil.";"DEMNA-SPW";"Rinse";2
-"17";"Hydrocotyle ranunculoides L. fil.";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";108
-"18";"Lagarosiphon major (Ridl.) Moss";"INBO";"opnames voor monitoring habitat 3260";1
-"19";"Lagarosiphon major (Ridl.) Moss";"INBO";"invasive-other-occurrences";2
-"20";"Lagarosiphon major (Ridl.) Moss";"INBO";"FLORABANK 1: a grid-based database on vascular plant distribution in the northern part of Belgium (Flanders and the Brussels Capital region)";22
-"21";"Lagarosiphon major (Ridl.) Moss";"DEMNA-SPW";"Encodage en ligne OFFH";5
-"22";"Lagarosiphon major (Ridl.) Moss";"DEMNA-SPW";"Enquetes OFFH";2
-"23";"Lagarosiphon major (Ridl.) Moss";"DEMNA-SPW";"Flore OFFH and Co";1
-"24";"Lagarosiphon major (Ridl.) Moss";"DEMNA-SPW";"Contrats Rivières";4
-"25";"Lagarosiphon major (Ridl.) Moss";"DEMNA-SPW";"Invasives obs.be";2
-"26";"Lagarosiphon major (Ridl.) Moss";"VMM | INBO";"Databank macrofyten in waterlopen";1
-"27";"Lagarosiphon major (Ridl.) Moss";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";48
-"28";"Lithobates catesbeianus (Shaw, 1802)";"HYLA";"INBODATAVR119_divers_HYLA_NieuweEU-RegulatieExoten_GIS_font_point";355
-"29";"Lithobates catesbeianus (Shaw, 1802)";"DEMNA-SPW";"Encodage en ligne OFFH";8
-"30";"Lithobates catesbeianus (Shaw, 1802)";"DEMNA-SPW";"Enquetes OFFH";8
-"31";"Lithobates catesbeianus (Shaw, 1802)";"DEMNA-SPW";"BD Herpéto";6
-"32";"Lithobates catesbeianus (Shaw, 1802)";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";404
-"33";"Lithobates catesbeianus (Shaw, 1802)";"INBO";"Invasive species - American bullfrog (Lithobates catesbeiana) in Flanders, Belgium";1996
-"34";"Lithobates catesbeianus (Shaw, 1802)";"iNaturalist";"iNaturalist research-grade observations";1
-"35";"Ludwigia grandiflora (Michaux) Greuter & Burdet";"Unknown";"MF2";2
-"36";"Ludwigia grandiflora (Michaux) Greuter & Burdet";"INBO";"opnames voor habitat 3260-kartering";5
-"37";"Ludwigia grandiflora (Michaux) Greuter & Burdet";"INBO";"opnames voor rapportage KRW";27
-"38";"Ludwigia grandiflora (Michaux) Greuter & Burdet";"INBO";"opnames voor monitoring habitat 3260";1
-"39";"Ludwigia grandiflora (Michaux) Greuter & Burdet";"INBO";"invasive-other-occurrences";2
-"40";"Ludwigia grandiflora (Michaux) Greuter & Burdet";"INBO";"FLORABANK 1: a grid-based database on vascular plant distribution in the northern part of Belgium (Flanders and the Brussels Capital region)";176
-"41";"Ludwigia grandiflora (Michaux) Greuter & Burdet";"VMM | INBO";"Databank macrofyten in waterlopen";33
-"42";"Ludwigia grandiflora (Michaux) Greuter & Burdet";"Provincie Oost-Vlaanderen - dienst Integraal Waterbeleid";"shpexotenoostvlaanderen";3
-"43";"Ludwigia grandiflora (Michaux) Greuter & Burdet";"DEMNA-SPW";"Encodage en ligne OFFH";20
-"44";"Ludwigia grandiflora (Michaux) Greuter & Burdet";"DEMNA-SPW";"Enquetes OFFH";7
-"45";"Ludwigia grandiflora (Michaux) Greuter & Burdet";"DEMNA-SPW";"Flore OFFH and Co";1
-"46";"Ludwigia grandiflora (Michaux) Greuter & Burdet";"DEMNA-SPW";"Contrats Rivières";1
-"47";"Ludwigia grandiflora (Michaux) Greuter & Burdet";"DEMNA-SPW";"Invasives obs.be";1
-"48";"Ludwigia grandiflora (Michaux) Greuter & Burdet";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";96
-"49";"Ludwigia peploides (Kunth) P. H. Raven";"INBO";"opnames voor habitat 3260-kartering";3
-"50";"Ludwigia peploides (Kunth) P. H. Raven";"INBO";"FLORABANK 1: a grid-based database on vascular plant distribution in the northern part of Belgium (Flanders and the Brussels Capital region)";7
-"51";"Ludwigia peploides (Kunth) P. H. Raven";"Provincie Oost-Vlaanderen - dienst Integraal Waterbeleid";"shpexotenoostvlaanderen";1
-"52";"Ludwigia peploides (Kunth) P. H. Raven";"VMM | INBO";"Databank macrofyten in waterlopen";3
-"53";"Ludwigia peploides (Kunth) P. H. Raven";"DEMNA-SPW";"Encodage en ligne OFFH";8
-"54";"Ludwigia peploides (Kunth) P. H. Raven";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";19
-"55";"Lysichiton americanus Hultén & H.St.John";"DEMNA-SPW";"Encodage en ligne OFFH";5
-"56";"Lysichiton americanus Hultén & H.St.John";"DEMNA-SPW";"Enquetes OFFH";1
-"57";"Lysichiton americanus Hultén & H.St.John";"DEMNA-SPW";"Rinse";10
-"58";"Lysichiton americanus Hultén & H.St.John";"DEMNA-SPW";"Invasives obs.be";13
-"59";"Lysichiton americanus Hultén & H.St.John";"DEMNA-SPW";"Contrats Rivières";2
-"60";"Lysichiton americanus Hultén & H.St.John";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";19
-"61";"Lysichiton americanus Hultén & H.St.John";"iNaturalist";"iNaturalist research-grade observations";1
-"62";"Muntiacus reevesi (Ogilby, 1839)";"DEMNA-SPW";"Enquetes OFFH";2
-"63";"Muntiacus reevesi (Ogilby, 1839)";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";66
-"64";"Muntiacus reevesi (Ogilby, 1839)";"INBO";"invasive-other-occurrences";90
-"65";"Myocastor coypus (Molina, 1782)";"DEMNA-SPW";"Encodage en ligne OFFH";2
-"66";"Myocastor coypus (Molina, 1782)";"DEMNA-SPW";"Invasives obs.be";42
-"67";"Myocastor coypus (Molina, 1782)";"DEMNA-SPW";"Enquetes OFFH";2
-"68";"Myocastor coypus (Molina, 1782)";"Natuurpunt Zoogdierenwerkgroep Vlaanderen";"INBODATAVR119_divers_ZoogdierendbExtra_NieuweEU-regulatieExoten";4
-"69";"Myocastor coypus (Molina, 1782)";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";84
-"70";"Myriophyllum aquaticum (Vellozo) Verdcourt";"INBO";"Ecologische inventarisatie en -visievorming van de Begijnenbeek";2
-"71";"Myriophyllum aquaticum (Vellozo) Verdcourt";"INBO";"opnames voor habitat 3260-kartering";8
-"72";"Myriophyllum aquaticum (Vellozo) Verdcourt";"INBO";"opnames voor rapportage KRW";10
-"73";"Myriophyllum aquaticum (Vellozo) Verdcourt";"INBO";"invasive-other-occurrences";4
-"74";"Myriophyllum aquaticum (Vellozo) Verdcourt";"INBO";"FLORABANK 1: a grid-based database on vascular plant distribution in the northern part of Belgium (Flanders and the Brussels Capital region)";557
-"75";"Myriophyllum aquaticum (Vellozo) Verdcourt";"VMM | INBO";"Databank macrofyten in waterlopen";18
-"76";"Myriophyllum aquaticum (Vellozo) Verdcourt";"Provincie Limburg - dienst waterlopen";"waarnemingen_InvasieveExoten_v2";9
-"77";"Myriophyllum aquaticum (Vellozo) Verdcourt";"DEMNA-SPW";"Encodage en ligne OFFH";18
-"78";"Myriophyllum aquaticum (Vellozo) Verdcourt";"DEMNA-SPW";"Enquetes OFFH";14
-"79";"Myriophyllum aquaticum (Vellozo) Verdcourt";"DEMNA-SPW";"Contrats Rivières";6
-"80";"Myriophyllum aquaticum (Vellozo) Verdcourt";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";145
-"81";"Myriophyllum aquaticum (Vellozo) Verdcourt";"Provincie Oost-Vlaanderen - dienst Integraal Waterbeleid";"shpexotenoostvlaanderen";7
-"82";"Orconectes limosus (Rafinesque, 1817)";"DEMNA-SPW";"Encodage en ligne OFFH";17
-"83";"Orconectes limosus (Rafinesque, 1817)";"DEMNA-SPW";"Ecrevisses invasives";229
-"84";"Orconectes limosus (Rafinesque, 1817)";"DEMNA-SPW";"Contrats Rivières";6
-"85";"Orconectes limosus (Rafinesque, 1817)";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";54
-"86";"Orconectes limosus (Rafinesque, 1817)";"INBO";"invasive-other-occurrences";194
-"87";"Orconectes limosus (Rafinesque, 1817)";"INBO";"VIS - Estuarine post 2013 Monitoring, Belgium";2
-"88";"Orconectes limosus (Rafinesque, 1817)";"INBO";"VIS - Reference Freshwater Fishes Monitoring, Belgium";48
-"89";"Orconectes limosus (Rafinesque, 1817)";"INBO";"VIS - Fishes in estuarine waters in Flanders, Belgium";13
-"90";"Orconectes limosus (Rafinesque, 1817)";"INBO";"VIS - Fishes in inland waters in Flanders, Belgium";116
-"91";"Orconectes limosus (Rafinesque, 1817)";"INBO";"Invasive species - American bullfrog (Lithobates catesbeiana) in Flanders, Belgium";328
-"92";"Orconectes limosus (Rafinesque, 1817)";"INBO";"Alien macro-invertebrates in Flanders, Belgium";196
-"93";"Orconectes limosus (Rafinesque, 1817)";"Unknown";"Unknown";2
-"94";"Orconectes limosus (Rafinesque, 1817)";"Diveboard";"Diveboard - Scuba diving citizen science";5
-"95";"Pacifastacus leniusculus (Dana, 1852)";"DEMNA-SPW";"Encodage en ligne OFFH";22
-"96";"Pacifastacus leniusculus (Dana, 1852)";"DEMNA-SPW";"Aquabio invasives";1
-"97";"Pacifastacus leniusculus (Dana, 1852)";"DEMNA-SPW";"Ecrevisses invasives";527
-"98";"Pacifastacus leniusculus (Dana, 1852)";"DEMNA-SPW";"Enquetes OFFH";2
-"99";"Pacifastacus leniusculus (Dana, 1852)";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";61
-"100";"Pacifastacus leniusculus (Dana, 1852)";"INBO";"invasive-other-occurrences";1
-"101";"Parthenium hysterophorus L.";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";1
-"102";"Procambarus clarkii (Girard, 1852)";"DEMNA-SPW";"Enquetes OFFH";5
-"103";"Procambarus clarkii (Girard, 1852)";"DEMNA-SPW";"Ecrevisses invasives";75
-"104";"Procambarus clarkii (Girard, 1852)";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";27
-"105";"Procambarus clarkii (Girard, 1852)";"INBO";"invasive-other-occurrences";12
-"106";"Procambarus clarkii (Girard, 1852)";"INBO";"VIS - Reference Freshwater Fishes Monitoring, Belgium";2
-"107";"Procambarus clarkii (Girard, 1852)";"INBO";"VIS - Fishes in inland waters in Flanders, Belgium";3
-"108";"Procambarus clarkii (Girard, 1852)";"INBO";"Alien macro-invertebrates in Flanders, Belgium";4
-"109";"Sciurus carolinensis Gmelin, 1788";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";8
-"110";"Sciurus niger Linnaeus, 1758";"DEMNA-SPW";"Invasives obs.be";6
-"111";"Sciurus niger Linnaeus, 1758";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";6
-"112";"Vespa velutina Lepeletier, 1836";"DEMNA-SPW";"Encodage en ligne OFFH";1
-"113";"Threskiornis aethiopicus (Latham, 1790)";"DEMNA-SPW";"Encodage en ligne OFFH";1
-"114";"Threskiornis aethiopicus (Latham, 1790)";"DEMNA-SPW";"Invasives obs.be";43
-"115";"Threskiornis aethiopicus (Latham, 1790)";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";883
-"116";"Threskiornis aethiopicus (Latham, 1790)";"INBO";"Watervogels - Wintering waterbirds in Flanders, Belgium";18
-"117";"Oxyura jamaicensis (Gmelin, 1789)";"DEMNA-SPW";"Encodage en ligne OFFH";2
-"118";"Oxyura jamaicensis (Gmelin, 1789)";"DEMNA-SPW";"Invasives obs.be";158
-"119";"Oxyura jamaicensis (Gmelin, 1789)";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";3430
-"120";"Oxyura jamaicensis (Gmelin, 1789)";"INBO";"invasive-other-occurrences";57
-"121";"Oxyura jamaicensis (Gmelin, 1789)";"INBO";"Zomerganzen - Summering geese management and population counts in Flanders, Belgium";1
-"122";"Oxyura jamaicensis (Gmelin, 1789)";"INBO";"Watervogels - Wintering waterbirds in Flanders, Belgium";185
-"123";"Oxyura jamaicensis (Gmelin, 1789)";"INBO";"Broedvogels - Atlas of the breeding birds in Flanders 2000-2002";1
-"124";"Oxyura jamaicensis (Gmelin, 1789)";"CLO";"Unknown";2
-"125";"Procyon lotor (Linnaeus, 1758)";"DEMNA-SPW";"Encodage en ligne OFFH";355
-"126";"Procyon lotor (Linnaeus, 1758)";"DEMNA-SPW";"Enquetes OFFH";55
-"127";"Procyon lotor (Linnaeus, 1758)";"DEMNA-SPW";"Invasives obs.be";823
-"128";"Procyon lotor (Linnaeus, 1758)";"Natuurpunt Zoogdierenwerkgroep Vlaanderen";"INBODATAVR119_divers_ZoogdierendbExtra_NieuweEU-regulatieExoten";1
-"129";"Procyon lotor (Linnaeus, 1758)";"INBO";"exoten_vraagTim_07032016_def";54
-"130";"Procyon lotor (Linnaeus, 1758)";"INBO";"invasive-other-occurrences";1
-"131";"Procyon lotor (Linnaeus, 1758)";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";852
-"132";"Procyon lotor (Linnaeus, 1758)";"MNHNL";"Unknown";3
-"133";"Cabomba caroliniana A. Gray";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";7
-"134";"Cabomba caroliniana A. Gray";"INBO";"FLORABANK 1: a grid-based database on vascular plant distribution in the northern part of Belgium (Flanders and the Brussels Capital region)";2
-"135";"Tamias sibiricus (Laxmann, 1769)";"DEMNA-SPW";"Encodage en ligne OFFH";1
-"136";"Tamias sibiricus (Laxmann, 1769)";"DEMNA-SPW";"Invasives obs.be";39
-"137";"Tamias sibiricus (Laxmann, 1769)";"Natuurpunt Zoogdierenwerkgroep Vlaanderen";"INBODATAVR119_divers_ZoogdierendbExtra_NieuweEU-regulatieExoten";35
-"138";"Tamias sibiricus (Laxmann, 1769)";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";763
-"139";"Nasua nasua (Linnaeus, 1766)";"INBO";"exoten_vraagTim_07032016_def";2
-"140";"Eriocheir sinensis H. Milne Edwards, 1853";"DEMNA-SPW";"Aquabio invasives";2
-"141";"Eriocheir sinensis H. Milne Edwards, 1853";"DEMNA-SPW";"Invasives obs.be";2
-"142";"Eriocheir sinensis H. Milne Edwards, 1853";"DEMNA-SPW";"Enquetes OFFH";1
-"143";"Eriocheir sinensis H. Milne Edwards, 1853";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";377
-"144";"Eriocheir sinensis H. Milne Edwards, 1853";"INBO";"invasive-other-occurrences";4
-"145";"Eriocheir sinensis H. Milne Edwards, 1853";"INBO";"VIS - Estuarine post 2013 Monitoring, Belgium";270
-"146";"Eriocheir sinensis H. Milne Edwards, 1853";"INBO";"VIS - Reference Freshwater Fishes Monitoring, Belgium";45
-"147";"Eriocheir sinensis H. Milne Edwards, 1853";"INBO";"VIS - Fishes in estuarine waters in Flanders, Belgium";467
-"148";"Eriocheir sinensis H. Milne Edwards, 1853";"INBO";"VIS - Fishes in inland waters in Flanders, Belgium";35
-"149";"Eriocheir sinensis H. Milne Edwards, 1853";"INBO";"INBO_Chinese_mittencrab_occurrences_VIS";787
-"150";"Eriocheir sinensis H. Milne Edwards, 1853";"INBO";"Invasive species - American bullfrog (Lithobates catesbeiana) in Flanders, Belgium";4
-"151";"Eriocheir sinensis H. Milne Edwards, 1853";"INBO";"Alien macro-invertebrates in Flanders, Belgium";34
-"152";"Eriocheir sinensis H. Milne Edwards, 1853";"INBO";"Invasive species - Chinese_mittencrab (Eriocheir sinensis) in Flanders";5437
-"153";"Eriocheir sinensis H. Milne Edwards, 1853";"INBO";"Trekvis - Migratory fishes in the river Scheldt";162
-"154";"Eriocheir sinensis H. Milne Edwards, 1853";"INBO";"Visdoorgangen - Fish passage places in Flanders, Belgium";11
-"155";"Pseudorasbora parva (Temminck & Schlegel, 1846)";"DEMNA-SPW";"Encodage en ligne OFFH";9
-"156";"Pseudorasbora parva (Temminck & Schlegel, 1846)";"DEMNA-SPW";"Aquabio invasives";69
-"157";"Pseudorasbora parva (Temminck & Schlegel, 1846)";"DEMNA-SPW";"Contrats Rivières";3
-"158";"Pseudorasbora parva (Temminck & Schlegel, 1846)";"DEMNA-SPW";"Invasives obs.be";47
-"159";"Pseudorasbora parva (Temminck & Schlegel, 1846)";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";261
-"160";"Pseudorasbora parva (Temminck & Schlegel, 1846)";"INBO";"invasive-other-occurrences";135
-"161";"Pseudorasbora parva (Temminck & Schlegel, 1846)";"INBO";"VIS - Estuarine post 2013 Monitoring, Belgium";928
-"162";"Pseudorasbora parva (Temminck & Schlegel, 1846)";"INBO";"VIS - Reference Freshwater Fishes Monitoring, Belgium";825
-"163";"Pseudorasbora parva (Temminck & Schlegel, 1846)";"INBO";"VIS - Fishes in estuarine waters in Flanders, Belgium";1226
-"164";"Pseudorasbora parva (Temminck & Schlegel, 1846)";"INBO";"Invasive species - American bullfrog (Lithobates catesbeiana) in Flanders, Belgium";176
-"165";"Pseudorasbora parva (Temminck & Schlegel, 1846)";"INBO";"VIS - Fishes in inland waters in Flanders, Belgium";8230
-"166";"Pseudorasbora parva (Temminck & Schlegel, 1846)";"INBO";"Visherintroductie - Reintroduction programs for the fishes chub, dace, burbot and brown trout";36
-"167";"Pseudorasbora parva (Temminck & Schlegel, 1846)";"INBO";"Trekvis - Migratory fishes in the river Scheldt";356
-"168";"Pseudorasbora parva (Temminck & Schlegel, 1846)";"INBO";"Visfauna - juvenile and adult fish in riparian habitats along the river Yser";63
-"169";"Pseudorasbora parva (Temminck & Schlegel, 1846)";"INBO";"Visdoorgangen - Fish passage places in Flanders, Belgium";192
-"170";"Pseudorasbora parva (Temminck & Schlegel, 1846)";"SVN";"Unknown";2
-"171";"Trachemys scripta Schoepff, 1792";"DEMNA-SPW";"Encodage en ligne OFFH";36
-"172";"Trachemys scripta Schoepff, 1792";"DEMNA-SPW";"BD Herpéto";424
-"173";"Trachemys scripta Schoepff, 1792";"DEMNA-SPW";"Invasives obs.be";6
-"174";"Trachemys scripta Schoepff, 1792";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";45
+"1";"Tamias sibiricus (Laxmann, 1769)";"DEMNA-SPW";"Encodage en ligne OFFH";1
+"2";"Tamias sibiricus (Laxmann, 1769)";"DEMNA-SPW";"Invasives obs.be";39
+"3";"Tamias sibiricus (Laxmann, 1769)";"Natuurpunt Zoogdierenwerkgroep Vlaanderen";"INBODATAVR119_divers_ZoogdierendbExtra_NieuweEU-regulatieExoten";35
+"4";"Tamias sibiricus (Laxmann, 1769)";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";762
+"5";"Baccharis halimifolia L.";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";60
+"6";"Baccharis halimifolia L.";"INBO";"FLORABANK 1: a grid-based database on vascular plant distribution in the northern part of Belgium (Flanders and the Brussels Capital region)";53
+"7";"Callosciurus erythraeus (Pallas, 1779)";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";12
+"8";"Eichhornia crassipes (Mart.) Solms";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";6
+"9";"Eichhornia crassipes (Mart.) Solms";"INBO";"FLORABANK 1: a grid-based database on vascular plant distribution in the northern part of Belgium (Flanders and the Brussels Capital region)";4
+"10";"Hydrocotyle ranunculoides L. fil.";"Unknown";"MF1";2
+"11";"Hydrocotyle ranunculoides L. fil.";"INBO";"opnames voor habitat 3260-kartering";14
+"12";"Hydrocotyle ranunculoides L. fil.";"INBO";"opnames voor rapportage KRW";35
+"13";"Hydrocotyle ranunculoides L. fil.";"INBO";"invasive-other-occurrences";5
+"14";"Hydrocotyle ranunculoides L. fil.";"INBO";"FLORABANK 1: a grid-based database on vascular plant distribution in the northern part of Belgium (Flanders and the Brussels Capital region)";12
+"15";"Hydrocotyle ranunculoides L. fil.";"Provincie Oost-Vlaanderen - dienst Integraal Waterbeleid";"shpexotenoostvlaanderen";43
+"16";"Hydrocotyle ranunculoides L. fil.";"VMM | INBO";"Databank macrofyten in waterlopen";55
+"17";"Hydrocotyle ranunculoides L. fil.";"Provincie Limburg - dienst waterlopen";"waarnemingen_InvasieveExoten_v2";23
+"18";"Hydrocotyle ranunculoides L. fil.";"DEMNA-SPW";"Encodage en ligne OFFH";52
+"19";"Hydrocotyle ranunculoides L. fil.";"DEMNA-SPW";"Enquetes OFFH";20
+"20";"Hydrocotyle ranunculoides L. fil.";"DEMNA-SPW";"Contrats Rivières";13
+"21";"Hydrocotyle ranunculoides L. fil.";"DEMNA-SPW";"Rinse";2
+"22";"Hydrocotyle ranunculoides L. fil.";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";108
+"23";"Lagarosiphon major (Ridl.) Moss";"INBO";"opnames voor monitoring habitat 3260";1
+"24";"Lagarosiphon major (Ridl.) Moss";"INBO";"invasive-other-occurrences";2
+"25";"Lagarosiphon major (Ridl.) Moss";"INBO";"FLORABANK 1: a grid-based database on vascular plant distribution in the northern part of Belgium (Flanders and the Brussels Capital region)";23
+"26";"Lagarosiphon major (Ridl.) Moss";"DEMNA-SPW";"Encodage en ligne OFFH";5
+"27";"Lagarosiphon major (Ridl.) Moss";"DEMNA-SPW";"Enquetes OFFH";2
+"28";"Lagarosiphon major (Ridl.) Moss";"DEMNA-SPW";"Flore OFFH and Co";1
+"29";"Lagarosiphon major (Ridl.) Moss";"DEMNA-SPW";"Contrats Rivières";4
+"30";"Lagarosiphon major (Ridl.) Moss";"DEMNA-SPW";"Invasives obs.be";2
+"31";"Lagarosiphon major (Ridl.) Moss";"VMM | INBO";"Databank macrofyten in waterlopen";1
+"32";"Lagarosiphon major (Ridl.) Moss";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";48
+"33";"Lithobates catesbeianus (Shaw, 1802)";"HYLA";"INBODATAVR119_divers_HYLA_NieuweEU-RegulatieExoten_GIS_font_point";355
+"34";"Lithobates catesbeianus (Shaw, 1802)";"DEMNA-SPW";"Encodage en ligne OFFH";8
+"35";"Lithobates catesbeianus (Shaw, 1802)";"DEMNA-SPW";"Enquetes OFFH";8
+"36";"Lithobates catesbeianus (Shaw, 1802)";"DEMNA-SPW";"BD Herpéto";6
+"37";"Lithobates catesbeianus (Shaw, 1802)";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";404
+"38";"Lithobates catesbeianus (Shaw, 1802)";"INBO";"Invasive species - American bullfrog (Lithobates catesbeiana) in Flanders, Belgium";1996
+"39";"Lithobates catesbeianus (Shaw, 1802)";"iNaturalist";"iNaturalist research-grade observations";1
+"40";"Ludwigia grandiflora (Michaux) Greuter & Burdet";"Unknown";"MF2";2
+"41";"Ludwigia grandiflora (Michaux) Greuter & Burdet";"INBO";"opnames voor habitat 3260-kartering";5
+"42";"Ludwigia grandiflora (Michaux) Greuter & Burdet";"INBO";"opnames voor rapportage KRW";27
+"43";"Ludwigia grandiflora (Michaux) Greuter & Burdet";"INBO";"opnames voor monitoring habitat 3260";1
+"44";"Ludwigia grandiflora (Michaux) Greuter & Burdet";"INBO";"invasive-other-occurrences";2
+"45";"Ludwigia grandiflora (Michaux) Greuter & Burdet";"INBO";"FLORABANK 1: a grid-based database on vascular plant distribution in the northern part of Belgium (Flanders and the Brussels Capital region)";184
+"46";"Ludwigia grandiflora (Michaux) Greuter & Burdet";"VMM | INBO";"Databank macrofyten in waterlopen";33
+"47";"Ludwigia grandiflora (Michaux) Greuter & Burdet";"Provincie Oost-Vlaanderen - dienst Integraal Waterbeleid";"shpexotenoostvlaanderen";3
+"48";"Ludwigia grandiflora (Michaux) Greuter & Burdet";"DEMNA-SPW";"Encodage en ligne OFFH";20
+"49";"Ludwigia grandiflora (Michaux) Greuter & Burdet";"DEMNA-SPW";"Enquetes OFFH";7
+"50";"Ludwigia grandiflora (Michaux) Greuter & Burdet";"DEMNA-SPW";"Flore OFFH and Co";1
+"51";"Ludwigia grandiflora (Michaux) Greuter & Burdet";"DEMNA-SPW";"Contrats Rivières";1
+"52";"Ludwigia grandiflora (Michaux) Greuter & Burdet";"DEMNA-SPW";"Invasives obs.be";1
+"53";"Ludwigia grandiflora (Michaux) Greuter & Burdet";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";96
+"54";"Ludwigia peploides (Kunth) P. H. Raven";"INBO";"opnames voor habitat 3260-kartering";3
+"55";"Ludwigia peploides (Kunth) P. H. Raven";"INBO";"FLORABANK 1: a grid-based database on vascular plant distribution in the northern part of Belgium (Flanders and the Brussels Capital region)";8
+"56";"Ludwigia peploides (Kunth) P. H. Raven";"Provincie Oost-Vlaanderen - dienst Integraal Waterbeleid";"shpexotenoostvlaanderen";1
+"57";"Ludwigia peploides (Kunth) P. H. Raven";"VMM | INBO";"Databank macrofyten in waterlopen";3
+"58";"Ludwigia peploides (Kunth) P. H. Raven";"DEMNA-SPW";"Encodage en ligne OFFH";8
+"59";"Ludwigia peploides (Kunth) P. H. Raven";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";19
+"60";"Lysichiton americanus Hultén & H.St.John";"DEMNA-SPW";"Encodage en ligne OFFH";5
+"61";"Lysichiton americanus Hultén & H.St.John";"DEMNA-SPW";"Enquetes OFFH";1
+"62";"Lysichiton americanus Hultén & H.St.John";"DEMNA-SPW";"Rinse";10
+"63";"Lysichiton americanus Hultén & H.St.John";"DEMNA-SPW";"Invasives obs.be";13
+"64";"Lysichiton americanus Hultén & H.St.John";"DEMNA-SPW";"Contrats Rivières";2
+"65";"Lysichiton americanus Hultén & H.St.John";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";19
+"66";"Lysichiton americanus Hultén & H.St.John";"iNaturalist";"iNaturalist research-grade observations";1
+"67";"Muntiacus reevesi (Ogilby, 1839)";"DEMNA-SPW";"Enquetes OFFH";2
+"68";"Muntiacus reevesi (Ogilby, 1839)";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";66
+"69";"Muntiacus reevesi (Ogilby, 1839)";"INBO";"invasive-other-occurrences";90
+"70";"Myocastor coypus (Molina, 1782)";"DEMNA-SPW";"Encodage en ligne OFFH";1
+"71";"Myocastor coypus (Molina, 1782)";"DEMNA-SPW";"Invasives obs.be";42
+"72";"Myocastor coypus (Molina, 1782)";"DEMNA-SPW";"Enquetes OFFH";2
+"73";"Myocastor coypus (Molina, 1782)";"Natuurpunt Zoogdierenwerkgroep Vlaanderen";"INBODATAVR119_divers_ZoogdierendbExtra_NieuweEU-regulatieExoten";4
+"74";"Myocastor coypus (Molina, 1782)";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";84
+"75";"Myriophyllum aquaticum (Vellozo) Verdcourt";"INBO";"Ecologische inventarisatie en -visievorming van de Begijnenbeek";2
+"76";"Myriophyllum aquaticum (Vellozo) Verdcourt";"INBO";"opnames voor habitat 3260-kartering";8
+"77";"Myriophyllum aquaticum (Vellozo) Verdcourt";"INBO";"opnames voor rapportage KRW";10
+"78";"Myriophyllum aquaticum (Vellozo) Verdcourt";"INBO";"invasive-other-occurrences";4
+"79";"Myriophyllum aquaticum (Vellozo) Verdcourt";"INBO";"FLORABANK 1: a grid-based database on vascular plant distribution in the northern part of Belgium (Flanders and the Brussels Capital region)";572
+"80";"Myriophyllum aquaticum (Vellozo) Verdcourt";"VMM | INBO";"Databank macrofyten in waterlopen";18
+"81";"Myriophyllum aquaticum (Vellozo) Verdcourt";"Provincie Limburg - dienst waterlopen";"waarnemingen_InvasieveExoten_v2";9
+"82";"Myriophyllum aquaticum (Vellozo) Verdcourt";"DEMNA-SPW";"Encodage en ligne OFFH";18
+"83";"Myriophyllum aquaticum (Vellozo) Verdcourt";"DEMNA-SPW";"Enquetes OFFH";14
+"84";"Myriophyllum aquaticum (Vellozo) Verdcourt";"DEMNA-SPW";"Contrats Rivières";6
+"85";"Myriophyllum aquaticum (Vellozo) Verdcourt";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";145
+"86";"Myriophyllum aquaticum (Vellozo) Verdcourt";"Provincie Oost-Vlaanderen - dienst Integraal Waterbeleid";"shpexotenoostvlaanderen";7
+"87";"Orconectes limosus (Rafinesque, 1817)";"DEMNA-SPW";"Encodage en ligne OFFH";17
+"88";"Orconectes limosus (Rafinesque, 1817)";"DEMNA-SPW";"Ecrevisses invasives";229
+"89";"Orconectes limosus (Rafinesque, 1817)";"DEMNA-SPW";"Contrats Rivières";6
+"90";"Orconectes limosus (Rafinesque, 1817)";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";54
+"91";"Orconectes limosus (Rafinesque, 1817)";"INBO";"invasive-other-occurrences";194
+"92";"Orconectes limosus (Rafinesque, 1817)";"INBO";"VIS - Estuarine post 2013 Monitoring, Belgium";2
+"93";"Orconectes limosus (Rafinesque, 1817)";"INBO";"VIS - Reference Freshwater Fishes Monitoring, Belgium";48
+"94";"Orconectes limosus (Rafinesque, 1817)";"INBO";"VIS - Fishes in estuarine waters in Flanders, Belgium";13
+"95";"Orconectes limosus (Rafinesque, 1817)";"INBO";"VIS - Fishes in inland waters in Flanders, Belgium";116
+"96";"Orconectes limosus (Rafinesque, 1817)";"INBO";"Invasive species - American bullfrog (Lithobates catesbeiana) in Flanders, Belgium";328
+"97";"Orconectes limosus (Rafinesque, 1817)";"INBO";"Alien macro-invertebrates in Flanders, Belgium";196
+"98";"Orconectes limosus (Rafinesque, 1817)";"Unknown";"Unknown";2
+"99";"Orconectes limosus (Rafinesque, 1817)";"Diveboard";"Diveboard - Scuba diving citizen science";5
+"100";"Pacifastacus leniusculus (Dana, 1852)";"DEMNA-SPW";"Encodage en ligne OFFH";22
+"101";"Pacifastacus leniusculus (Dana, 1852)";"DEMNA-SPW";"Aquabio invasives";1
+"102";"Pacifastacus leniusculus (Dana, 1852)";"DEMNA-SPW";"Ecrevisses invasives";527
+"103";"Pacifastacus leniusculus (Dana, 1852)";"DEMNA-SPW";"Enquetes OFFH";2
+"104";"Pacifastacus leniusculus (Dana, 1852)";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";61
+"105";"Pacifastacus leniusculus (Dana, 1852)";"INBO";"invasive-other-occurrences";1
+"106";"Parthenium hysterophorus L.";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";1
+"107";"Procambarus clarkii (Girard, 1852)";"DEMNA-SPW";"Enquetes OFFH";5
+"108";"Procambarus clarkii (Girard, 1852)";"DEMNA-SPW";"Ecrevisses invasives";75
+"109";"Procambarus clarkii (Girard, 1852)";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";27
+"110";"Procambarus clarkii (Girard, 1852)";"INBO";"invasive-other-occurrences";12
+"111";"Procambarus clarkii (Girard, 1852)";"INBO";"VIS - Reference Freshwater Fishes Monitoring, Belgium";2
+"112";"Procambarus clarkii (Girard, 1852)";"INBO";"VIS - Fishes in inland waters in Flanders, Belgium";3
+"113";"Procambarus clarkii (Girard, 1852)";"INBO";"Alien macro-invertebrates in Flanders, Belgium";4
+"114";"Sciurus carolinensis Gmelin, 1788";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";8
+"115";"Sciurus niger Linnaeus, 1758";"DEMNA-SPW";"Invasives obs.be";6
+"116";"Sciurus niger Linnaeus, 1758";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";6
+"117";"Vespa velutina Lepeletier, 1836";"DEMNA-SPW";"Encodage en ligne OFFH";1
+"118";"Threskiornis aethiopicus (Latham, 1790)";"DEMNA-SPW";"Encodage en ligne OFFH";1
+"119";"Threskiornis aethiopicus (Latham, 1790)";"DEMNA-SPW";"Invasives obs.be";43
+"120";"Threskiornis aethiopicus (Latham, 1790)";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";883
+"121";"Threskiornis aethiopicus (Latham, 1790)";"INBO";"Watervogels - Wintering waterbirds in Flanders, Belgium";18
+"122";"Oxyura jamaicensis (Gmelin, 1789)";"DEMNA-SPW";"Encodage en ligne OFFH";2
+"123";"Oxyura jamaicensis (Gmelin, 1789)";"DEMNA-SPW";"Invasives obs.be";158
+"124";"Oxyura jamaicensis (Gmelin, 1789)";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";3430
+"125";"Oxyura jamaicensis (Gmelin, 1789)";"INBO";"invasive-other-occurrences";57
+"126";"Oxyura jamaicensis (Gmelin, 1789)";"INBO";"Zomerganzen - Summering geese management and population counts in Flanders, Belgium";1
+"127";"Oxyura jamaicensis (Gmelin, 1789)";"INBO";"Watervogels - Wintering waterbirds in Flanders, Belgium";185
+"128";"Oxyura jamaicensis (Gmelin, 1789)";"INBO";"Broedvogels - Atlas of the breeding birds in Flanders 2000-2002";1
+"129";"Oxyura jamaicensis (Gmelin, 1789)";"CLO";"Unknown";2
+"130";"Procyon lotor (Linnaeus, 1758)";"DEMNA-SPW";"Encodage en ligne OFFH";355
+"131";"Procyon lotor (Linnaeus, 1758)";"DEMNA-SPW";"Enquetes OFFH";55
+"132";"Procyon lotor (Linnaeus, 1758)";"DEMNA-SPW";"Invasives obs.be";823
+"133";"Procyon lotor (Linnaeus, 1758)";"Natuurpunt Zoogdierenwerkgroep Vlaanderen";"INBODATAVR119_divers_ZoogdierendbExtra_NieuweEU-regulatieExoten";1
+"134";"Procyon lotor (Linnaeus, 1758)";"INBO";"exoten_vraagTim_07032016_def";53
+"135";"Procyon lotor (Linnaeus, 1758)";"INBO";"invasive-other-occurrences";1
+"136";"Procyon lotor (Linnaeus, 1758)";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";852
+"137";"Procyon lotor (Linnaeus, 1758)";"MNHNL";"Unknown";3
+"138";"Cabomba caroliniana A. Gray";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";7
+"139";"Cabomba caroliniana A. Gray";"INBO";"FLORABANK 1: a grid-based database on vascular plant distribution in the northern part of Belgium (Flanders and the Brussels Capital region)";2
+"140";"Nasua nasua (Linnaeus, 1766)";"INBO";"exoten_vraagTim_07032016_def";2
+"141";"Eriocheir sinensis H. Milne Edwards, 1853";"DEMNA-SPW";"Aquabio invasives";2
+"142";"Eriocheir sinensis H. Milne Edwards, 1853";"DEMNA-SPW";"Invasives obs.be";2
+"143";"Eriocheir sinensis H. Milne Edwards, 1853";"DEMNA-SPW";"Enquetes OFFH";1
+"144";"Eriocheir sinensis H. Milne Edwards, 1853";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";377
+"145";"Eriocheir sinensis H. Milne Edwards, 1853";"INBO";"invasive-other-occurrences";4
+"146";"Eriocheir sinensis H. Milne Edwards, 1853";"INBO";"VIS - Estuarine post 2013 Monitoring, Belgium";270
+"147";"Eriocheir sinensis H. Milne Edwards, 1853";"INBO";"VIS - Reference Freshwater Fishes Monitoring, Belgium";45
+"148";"Eriocheir sinensis H. Milne Edwards, 1853";"INBO";"VIS - Fishes in estuarine waters in Flanders, Belgium";467
+"149";"Eriocheir sinensis H. Milne Edwards, 1853";"INBO";"VIS - Fishes in inland waters in Flanders, Belgium";35
+"150";"Eriocheir sinensis H. Milne Edwards, 1853";"INBO";"INBO_Chinese_mittencrab_occurrences_VIS";787
+"151";"Eriocheir sinensis H. Milne Edwards, 1853";"INBO";"Invasive species - American bullfrog (Lithobates catesbeiana) in Flanders, Belgium";4
+"152";"Eriocheir sinensis H. Milne Edwards, 1853";"INBO";"Alien macro-invertebrates in Flanders, Belgium";34
+"153";"Eriocheir sinensis H. Milne Edwards, 1853";"INBO";"Invasive species - Chinese_mittencrab (Eriocheir sinensis) in Flanders";5437
+"154";"Eriocheir sinensis H. Milne Edwards, 1853";"INBO";"Trekvis - Migratory fishes in the river Scheldt";162
+"155";"Eriocheir sinensis H. Milne Edwards, 1853";"INBO";"Visdoorgangen - Fish passage places in Flanders, Belgium";11
+"156";"Pseudorasbora parva (Temminck & Schlegel, 1846)";"DEMNA-SPW";"Encodage en ligne OFFH";9
+"157";"Pseudorasbora parva (Temminck & Schlegel, 1846)";"DEMNA-SPW";"Aquabio invasives";69
+"158";"Pseudorasbora parva (Temminck & Schlegel, 1846)";"DEMNA-SPW";"Contrats Rivières";3
+"159";"Pseudorasbora parva (Temminck & Schlegel, 1846)";"DEMNA-SPW";"Invasives obs.be";47
+"160";"Pseudorasbora parva (Temminck & Schlegel, 1846)";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";261
+"161";"Pseudorasbora parva (Temminck & Schlegel, 1846)";"INBO";"invasive-other-occurrences";135
+"162";"Pseudorasbora parva (Temminck & Schlegel, 1846)";"INBO";"VIS - Estuarine post 2013 Monitoring, Belgium";928
+"163";"Pseudorasbora parva (Temminck & Schlegel, 1846)";"INBO";"VIS - Reference Freshwater Fishes Monitoring, Belgium";825
+"164";"Pseudorasbora parva (Temminck & Schlegel, 1846)";"INBO";"VIS - Fishes in estuarine waters in Flanders, Belgium";1226
+"165";"Pseudorasbora parva (Temminck & Schlegel, 1846)";"INBO";"Invasive species - American bullfrog (Lithobates catesbeiana) in Flanders, Belgium";176
+"166";"Pseudorasbora parva (Temminck & Schlegel, 1846)";"INBO";"VIS - Fishes in inland waters in Flanders, Belgium";8230
+"167";"Pseudorasbora parva (Temminck & Schlegel, 1846)";"INBO";"Visherintroductie - Reintroduction programs for the fishes chub, dace, burbot and brown trout";36
+"168";"Pseudorasbora parva (Temminck & Schlegel, 1846)";"INBO";"Trekvis - Migratory fishes in the river Scheldt";356
+"169";"Pseudorasbora parva (Temminck & Schlegel, 1846)";"INBO";"Visfauna - juvenile and adult fish in riparian habitats along the river Yser";63
+"170";"Pseudorasbora parva (Temminck & Schlegel, 1846)";"INBO";"Visdoorgangen - Fish passage places in Flanders, Belgium";192
+"171";"Pseudorasbora parva (Temminck & Schlegel, 1846)";"SVN";"Unknown";2
+"172";"Trachemys Agassiz, 1857";"HYLA";"INBODATAVR119_divers_HYLA_NieuweEU-RegulatieExoten_GIS_font_point";250
+"173";"Trachemys Agassiz, 1857";"DEMNA-SPW";"Encodage en ligne OFFH";36
+"174";"Trachemys Agassiz, 1857";"DEMNA-SPW";"BD Herpéto";424
+"175";"Trachemys Agassiz, 1857";"DEMNA-SPW";"Invasives obs.be";6
+"176";"Trachemys Agassiz, 1857";"Natuurpunt";"INBODATAVR119_divers_wbe_NieuweEU-regulatieExoten";45
+"177";"Trachemys Agassiz, 1857";"INBO";"Invasive species - American bullfrog (Lithobates catesbeiana) in Flanders, Belgium";10
