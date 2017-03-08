@@ -2,8 +2,6 @@
 
 library(dplyr)
 
-setwd("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/r-scripts/")
-
 print("step 1/8: provide the path of the file containing the tokenfile")
 t <- Sys.time()
 print(t)
