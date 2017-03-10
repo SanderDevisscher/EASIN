@@ -1,6 +1,13 @@
 # EASIN Workflow
+##Rationale
+To create an update to the memberstate T0 layer provided by EASIN (MS_BELGIUM.shp) using the data aggregated by the memberstate in their [T0 dataset](https://github.com/inbo/invasive-t0-occurrences). The update is provided by stating, in the column Accepted,  whether the squares provided by EASIN are correct (Y) or incorrect (N). New squares, those missing from the EASIN - Layer, should also be added with the value "New" in the Accepted column. 
+
+Since most of the squares in belgium would be "New", experts decided it would be easier to provide EASIN with a new layer, in a similar format, for EASIN to subsitute its layer with.  
 
 ##Scripts
+* Update Source
+* subset data
+* Dataexploratie
 
 ##Arcgis part I
 ###T0_Toolbox.tbx
