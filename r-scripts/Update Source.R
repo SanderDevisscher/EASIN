@@ -5,7 +5,10 @@ library(dplyr)
 print("step 1/8: provide the path of the file containing the tokenfile")
 t <- Sys.time()
 print(t)
-tokenfile <- "//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/r-scripts/Private/token_invasive.txt"
+#Private at Work
+#tokenfile <- "//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/r-scripts/Private/token_invasive.txt"
+#Private at Home
+tokenfile <- "C://Users/blauw/Documents/GitHub/EASIN/r-scripts/Private"
 token <- readChar(tokenfile, file.info(tokenfile)$size) # read token
 remove(tokenfile)
 
