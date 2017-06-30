@@ -25,7 +25,7 @@ remove(dataset_url)
 table(invasive_occ$gbifapi_acceptedScientificName,invasive_occ$euConcernStatus)
 
 #Tijdelijk vanuit zip file
-invasive_occ <- read.csv2("C://Users/blauw/Google Drive Werk/Faunabeheer/EU_IAS/T0/EASIN/r-scripts/Private/invasive_EU_listed_and_considered_with_joins.csv")
+invasive_occ <- read.csv("C://Users/blauw/Google Drive Werk/Faunabeheer/EU_IAS/T0/EASIN/r-scripts/Private/invasive_EU_listed_and_considered_with_joins.csv")
 
 print("step 3/8: Check success of import")
 if(exists("invasive_occ")){
