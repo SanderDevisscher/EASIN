@@ -1,11 +1,12 @@
 ####Import data####
 today <- Sys.Date()
 today <- format(today,"%d_%m_%y")
-title <- gs_title(x="Iteration", verbose = T)
-iteration <- gs_read(title)
+title <- gs_title(x="Iteration_NonListed", verbose = T)
+iteration_NL <- gs_read(title)
 iteration$date <- as.character(iteration$date)
-nieuw <- tail(iteration$date,1)
-NonListed_Ruw_Source <- paste("./Output/NonListed_", nieuw, ".csv", sep = "")
+import <- tail(iteration_NL$import,1)
+export <- tail(iteration_NL$export,1)
+NonListed_Ruw_Source <- paste("./Output/NonListed_", import, "_exported_", export, ".csv", sep = "")
 NonListed_ruw <- read.csv(NonListed_Ruw_Source)
 nrow(NonListed_ruw) #Expected: 43301 + 192 = 43493 Result: 43493 => OK!
 
@@ -23,6 +24,7 @@ for (b in SpeciesBatch2){
   temp_ok <- rbind(temp_ok, temp)
 }
 Batch2_ruw <- temp_ok
+table(Batch2_ruw$gbifapi_acceptedScientificName)
 #Cleanup
 remove(temp)
 remove(temp_ok)
@@ -61,12 +63,14 @@ Batch2_2 <- rbind(temp_voor2016, temp_voorfeb16)
 
 table(Batch2_2$gbifapi_acceptedScientificName,Batch2_2$euConcernStatus)
 table(Batch2_2$gbifapi_acceptedScientificName, Batch2_2$identificationVerificationStatus)
+####Import Batch 1####
+
 
 ####Merge With Batch 1####
 Managebility <- rbind(Batch1, Batch2_2)
 
 library(foreign)
-filename8 <- paste("./Outputs/", nieuw,"_Managebility_", today, ".csv", sep="")
-filename9 <- paste("./Outputs/", nieuw,"_Managebility_", today, ".dbf", sep="")
+filename8 <- paste("./Output/", nieuw,"_Managebility_", today, ".csv", sep="")
+filename9 <- paste("./Output/", nieuw,"_Managebility_", today, ".dbf", sep="")
 write.csv2(Managebility, filename8)
 write.dbf(Managebility, filename9)
