@@ -24,6 +24,9 @@ remove(token) #Remove token
 remove(dataset_url)
 table(invasive_occ$gbifapi_acceptedScientificName,invasive_occ$euConcernStatus)
 
+#Tijdelijk vanuit zip file
+invasive_occ <- read.csv2("C://Users/blauw/Google Drive Werk/Faunabeheer/EU_IAS/T0/EASIN/r-scripts/Private/invasive_EU_listed_and_considered_with_joins.csv")
+
 print("step 3/8: Check success of import")
 if(exists("invasive_occ")){
   print("import succesfull")
@@ -76,7 +79,7 @@ print(t)
 filepath <- paste("./Output/", filename, sep="")
 write.csv(invasive_occ, filepath)
 title <- gs_title(x="T0_SourceData", verbose = T)
-gs_ws_new(ss = title, ws_title = filename, input=invasive_occ)
+gs_ws_new(ss = title, ws_title = filename, input=invasive_occ) #geeft error Bad Request (HTTP 400)
 remove(filepath)
 
 print("script complete")
