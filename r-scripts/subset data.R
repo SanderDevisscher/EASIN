@@ -1,6 +1,7 @@
 
 ####Data Importeren####
 update <- "N"
+TempLog <- data.frame(1)
 #setwd("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/r-scripts/")
 #iteration <- read.csv("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/r-scripts/Private/iteration.csv", sep=",")
 title <- gs_title(x="Iteration", verbose = T)
@@ -9,6 +10,8 @@ iteration$date <- as.character(iteration$date)
 nieuw <- tail(iteration$date,1)
 today <- Sys.Date()
 today <- format(today,"%d_%m_%y")
+TempLog$Date <- today
+TempLog$Iteration <- nieuw
 #Import filename
 #filename <- paste("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/Data/T0_SourceData_", nieuw, ".csv", sep="")
 filename <- paste("./Output/T0_SourceData_", nieuw, ".csv", sep="")
@@ -41,9 +44,12 @@ if(update == "J"){
   }
 }
 
+TempLog$Import <- nrow(Brondata)
+
 ####Remove data from the netherlands####
 Brondata <- subset(Brondata, gis_utm1_code != "FS7090" )
 Brondata <- subset(Brondata, gis_utm1_code != "GS0588" )
+TempLog$Netherlands <- TempLog$Import-nrow(Brondata)
  
 #--------
 
@@ -69,25 +75,25 @@ for(v in valid_soorten){
 temp_ok$gbifapi_acceptedScientificName <- factor(temp_ok$gbifapi_acceptedScientificName)
 table(temp_ok$gbifapi_acceptedScientificName)
 table(temp_ok$identificationVerificationStatus)
-nrow(temp_ok) #32182 
+TempLog$temp_ok <- nrow(temp_ok) #32182
 Valid2 <- temp_ok
 
 #Remove non treated, under treatment, not treatable records from remaining species
 temp_nok <- subset(Brondata, !(gbifapi_acceptedScientificName %in% valid_soorten))
-nrow(temp_nok)#Expected: 163911 - 32182 = 131729/ Result: 131729 => OK
+TempLog$NOK_1_0 <- nrow(temp_nok)#Expected: 163911 - 32182 = 131729/ Result: 131729 => OK
 table(temp_nok$identificationVerificationStatus)
 Valid1 <- subset(temp_nok,identificationVerificationStatus != "Onbehandeld")
-nrow(Valid1) #Expected: 131729 - 79847 = 51882/ Result: 51882 => OK
+TempLog$NOK_1_1 <- nrow(Valid1) #Expected: 131729 - 79847 = 51882/ Result: 51882 => OK
 Valid1 <- subset(Valid1,identificationVerificationStatus != "In behandeling")
-nrow(Valid1)#Expected: 51882 - 13 = 51869/ Result: 51869 => OK
+TempLog$NOK_1_2 <- nrow(Valid1)#Expected: 51882 - 13 = 51869/ Result: 51869 => OK
 Valid1 <- subset(Valid1,identificationVerificationStatus != "Niet te beoordelen")
-nrow(Valid1)#Expected: 51869 - 31 = 51838/ Result: 51838 => OK
+TempLog$NOK_1_3 <- nrow(Valid1)#Expected: 51869 - 31 = 51838/ Result: 51838 => OK
 Valid1 <- subset(Valid1,identificationVerificationStatus != 0)
-nrow(Valid1)#Expected: 51838 - 343 = 51495/ Result: 51495 => OK
+TempLog$NOK_1_4 <- nrow(Valid1)#Expected: 51838 - 343 = 51495/ Result: 51495 => OK
 
 Valid <- data.frame() #Empty first
 Valid <- rbind(Valid1,Valid2)
-nrow(Valid)#Expected: 51495 + 32182 =  83677/ Result:  83677 => OK
+TempLog$OK_NOK <- nrow(Valid)#Expected: 51495 + 32182 =  83677/ Result:  83677 => OK
 table(Valid$identificationVerificationStatus, Valid$gbifapi_acceptedScientificName)
 table(Valid$basisOfRecord)
 table(Valid$euConcernStatus)
@@ -95,12 +101,28 @@ table(Valid$euConcernStatus)
 ####Subset according to euconcernstatus####
 
 EuConc_ruw <- subset(Valid, euConcernStatus == "listed")
-nrow(EuConc_ruw) #Xpected 40184/ Result: 40184 => OK
+TempLog$EuConc <- nrow(EuConc_ruw) #Xpected 40184/ Result: 40184 => OK
 EuPrep_ruw <- subset(Valid, euConcernStatus == "under preparation")
+TempLog$EuPrep <- nrow(EuPrep_ruw)
 EuCons_ruw <- subset(Valid, euConcernStatus == "under consideration")
-
+TempLog$EuCons<- nrow(EuCons_ruw)
 table(EuConc_ruw$gbifapi_acceptedScientificName,EuConc_ruw$euConcernStatus)
 table(EuConc_ruw$basisOfRecord)
+
+####Export Non-Listed####
+NonListed <- rbind(EuPrep_ruw, EuCons_ruw)
+filename_NotListed <- paste("./Output/NonListed_", nieuw, "_exported_", today, ".csv", sep = "")
+title_NL <- gs_title(x="Iteration_NonListed", verbose = T)
+iteration_NL <- gs_read(title)
+temp <- data.frame(today)
+temp$X1 <- tail(x = iteration_NL$X1,n=1)+1
+temp$obs <- nrow(EuPrep_ruw) + nrow(EuCons_ruw)
+temp$export <- today
+temp$import <- nieuw
+temp$today <- NULL
+gs_add_row(ss = title_NL, 1, input=temp)
+write.csv(NonListed, filename_NotListed)
+
 
 ####Only EU - Listed species#### 
 ####Clean-up EUConcern####

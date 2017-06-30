@@ -1,17 +1,15 @@
-#Import data
-
-
-
-
-
-
+####Import data####
 today <- Sys.Date()
 today <- format(today,"%d_%m_%y")
-####Subset 2nd Batch Species####
-#First merge EUPrep and EUCons
-NonListed_ruw <- read.csv2("./Output/NonListed_08_03_17_26_06_17.csv")
+title <- gs_title(x="Iteration", verbose = T)
+iteration <- gs_read(title)
+iteration$date <- as.character(iteration$date)
+nieuw <- tail(iteration$date,1)
+NonListed_Ruw_Source <- paste("./Output/NonListed_", nieuw, ".csv", sep = "")
+NonListed_ruw <- read.csv(NonListed_Ruw_Source)
 nrow(NonListed_ruw) #Expected: 43301 + 192 = 43493 Result: 43493 => OK!
-#Subset 2nd Batch Species
+
+####Subset 2nd Batch Species####
 NonListed_ruw$gbifapi_acceptedScientificName <- factor(NonListed_ruw$gbifapi_acceptedScientificName)
 table(NonListed_ruw$gbifapi_acceptedScientificName)
 SpeciesBatch2 <- c("Alopochen aegyptiaca (Linnaeus, 1766)", "Alternanthera philoxeroides", "Asclepias syriaca L.",
