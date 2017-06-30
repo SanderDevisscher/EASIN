@@ -64,7 +64,7 @@ Batch2_2 <- rbind(temp_voor2016, temp_voorfeb16)
 table(Batch2_2$gbifapi_acceptedScientificName,Batch2_2$euConcernStatus)
 table(Batch2_2$gbifapi_acceptedScientificName, Batch2_2$identificationVerificationStatus)
 ####Import Batch 1####
-
+Batch1 <- read.csv2("./Output/Data_08_03_17_Subsetted_08_03_17.csv")
 
 ####Merge With Batch 1####
 Managebility <- rbind(Batch1, Batch2_2)
