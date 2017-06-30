@@ -56,14 +56,16 @@ print(obs)
 print("step 7/8: log outputs")
 t <- Sys.time()
 print(t)
-iteration <- read.csv("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/r-scripts/Private/iteration.csv")
+title <- gs_title(x="Iteration", verbose = T)
+iteration <- gs_read(title)
+#iteration <- read.csv("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/r-scripts/Private/iteration.csv")
 temp <- data.frame(today)
-temp$date <- today
+temp$X1 <- tail(x = iteration$X1,n=1)+1
 temp$obs <- obs
-iteration$X <- NULL
+temp$date <- today
 temp$today <- NULL
-iteration <- rbind(iteration, temp)
-write.csv(iteration, file = "//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/r-scripts/Private/iteration.csv")
+gs_add_row(ss = title, 1, input=temp)
+iteration <- gs_read(title)
 remove(iteration)
 remove(temp)
 
@@ -71,7 +73,7 @@ remove(temp)
 print("step 8/8: Output SourceData")
 t <- Sys.time()
 print(t)
-filepath <- paste("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/Data/", filename, sep="")
+filepath <- paste("./Output/", filename, sep="")
 write.csv(invasive_occ, filepath)
 remove(filepath)
 
