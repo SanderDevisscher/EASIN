@@ -75,6 +75,8 @@ t <- Sys.time()
 print(t)
 filepath <- paste("./Output/", filename, sep="")
 write.csv(invasive_occ, filepath)
+title <- gs_title(x="T0_SourceData", verbose = T)
+gs_ws_new(ss = title, ws_title = filename, input=invasive_occ)
 remove(filepath)
 
 print("script complete")
