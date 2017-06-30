@@ -1,10 +1,14 @@
 
+library(googlesheets)
+
 ####Data Importeren####
 update <- "N"
 TempLog <- data.frame(1)
 #setwd("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/r-scripts/")
 #iteration <- read.csv("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/r-scripts/Private/iteration.csv", sep=",")
 title <- gs_title(x="Iteration", verbose = T)
+Token <- gs_auth()
+gs_auth(token = Token)
 iteration <- gs_read(title)
 iteration$date <- as.character(iteration$date)
 nieuw <- tail(iteration$date,1)
@@ -67,7 +71,9 @@ valid_soorten <- c("Threskiornis aethiopicus (Latham, 1790)", "Oxyura jamaicensi
              ,"Procyon lotor (Linnaeus, 1758)", "Cabomba caroliniana A. Gray"
              ,"Tamias sibiricus (Laxmann, 1769)", "Nasua nasua (Linnaeus, 1766)"
              , "Eriocheir sinensis H. Milne Edwards, 1853"
-             ,"Pseudorasbora parva (Temminck & Schlegel, 1846)","Trachemys Agassiz, 1857")
+             ,"Pseudorasbora parva (Temminck & Schlegel, 1846)","Trachemys Agassiz, 1857"
+             ,"Alopochen aegyptiaca (Linnaeus, 1766)","Impatiens glandulifera Royle"
+             ,"Heracleum mantegazzianum Sommier & Levier")
 for(v in valid_soorten){
   temp <- subset(Brondata, gbifapi_acceptedScientificName == v)
   temp_ok <- rbind(temp_ok, temp)
