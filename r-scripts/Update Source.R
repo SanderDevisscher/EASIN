@@ -1,16 +1,18 @@
 
 
 library(dplyr)
+library(googlesheets)
 
 print("step 1/8: provide the path of the file containing the tokenfile")
 t <- Sys.time()
 print(t)
-#Private at Work
-#tokenfile <- "//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/r-scripts/Private/token_invasive.txt"
-#Private at Home
-tokenfile <- "C://Users/blauw/Documents/GitHub/EASIN/r-scripts/Private/token_invasive.txt"
-token <- readChar(tokenfile, file.info(tokenfile)$size) # read token
-remove(tokenfile)
+#token everywhere 
+title <- gs_title(x="token_invasive", verbose = TRUE)
+Token <- gs_auth()
+gs_auth(token = Token)
+tokenfile <- gs_read(title)
+token <- tokenfile$Token
+
 
 print("step 2/8: read the datafile, taking into account the token in the URL")
 t <- Sys.time()
