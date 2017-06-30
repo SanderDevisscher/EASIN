@@ -72,8 +72,7 @@ valid_soorten <- c("Threskiornis aethiopicus (Latham, 1790)", "Oxyura jamaicensi
              ,"Tamias sibiricus (Laxmann, 1769)", "Nasua nasua (Linnaeus, 1766)"
              , "Eriocheir sinensis H. Milne Edwards, 1853"
              ,"Pseudorasbora parva (Temminck & Schlegel, 1846)","Trachemys Agassiz, 1857"
-             ,"Alopochen aegyptiaca (Linnaeus, 1766)","Impatiens glandulifera Royle"
-             ,"Heracleum mantegazzianum Sommier & Levier")
+             ,"Alopochen aegyptiaca (Linnaeus, 1766)","Impatiens glandulifera Royle")
 for(v in valid_soorten){
   temp <- subset(Brondata, gbifapi_acceptedScientificName == v)
   temp_ok <- rbind(temp_ok, temp)
