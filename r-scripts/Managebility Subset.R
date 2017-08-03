@@ -9,7 +9,7 @@ import <- tail(iteration_NL$import,1)
 export <- tail(iteration_NL$export,1)
 NonListed_Ruw_Source <- paste("./Output/NonListed_", import, "_exported_", export, ".csv", sep = "")
 NonListed_ruw <- read.csv(NonListed_Ruw_Source)
-nrow(NonListed_ruw) #Expected: 43301 + 192 = 43493 Result: 43493 => OK!
+nrow(NonListed_ruw) #Expected: 146140 + 192 = 146332 Result: 146332 => OK!
 
 ####Subset 2nd Batch Species####
 NonListed_ruw$gbifapi_acceptedScientificName <- factor(NonListed_ruw$gbifapi_acceptedScientificName)

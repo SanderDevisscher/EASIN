@@ -72,7 +72,8 @@ valid_soorten <- c("Threskiornis aethiopicus (Latham, 1790)", "Oxyura jamaicensi
              ,"Tamias sibiricus (Laxmann, 1769)", "Nasua nasua (Linnaeus, 1766)"
              , "Eriocheir sinensis H. Milne Edwards, 1853"
              ,"Pseudorasbora parva (Temminck & Schlegel, 1846)","Trachemys Agassiz, 1857"
-             ,"Alopochen aegyptiaca (Linnaeus, 1766)","Impatiens glandulifera Royle")
+             ,"Alopochen aegyptiaca (Linnaeus, 1766)","Impatiens glandulifera Royle"
+             ,"Heracleum mantegazzianum Sommier & Levier", "Ondatra zibethicus (Linnaeus, 1766)")
 for(v in valid_soorten){
   temp <- subset(Brondata, gbifapi_acceptedScientificName == v)
   temp_ok <- rbind(temp_ok, temp)
@@ -122,8 +123,8 @@ iteration_NL <- gs_read(title)
 temp <- data.frame(today)
 temp$X1 <- tail(x = iteration_NL$X1,n=1)+1
 temp$obs <- nrow(EuPrep_ruw) + nrow(EuCons_ruw)
-temp$export <- today
-temp$import <- nieuw
+temp$export <- nieuw
+temp$import <- today
 temp$today <- NULL
 gs_add_row(ss = title_NL, 1, input=temp)
 write.csv(NonListed, filename_NotListed)
