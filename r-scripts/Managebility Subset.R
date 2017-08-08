@@ -78,7 +78,7 @@ Batch1$source <- NA
 Managebility <- rbind(Batch1, Batch2_2)
 
 library(foreign)
-filename8 <- paste("./Output/", import,"_Managebility_", export, ".csv", sep="")
-filename9 <- paste("./Output/", import,"_Managebility_", export, ".dbf", sep="")
+filename8 <- paste("./Output/", import,"_Exp_", export ,"_Managebility_", today, ".csv", sep="")
+filename9 <- paste("./Output/", import,"_Exp_", export ,"_Managebility_", today, ".dbf", sep="")
 write.csv2(Managebility, filename8)
 write.dbf(Managebility, filename9)
