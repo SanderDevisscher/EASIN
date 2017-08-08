@@ -17,7 +17,7 @@ table(NonListed_ruw$gbifapi_acceptedScientificName)
 SpeciesBatch2 <- c("Alopochen aegyptiaca (Linnaeus, 1766)", "Alternanthera philoxeroides", "Asclepias syriaca L.",
               "Elodea nuttallii (Planch.) H.St.John", "Gunnera tinctoria", "Heracleum mantegazzianum Sommier & Levier",
               "Impatiens glandulifera Royle", "Microtegium vimineum", "Myriophyllum heterophyllum Michx.", 
-              "Nyctereutes procyonoides (Gray, 1834)", "Ondatra zibethicus (Linnaeus, 1766) ", 
+              "Nyctereutes procyonoides (Gray, 1834)", "Ondatra zibethicus (Linnaeus, 1766)", 
               "Pennisetum setaceum")
 temp_ok <- data.frame()
 for (b in SpeciesBatch2){
