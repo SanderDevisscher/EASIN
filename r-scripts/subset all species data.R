@@ -45,6 +45,7 @@ table(Brondata$gbifapi_acceptedScientificName)
 specieslist <- c("Lithobates catesbeianus (Shaw, 1802)")
 for(s in specieslist){
   species_temp <- subset(Brondata, gbifapi_acceptedScientificName == s)
+  species_temp$eventDate <- as.Date.factor(species_temp$eventDate)
   speckey <- unique(species_temp$gbifapi_acceptedKey)
   speclet <- unique(substr(species_temp$gbifapi_acceptedScientificName, 1,6))
   filename_csv <- paste("./Output/", speckey, "_", speclet, "_", today, ".csv", sep="")
