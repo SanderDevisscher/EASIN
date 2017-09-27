@@ -42,7 +42,10 @@ TempLog$Netherlands <- TempLog$Import-nrow(Brondata)
 
 ####Subset species data####
 table(Brondata$gbifapi_acceptedScientificName)
-specieslist <- c("Lithobates catesbeianus (Shaw, 1802)")
+specieslist <- c("Cabomba caroliniana A. Gray", "Eichhornia crassipes (Mart.) Solms", 
+                 "Hydrocotyle ranunculoides L. fil.","Lagarosiphon major (Ridl.) Moss")
+temp_merge <- data.frame()
+i <- 0
 for(s in specieslist){
   species_temp <- subset(Brondata, gbifapi_acceptedScientificName == s)
   species_temp$eventDate <- as.Date.factor(species_temp$eventDate)
@@ -52,5 +55,25 @@ for(s in specieslist){
   filename_dbf <- paste("./Output/", speckey, "_", speclet, "_", today, ".dbf", sep="")
   write.csv(species_temp, filename_csv)
   write.csv(species_temp, filename_dbf)
+  i <- i + 1
+  if(length(specieslist)>1){
+    temp_merge <- rbind(temp_merge, species_temp)
+    if(i == 1){
+      FN1 <- speclet
+    }
+    if(i == 2){
+      FN2 <- speclet
+      FN <- paste("./Output/Merged", FN1, FN2, today, sep="_")
+    }
+    if(i == 3){
+      FN3 <- speclet
+      FN <- paste("./Output/Merged", FN1, FN2, FN3, today, sep="_")
+    }
+    if(i == 4){
+      FN4 <- speclet
+      FN <- paste("./Output/Merged", FN1, FN2, FN3, FN4, today, sep="_")
+    }
+  }
 }
+
 
