@@ -43,14 +43,19 @@ TempLog$Netherlands <- TempLog$Import-nrow(Brondata)
 ####Subset species data####
 table(Brondata$gbifapi_acceptedScientificName)
 specieslist <- c("Cabomba caroliniana A. Gray", "Eichhornia crassipes (Mart.) Solms", 
-                 "Hydrocotyle ranunculoides L. fil.","Lagarosiphon major (Ridl.) Moss")
+                 "Hydrocotyle ranunculoides L. fil.","Lagarosiphon major (Ridl.) Moss",
+                 "Ludwigia grandiflora (Michaux) Greuter & Burdet", "Ludwigia peploides (Kunth) P. H. Raven")
 temp_merge <- data.frame()
+specinit3 <- ""
 i <- 0
 for(s in specieslist){
   species_temp <- subset(Brondata, gbifapi_acceptedScientificName == s)
   species_temp$eventDate <- as.Date.factor(species_temp$eventDate)
   speckey <- unique(species_temp$gbifapi_acceptedKey)
   speclet <- unique(substr(species_temp$gbifapi_acceptedScientificName, 1,6))
+  specinit1 <- unique(substr(species_temp$gbifapi_acceptedScientificName, 1,1))
+  specinit2 <- specinit3
+  specinit3 <- paste(specinit2, specinit1, sep="")
   filename_csv <- paste("./Output/", speckey, "_", speclet, "_", today, ".csv", sep="")
   filename_dbf <- paste("./Output/", speckey, "_", speclet, "_", today, ".dbf", sep="")
   write.csv(species_temp, filename_csv)
@@ -73,7 +78,12 @@ for(s in specieslist){
       FN4 <- speclet
       FN <- paste("./Output/Merged", FN1, FN2, FN3, FN4, today, sep="_")
     }
+    if(i >= 5){
+      FN <- paste("./Output/Merged", "Five_or_More_Species",specinit3, today, sep="_")
+    }
   }
 }
+Filename_csv_multi <- paste(FN, ".csv")
+write.csv(temp_merge, Filename_csv_multi)
 
 
