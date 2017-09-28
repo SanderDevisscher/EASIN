@@ -40,17 +40,21 @@ Brondata <- subset(Brondata, gis_utm1_code != "FS7090" )
 Brondata <- subset(Brondata, gis_utm1_code != "GS0588" )
 TempLog$Netherlands <- TempLog$Import-nrow(Brondata)
 
+####fix dates####
+Brondata$eventDate <- as.Date.factor(Brondata$eventDate)
+Brondata$year <- as.numeric(Brondata$year)
+
 ####Subset species data####
 table(Brondata$gbifapi_acceptedScientificName)
 specieslist <- c("Cabomba caroliniana A. Gray", "Eichhornia crassipes (Mart.) Solms", 
                  "Hydrocotyle ranunculoides L. fil.","Lagarosiphon major (Ridl.) Moss",
-                 "Ludwigia grandiflora (Michaux) Greuter & Burdet", "Ludwigia peploides (Kunth) P. H. Raven")
+                 "Ludwigia grandiflora (Michaux) Greuter & Burdet", "Ludwigia peploides (Kunth) P. H. Raven",
+                 " Lysichiton americanus HultÃ©n & H.St.John", "Myriophyllum aquaticum (Vellozo) Verdcourt") 
 temp_merge <- data.frame()
 specinit3 <- ""
 i <- 0
 for(s in specieslist){
   species_temp <- subset(Brondata, gbifapi_acceptedScientificName == s)
-  species_temp$eventDate <- as.Date.factor(species_temp$eventDate)
   speckey <- unique(species_temp$gbifapi_acceptedKey)
   speclet <- unique(substr(species_temp$gbifapi_acceptedScientificName, 1,6))
   specinit1 <- unique(substr(species_temp$gbifapi_acceptedScientificName, 1,1))
