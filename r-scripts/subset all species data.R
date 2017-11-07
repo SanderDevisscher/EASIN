@@ -4,7 +4,7 @@ library(googlesheets)
 library(foreign)
 
 ####Data Importeren####
-update <- "N"
+update <- "J"
 TempLog <- data.frame(1)
 title <- gs_title(x="Iteration", verbose = T)
 Token <- gs_auth()
@@ -16,7 +16,7 @@ today <- Sys.Date()
 today <- format(today,"%d_%m_%y")
 TempLog$Date <- today
 TempLog$Iteration <- nieuw
-filename <- paste("./Output/T0_SourceData_", nieuw, ".csv", sep="")
+#filename <- paste("./Output/T0_SourceData_", nieuw, ".csv", sep="")
 
 
 if(update == "J"){
@@ -46,10 +46,7 @@ Brondata$year <- as.numeric(Brondata$year)
 
 ####Subset species data####
 table(Brondata$gbifapi_acceptedScientificName)
-specieslist <- c("Cabomba caroliniana A. Gray", "Eichhornia crassipes (Mart.) Solms", 
-                 "Hydrocotyle ranunculoides L. fil.","Lagarosiphon major (Ridl.) Moss",
-                 "Ludwigia grandiflora (Michaux) Greuter & Burdet", "Ludwigia peploides (Kunth) P. H. Raven",
-                 " Lysichiton americanus HultÃ©n & H.St.John", "Myriophyllum aquaticum (Vellozo) Verdcourt") 
+specieslist <- c("Eriocheir sinensis H. Milne Edwards, 1853") 
 temp_merge <- data.frame()
 specinit3 <- ""
 i <- 0
@@ -62,6 +59,8 @@ for(s in specieslist){
   specinit3 <- paste(specinit2, specinit1, sep="")
   filename_csv <- paste("./Output/", speckey, "_", speclet, "_", today, ".csv", sep="")
   filename_dbf <- paste("./Output/", speckey, "_", speclet, "_", today, ".dbf", sep="")
+  species_temp$bron <- ifelse(species_temp$rightsHolder== "INBO", "INBO", 
+                              ifelse(species_temp$rightsHolder == "Natuurpunt Studie", "Natuurpunt Studie", "Andere"))
   write.csv(species_temp, filename_csv)
   write.csv(species_temp, filename_dbf)
   i <- i + 1
