@@ -4,7 +4,7 @@ library(googlesheets)
 library(foreign)
 
 ####Data Importeren####
-update <- "J"
+update <- "N"
 TempLog <- data.frame(1)
 title <- gs_title(x="Iteration", verbose = T)
 Token <- gs_auth()
@@ -46,7 +46,12 @@ Brondata$year <- as.numeric(Brondata$year)
 
 ####Subset species data####
 table(Brondata$gbifapi_acceptedScientificName)
-specieslist <- c("Eriocheir sinensis H. Milne Edwards, 1853") 
+specieslist <- c("Cabomba caroliniana A. Gray", "Elodea nuttallii (Planch.) H.St.John", 
+                 "Hydrocotyle ranunculoides L. fil.", "Heracleum mantegazzianum Sommier & Levier",
+                 "Impatiens glandulifera Royle", "Lagarosiphon major (Ridl.) Moss",
+                 "Ludwigia grandiflora (Michaux) Greuter & Burdet", "Ludwigia peploides (Kunth) P. H. Raven",
+                 "Lysichiton americanus HultÃ©n & H.St.John", "Myriophyllum aquaticum (Vellozo) Verdcourt",
+                 "Myriophyllum heterophyllum Michx.") 
 temp_merge <- data.frame()
 specinit3 <- ""
 i <- 0
@@ -89,4 +94,28 @@ for(s in specieslist){
 Filename_csv_multi <- paste(FN, ".csv")
 write.csv(temp_merge, Filename_csv_multi)
 
+####Remove non - validated following T0 method (with easy to recognise species)
+temp_merge_ok <- data.frame()
+for(v in valid_soorten){
+  temp <- subset(temp_merge, gbifapi_acceptedScientificName == v)
+  temp_merge_ok <- rbind(temp_merge_ok, temp)
+}
 
+#Select harder to recognise and more rare species
+temp_merge_nok <- subset(temp_merge, !(gbifapi_acceptedScientificName %in% valid_soorten))
+table(temp_nok$identificationVerificationStatus)
+#Remove "untreated" records
+Valid3 <- subset(temp_merge_nok,identificationVerificationStatus != "Onbehandeld")
+#Remove records "under treatement"
+Valid3 <- subset(Valid3,identificationVerificationStatus != "In behandeling")
+#Remove "unable to confirm" records 
+Valid3 <- subset(Valid3,identificationVerificationStatus != "Niet te beoordelen")
+Valid3 <- subset(Valid3,identificationVerificationStatus != 0)
+
+
+Valid4 <- temp_merge_ok
+Valid5 <- data.frame() #Empty first
+Valid5 <- rbind(Valid3,Valid4)
+
+Filename_csv_multi_valid <- paste(FN, "_Validated", ".csv")
+write.csv(Valid5, Filename_csv_multi_valid)
