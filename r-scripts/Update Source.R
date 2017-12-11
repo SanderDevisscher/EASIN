@@ -27,8 +27,8 @@ print(t)
 #Tijdelijk vanuit zip file
 #Manuele download van https://github.com/inbo/invasive-t0-occurrences/blob/master/data/processed/invasive_EU_listed_and_considered_with_joins.csv.zip
 #Manuele unzip 
-#invasive_occ <- read.csv("C://Users/blauw/Google Drive Werk/Faunabeheer/EU_IAS/T0/EASIN/r-scripts/Private/invasive_EU_listed_and_considered_with_joins.csv")
-invasive_occ <- read.csv("C://Users/sander_devisscher/Documents/GitHub/EASIN/EASIN/r-scripts/Private/invasive_EU_listed_and_considered_with_joins.csv")
+invasive_occ <- read.csv("G://Mijn Drive/INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging/EASIN/T0/invasive-t0-occurrences/invasive-t0-occurrences/data/processed/invasive_EU_listed_and_considered_with_joins.csv")
+
 
 print("step 3/8: Check success of import")
 if(exists("invasive_occ")){

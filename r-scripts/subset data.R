@@ -81,25 +81,29 @@ for(v in valid_soorten){
 temp_ok$gbifapi_acceptedScientificName <- factor(temp_ok$gbifapi_acceptedScientificName)
 table(temp_ok$gbifapi_acceptedScientificName)
 table(temp_ok$identificationVerificationStatus)
-TempLog$temp_ok <- nrow(temp_ok) #32182
+TempLog$temp_ok <- nrow(temp_ok) #242383
 Valid2 <- temp_ok
 
-#Remove non treated, under treatment, not treatable records from remaining species
+###Remove non treated, under treatment, not treatable records from remaining species
+#Select harder to recognise and more rare species
 temp_nok <- subset(Brondata, !(gbifapi_acceptedScientificName %in% valid_soorten))
-TempLog$NOK_1_0 <- nrow(temp_nok)#Expected: 163911 - 32182 = 131729/ Result: 131729 => OK
+TempLog$NOK_1_0 <- nrow(temp_nok)#Expected: 269728 - 242383 = 27345/ Result: 27345 => OK
 table(temp_nok$identificationVerificationStatus)
+#Remove "untreated" records
 Valid1 <- subset(temp_nok,identificationVerificationStatus != "Onbehandeld")
-TempLog$NOK_1_1 <- nrow(Valid1) #Expected: 131729 - 79847 = 51882/ Result: 51882 => OK
+TempLog$NOK_1_1 <- nrow(Valid1) #Expected: 27345 - 1312 = 26033/ Result: 26033 => OK
+#Remove records "under treatement"
 Valid1 <- subset(Valid1,identificationVerificationStatus != "In behandeling")
-TempLog$NOK_1_2 <- nrow(Valid1)#Expected: 51882 - 13 = 51869/ Result: 51869 => OK
+TempLog$NOK_1_2 <- nrow(Valid1)#Expected: 26033 - 13 = 26020/ Result: 26020 => OK
+#Remove "unable to confirm" records 
 Valid1 <- subset(Valid1,identificationVerificationStatus != "Niet te beoordelen")
-TempLog$NOK_1_3 <- nrow(Valid1)#Expected: 51869 - 31 = 51838/ Result: 51838 => OK
+TempLog$NOK_1_3 <- nrow(Valid1)#Expected: 26020 - 16 = 26004/ Result: 26004 => OK
 Valid1 <- subset(Valid1,identificationVerificationStatus != 0)
-TempLog$NOK_1_4 <- nrow(Valid1)#Expected: 51838 - 343 = 51495/ Result: 51495 => OK
+TempLog$NOK_1_4 <- nrow(Valid1)#Expected: 26004 - 343 = 25661/ Result: 25661 => OK
 
 Valid <- data.frame() #Empty first
 Valid <- rbind(Valid1,Valid2)
-TempLog$OK_NOK <- nrow(Valid)#Expected: 51495 + 32182 =  83677/ Result:  83677 => OK
+TempLog$OK_NOK <- nrow(Valid)#Expected: 242383 + 25661 =  268044/ Result:  268044 => OK
 table(Valid$identificationVerificationStatus, Valid$gbifapi_acceptedScientificName)
 table(Valid$basisOfRecord)
 table(Valid$euConcernStatus)
