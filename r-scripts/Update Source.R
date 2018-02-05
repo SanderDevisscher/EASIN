@@ -2,6 +2,7 @@
 
 library(dplyr)
 library(googlesheets)
+library(readr)
 
 print("step 1/8: provide the path of the file containing the tokenfile")
 t <- Sys.time()
@@ -17,18 +18,14 @@ token <- tokenfile$Token
 print("step 2/8: read the datafile, taking into account the token in the URL")
 t <- Sys.time()
 print(t)
-#dataset_url <- paste("https://raw.githubusercontent.com/inbo/invasive-t0-occurrences/master/data/processed/invasive_EU_listed_and_considered_with_joins.csv?token=",
- #                    token, sep = "" )
-#invasive_occ <- read.csv(dataset_url)
-#remove(token) #Remove token
-#remove(dataset_url)
-#table(invasive_occ$gbifapi_acceptedScientificName,invasive_occ$euConcernStatus)
 
-#Tijdelijk vanuit zip file
-#Manuele download van https://github.com/inbo/invasive-t0-occurrences/blob/master/data/processed/invasive_EU_listed_and_considered_with_joins.csv.zip
-#Manuele unzip 
-invasive_occ <- read.csv("G://Mijn Drive/INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging/EASIN/T0/invasive-t0-occurrences/invasive-t0-occurrences/data/processed/invasive_EU_listed_and_considered_with_joins.csv")
-
+if(file.exists("./Private/invasive_EU_listed_and_considered_with_joins.csv.zip")){
+  invasive_occ_unzip <- unzip("./Private/invasive_EU_listed_and_considered_with_joins.csv.zip", "invasive_EU_listed_and_considered_with_joins.csv")
+  invasive_occ <- read_csv(invasive_occ_unzip)
+  remove(invasive_occ_unzip)
+  }else{
+  print("goto https://github.com/inbo/invasive-t0-occurrences/blob/master/data/processed/invasive_EU_listed_and_considered_with_joins.csv.zip")
+}
 
 print("step 3/8: Check success of import")
 if(exists("invasive_occ")){
