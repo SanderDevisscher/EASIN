@@ -6,42 +6,47 @@ Since most of the squares in belgium would be "New", experts decided it would be
 
 ##Scripts
 * Update Source 
- * Downloads T0 dataset from github
+   * Downloads T0 dataset from github. 
+     * !Currently we're unable to download the .zip file from the T0 - dataset using R! Therefor the .zip should be downloaded manually into the private folder.  
 * subset data 
- * Subsets the data from T0 dataset 
-  * Only Listed species
-  * Only records with at least Grid10k cellcode (added in aggregation process, no cellcode means record with incorrect spatial reference)
-  * Only records from 01/01/2000 to 31/01/2016
-  * Only records with correct validationstatus
-   * Certain more common and recognisable species are non-propotionally not treated, under treatment or not treatable. Experts selected the following species to have all validation statuses included.
-    * Threskiornis aethiopicus (Latham, 1790) 
-    * Oxyura jamaicensis (Gmelin, 1789)
-    * Procyon lotor (Linnaeus, 1758)
-    * Cabomba caroliniana A. Gray
-    * Tamias sibiricus (Laxmann, 1769)
-    * Nasua nasua (Linnaeus, 1766)
-    * Eriocheir sinensis H. Milne Edwards, 1853
-    * Pseudorasbora parva (Temminck & Schlegel, 1846)
-    * Trachemys Agassiz, 1857
+  * Subsets the data from T0 dataset 
+    * Only Listed species
+    * Only records with at least Grid10k cellcode (added in aggregation process, no cellcode means record with incorrect spatial reference)
+    * Only records from 01/01/2000 to 31/01/2016
+    * Only records with correct validationstatus
+    * Certain more common and recognisable species are non-propotionally not treated, under treatment or not treatable. Experts selected the following species to have all validation statuses included.
+      * Threskiornis aethiopicus (Latham, 1790) 
+      * Oxyura jamaicensis (Gmelin, 1789)
+      * Procyon lotor (Linnaeus, 1758)
+      * Cabomba caroliniana A. Gray
+      * Tamias sibiricus (Laxmann, 1769)
+      * Nasua nasua (Linnaeus, 1766)
+      * Eriocheir sinensis H. Milne Edwards, 1853
+      * Pseudorasbora parva (Temminck & Schlegel, 1846)
+      * Trachemys Agassiz, 1857
   
-* Dataexploratie
+* Dataexploration
 
-##Arcgis part I
-###T0_Toolbox.tbx
+<B><U>Arcgis part I</U></B>
+
+<I>T0_Toolbox.tbx</I>
 Is an ESRI-arcgis toolbox containing the finished models used for post-script analysis.
 The toolbox contains the following models:
+
 * Stap 1 GRID10k Link
 * Stap 2 GRID10k Merge (2)
 * Stap 3 Dissolve
 * Stap 4 GRID10k EASIN and T0 Link (2)
 * Stap 5 MS_Belgium_Check (2)
-* Extra MS_Belgium_CorrectNames => Changes species names with correct names and Outputs EASIN.dbf & MS_BELGIUM_Joined2
+* Extra MS_Belgium_CorrectNames => Changes species names from the EASIN baselayer with correct names and Outputs EASIN.dbf & MS_BELGIUM_Joined2
 * Extra Project UTM Layers => Projects the UTM1x1 and GRID10k layers to ETRS_1989_LAEA
 
 Extra's should be run when new layers are provided by EASIN or when in a rare case other projections are needed.
 
-####Stap 1 GRID10k Link
+<I><U>Stap 1 GRID10k Link</U></I>
+
 Iterates through the species in the script output (default: GRID10kData_Source_dd_mm_yy_Export_dd_mm_yy.dbf) and links it with the GRID10k layer
+
 ![Model](Stap1.png)
 
 Prior to iteration species names had to be simplified (substitute all; .,"" ,() ,..., etc... for _) 
