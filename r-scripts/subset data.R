@@ -4,8 +4,6 @@ library(googlesheets)
 ####Data Importeren####
 update <- "N"
 TempLog <- data.frame(1)
-#setwd("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/r-scripts/")
-#iteration <- read.csv("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/r-scripts/Private/iteration.csv", sep=",")
 title <- gs_title(x="Iteration", verbose = T)
 Token <- gs_auth()
 gs_auth(token = Token)
@@ -16,12 +14,7 @@ today <- Sys.Date()
 today <- format(today,"%d_%m_%y")
 TempLog$Date <- today
 TempLog$Iteration <- nieuw
-#Import filename
-#filename <- paste("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/Data/T0_SourceData_", nieuw, ".csv", sep="")
 filename <- paste("./Output/T0_SourceData_", nieuw, ".csv", sep="")
-#Export filename
-#filename2 <- paste("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/Data/UTM1Data_Source_", nieuw,"_Export_", today, ".csv", sep="")
-#filename3 <- paste("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/Data/UTM1Data_Source_", nieuw,"_Export_", today, ".dbf", sep="")
 
 
 if(update == "J"){
@@ -32,14 +25,6 @@ if(update == "J"){
   source("Update Source.R")
   Brondata <- invasive_occ
   print("update filenames")
-  #iteration <- read.csv("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/r-scripts/Private/iteration.csv", sep=",")
-  #title <- gs_title(x="Iteration", verbose = T)
-  #iteration <- gs_read(title)
-  #iteration$date <- as.character(iteration$date)
-  #nieuw <- tail(iteration$date,1)
-  #filename <- paste("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/Data/T0_SourceData_", nieuw, ".csv", sep="")
-  #filename2 <- paste("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/Data/UTM1Data_Source_", nieuw,"_Export_", today, ".csv", sep="")
-  #filename3 <- paste("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/Data/UTM1Data_Source_", nieuw,"_Export_", today, ".dbf", sep="")
 }else{
   Brondata <- read.csv(filename)
   if(today!=nieuw){
