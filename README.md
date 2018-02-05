@@ -1,10 +1,10 @@
 # EASIN Workflow
-##Rationale
+## Rationale
 To create an update to the memberstate T0 layer provided by EASIN (MS_BELGIUM.shp) using the data aggregated by the memberstate in their [T0 dataset](https://github.com/inbo/invasive-t0-occurrences). The update is provided by stating, in the column Accepted,  whether the squares provided by EASIN are correct (Y) or incorrect (N). New squares, those missing from the EASIN - Layer, should also be added with the value "New" in the Accepted column. 
 
 Since most of the squares in belgium would be "New", experts decided it would be easier to provide EASIN with a new layer, in a similar format, for EASIN to subsitute its layer with.  
 
-##Scripts
+## Scripts
 * Update Source 
    * Downloads T0 dataset from github. 
      * !Currently we're unable to download the .zip file from the T0 - dataset using R! Therefor the .zip should be downloaded manually into the private folder.  
@@ -27,9 +27,9 @@ Since most of the squares in belgium would be "New", experts decided it would be
   
 * Dataexploration
 
-<B><U>Arcgis part I</U></B>
+## Arcgis part I
 
-<I>T0_Toolbox.tbx</I>
+<I> T0_Toolbox.tbx
 Is an ESRI-arcgis toolbox containing the finished models used for post-script analysis.
 The toolbox contains the following models:
 
@@ -43,7 +43,7 @@ The toolbox contains the following models:
 
 Extra's should be run when new layers are provided by EASIN or when in a rare case other projections are needed.
 
-<I><U>Stap 1 GRID10k Link</U></I>
+### Stap 1 GRID10k Link
 
 Iterates through the species in the script output (default: GRID10kData_Source_dd_mm_yy_Export_dd_mm_yy.dbf) and links it with the GRID10k layer
 
@@ -51,7 +51,7 @@ Iterates through the species in the script output (default: GRID10kData_Source_d
 
 Prior to iteration species names had to be simplified (substitute all; .,"" ,() ,..., etc... for _) 
 
-<I> <U> Stap 2 GRID10k Merge (2)
+### Stap 2 GRID10k Merge (2)
   
 Merges the outputs of Stap 1 GRID10k Link into a geodatabase file named GRID10k_Linked_ALL and a dbf file (GRID_ALL.dbf). This last file is used in the EASIN.accdb to link with the output from the `Extra MS_Belgium_CorrectNames`model (EASIN.dbf). 
 
