@@ -15,17 +15,20 @@ Since most of the squares in belgium would be "New", experts decided it would be
     * Only records from 01/01/2000 to 31/01/2016
     * Only records with correct validationstatus
     * Certain more common and recognisable species are non-propotionally not treated, under treatment or not treatable. Experts selected the following species to have all validation statuses included.
-      * Threskiornis aethiopicus (Latham, 1790) 
-      * Oxyura jamaicensis (Gmelin, 1789)
-      * Procyon lotor (Linnaeus, 1758)
-      * Cabomba caroliniana A. Gray
-      * Tamias sibiricus (Laxmann, 1769)
-      * Nasua nasua (Linnaeus, 1766)
-      * Eriocheir sinensis H. Milne Edwards, 1853
-      * Pseudorasbora parva (Temminck & Schlegel, 1846)
-      * Trachemys Agassiz, 1857
-  
-* Dataexploration
+      * 1st batch
+        * Threskiornis aethiopicus (Latham, 1790) 
+        * Oxyura jamaicensis (Gmelin, 1789)
+        * Procyon lotor (Linnaeus, 1758)
+        * Cabomba caroliniana A. Gray
+        * Tamias sibiricus (Laxmann, 1769)
+        * Nasua nasua (Linnaeus, 1766)
+        * Eriocheir sinensis H. Milne Edwards, 1853
+        * Pseudorasbora parva (Temminck & Schlegel, 1846)
+        * Trachemys Agassiz, 1857
+      * 2nd batch (to be reviewed by experts)
+        * Alopochen aegypticus
+    
+* <I> Dataexploration (Optional) </I>
 
 ## Arcgis part I
 
