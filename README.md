@@ -7,7 +7,7 @@ Since most of the squares in belgium would be "New", experts decided it would be
 ## Scripts
 * Update Source 
    * Downloads T0 dataset from github. 
-     * !Currently we're unable to download the .zip file from the T0 - dataset using R! Therefor the .zip should be downloaded manually into the private folder.  
+     * !Currently we're unable to download the .zip file from the T0 - dataset using R! Therefor the .zip should be downloaded manually into the private folder. The "Update Source" script will then unzip the .zip for further use.
 * subset data 
   * Subsets the data from T0 dataset 
     * Only Listed species
@@ -58,7 +58,11 @@ Prior to iteration species names had to be simplified (substitute all; .,"" ,() 
   
 Merges the outputs of Stap 1 GRID10k Link into a geodatabase file named GRID10k_Linked_ALL and a dbf file (GRID_ALL.dbf). This last file is used in the EASIN.accdb to link with the output from the `Extra MS_Belgium_CorrectNames`model (EASIN.dbf). 
 
-##MS Access
+## MS Access
 Using the outputs from Extra MS_Belgium_CorrectNames and Stap 2 GRID10k Merge (2) 
 
-##Arcgis part II
+
+<I> The MS Access part of the analysis will be transformed into R - script  in the near future </I>
+
+## Arcgis part II
+
