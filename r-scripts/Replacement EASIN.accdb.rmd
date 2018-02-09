@@ -16,6 +16,15 @@ library(foreign)
 ## Data inlezen en 
 
 ```{r data inlezen}
+fileroot <- "G://Mijn Drive/INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging/EASIN/Extras Analyse/AWS_Output/"
+
+filepath_EASIN <- paste(fileroot, "EASIN.dbf", sep="")
+filepath_Grid10k <- paste(fileroot, "GRID10k.dbf", sep="")
+filepath_tbl_T0 <- paste(fileroot, "GRID_ALL.dbf", sep="")
+
+EASIN <- read.dbf(filepath_EASIN)
+Grid10k <- read.dbf(filepath_Grid10k)
+tbl_T0 <- read.dbf(filepath_tbl_T0)
 
 ```
 
