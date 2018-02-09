@@ -11,29 +11,56 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 ```{r libraries}
 library(foreign)
+library(dplyr)
 ```
 
-## Data inlezen en 
+## Read Data
 
-```{r data inlezen}
+```{r Read Data}
 fileroot <- "G://Mijn Drive/INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging/EASIN/Extras Analyse/AWS_Output/"
 
 filepath_EASIN <- paste(fileroot, "EASIN.dbf", sep="")
 filepath_Grid10k <- paste(fileroot, "GRID10k.dbf", sep="")
 filepath_tbl_T0 <- paste(fileroot, "GRID_ALL.dbf", sep="")
 
-EASIN <- read.dbf(filepath_EASIN)
-Grid10k <- read.dbf(filepath_Grid10k)
-tbl_T0 <- read.dbf(filepath_tbl_T0)
+EASIN_raw <- read.dbf(filepath_EASIN)
+Grid10k_raw <- read.dbf(filepath_Grid10k)
+tbl_T0_raw <- read.dbf(filepath_tbl_T0)
 
 ```
 
-## Including Plots
+## Redux
+```{r Q_EASIN_Redux}
 
-You can also embed plots, for example:
+EASIN <- EASIN_raw[, c("CellCode", "SPEC", "REFERENCE_", "DATA_PARTN")]
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+CellCodes <- unique(EASIN$CellCode)
+temp5 <- data.frame(1)
+temp6 <- data.frame()
+for(c in CellCodes){
+  temp <- subset(EASIN, CellCode == c)
+  Species <- unique(temp$SPEC)
+  for(s in Species){
+    temp2 <- subset(temp, SPEC == s)
+    References <- unique(temp2$REFERENCE_)
+    for(r in References){
+      temp3 <- subset(temp2, REFERENCE_ == r)
+      Data_Partners <- unique(temp3$DATA_PARTN)
+      for(d in Data_Partners){
+        temp5$CellCode <- c
+        temp5$SPEC <- s
+        temp5$REFERENCE_ <- r
+        temp5$DATA_PARTN <- d
+        temp6 <- rbind(temp6, temp5)
+      }
+    }
+  }
+}
+
+EASIN <- temp6
+
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+
