@@ -131,10 +131,6 @@ ALL_raw$Accepted <- ifelse(ALL_raw$EASIN == 1 & ALL_raw$T0 == 1, "Y",
 ALL <-  merge(x = ALL_raw, y = Grid10k_raw)
 
 ALL <- ALL[,c("CellCode", "SPEC", "REFERENCE_", "DATA_PARTN", "Accepted", "X", "Y")]
-
-
-
-
 ```
 
 
