@@ -63,6 +63,7 @@ Using the outputs from Extra MS_Belgium_CorrectNames and Stap 2 GRID10k Merge (2
 
 
 <I> The MS Access part of the analysis will be transformed into R - script  in the near future </I>
+<I> see [issue #2](https://github.com/SanderDevisscher/EASIN/issues/2) </I>
 
 ## Arcgis part II
 
