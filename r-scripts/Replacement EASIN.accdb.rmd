@@ -58,6 +58,7 @@ for(c in CellCodes){
 }
 
 EASIN <- temp6
+EASIN$EASIN <- 1
 EASIN$X1 <- NULL
 ```
 ```{r Clean Up}
@@ -94,6 +95,7 @@ for(c in CellCodes){
 }
 temp3$X1 <- NULL
 tbl_T0 <- temp3
+tbl_T0$T0 <- 1
 
 ```
 ```{r Clean Up}
@@ -104,6 +106,35 @@ remove(CellCodes)
 remove(Species)
 remove(c)
 remove(s)
+```
+## Analyse
+
+```{r Q_EASINandT0, Q_OnlyEasin, Q_OnlyT0}
+
+EASINandT0 <- merge(x = EASIN, y = tbl_T0, by.x = c("CellCode", "SPEC"), by.y = c("CellCode", "SPEC"))
+
+OnlyEASIN <- merge(x = EASIN, y = tbl_T0, by = c("CellCode", "SPEC"), all.x = T)
+OnlyEASIN$T0 <- ifelse(is.na(OnlyEASIN$T0), 0,OnlyEASIN$T0)
+OnlyEASIN <- subset(OnlyEASIN, T0 == 0)
+
+OnlyT0 <- merge(x = EASIN, y = tbl_T0, by = c("CellCode", "SPEC"), all.y = T)
+OnlyT0$EASIN <- ifelse(is.na(OnlyT0$EASIN), 0,OnlyT0$EASIN)
+OnlyT0 <- subset(OnlyT0, EASIN == 0)
+
+ALL_raw <- rbind(EASINandT0, OnlyEASIN)
+ALL_raw <- rbind(ALL_raw, OnlyT0)
+
+ALL_raw$Accepted <- ifelse(ALL_raw$EASIN == 1 & ALL_raw$T0 == 1, "Y", 
+                       ifelse(ALL_raw$EASIN == 0 & ALL_raw$T0 == 1, "New",
+                              ifelse(ALL_raw$EASIN == 1 & ALL_raw$T0 == 0, "N", NA)))
+
+ALL <-  merge(x = ALL_raw, y = Grid10k_raw)
+
+ALL <- ALL[,c("CellCode", "SPEC", "REFERENCE_", "DATA_PARTN", "Accepted", "X", "Y")]
+
+
+
+
 ```
 
 
