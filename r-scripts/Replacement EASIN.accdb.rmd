@@ -58,9 +58,53 @@ for(c in CellCodes){
 }
 
 EASIN <- temp6
+EASIN$X1 <- NULL
+```
+```{r Clean Up}
+remove(temp)
+remove(temp2)
+remove(temp3)
+remove(temp5)
+remove(temp6)
+remove(CellCodes)
+remove(References)
+remove(Species)
+remove(Data_Partners)
+remove(c)
+remove(r)
+remove(s)
+remove(d)
 
 ```
+```{r Q_T0_Redux}
 
+tbl_T0 <- tbl_T0_raw[, c("CellCode", "SPEC")]
+
+CellCodes <- unique(tbl_T0$CellCode)
+temp2 <- data.frame(1)
+temp3 <- data.frame()
+for(c in CellCodes){
+  temp <- subset(tbl_T0, CellCode == c)
+  Species <- unique(temp$SPEC)
+  for(s in Species){
+    temp2$CellCode <- c
+    temp2$SPEC <- s
+    temp3 <- rbind(temp3, temp2)
+  }
+}
+temp3$X1 <- NULL
+tbl_T0 <- temp3
+
+```
+```{r Clean Up}
+remove(temp)
+remove(temp2)
+remove(temp3)
+remove(CellCodes)
+remove(Species)
+remove(c)
+remove(s)
+```
 
 
 
