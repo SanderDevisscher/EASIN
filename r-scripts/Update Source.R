@@ -1,41 +1,41 @@
-
+rm(list = ls())
 
 library(dplyr)
 library(googlesheets)
-library(readr)
+library(RCurl)
+library(curl)
+library(foreign)
+library(httr)
 
 print("step 1/8: provide the path of the file containing the tokenfile")
-t <- Sys.time()
-print(t)
+t0 <- Sys.time()
 #token everywhere 
 title <- gs_title(x="token_invasive", verbose = TRUE)
 Token <- gs_auth()
 gs_auth(token = Token)
 tokenfile <- gs_read(title)
-token <- tokenfile$Token
+PAToken <- tokenfile$PAToken
+userpwd <- tokenfile$userpwd
+t1 <- Sys.time()
+print(t1-t0)
+
+print("step 2/8: Download and unzip de .zip file")
+t0 <- Sys.time()
+url <- "https://github.com/inbo/invasive-t0-occurrences/raw/master/data/processed/invasive_EU_listed_and_considered_with_joins.csv.zip"
+zip_storage <- "./Private/Source/invasive_EU_listed_and_considered_with_joins.csv.zip"
 
 
-print("step 2/8: read the datafile, taking into account the token in the URL")
-t <- Sys.time()
-print(t)
+content <- RCurl::getBinaryURL(url, httpheader = paste0("Authorization", PAToken))
+tmp <- tempfile() 
+write(content, file = tmp) 
+t0_data <- read.csv(gzfile(tmp))
+unlink(tmp)
 
-if(file.exists("./Private/invasive_EU_listed_and_considered_with_joins.csv.zip")){
-  invasive_occ_unzip <- unzip("./Private/invasive_EU_listed_and_considered_with_joins.csv.zip", "invasive_EU_listed_and_considered_with_joins.csv")
-  invasive_occ <- read_csv(invasive_occ_unzip)
-  remove(invasive_occ_unzip)
-  }else{
-  print("goto https://github.com/inbo/invasive-t0-occurrences/blob/master/data/processed/invasive_EU_listed_and_considered_with_joins.csv.zip")
-}
 
-print("step 3/8: Check success of import")
-if(exists("invasive_occ")){
-  print("import succesfull")
-}else{
-  print("import failed")
-  print("check for stale token")
-  stop("goto https://github.com/inbo/invasive-t0-occurrences/blob/master/data/processed/")
-}
+getURLContent(req)
 
+t1 <- Sys.time()
+print(t1-t0)
 
 print("step 4/8: check the head of the data file")
 t <- Sys.time()

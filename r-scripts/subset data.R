@@ -242,7 +242,7 @@ write.csv2(presence, filename2)
 write.dbf(presence, filename3)
 
 ####Determine presence 10kGrid####
-#For each individual 1km square the presence of species s is determined
+#For each individual 10km square the presence of species s is determined
 
 soorten <- unique(EuConc2$gbifapi_acceptedScientificName)
 print(soorten)
@@ -275,7 +275,7 @@ remove(temp3)
 ####Export Data 10k GRID####
 #This data is used as input into GIS - Models
 library(foreign)
-filename4 <- paste("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/Data/GRID10kData_Source_", nieuw,"_Export_", today, ".csv", sep="")
-filename5 <- paste("//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/Data/GRID10kData_Source_", nieuw,"_Export_", today, ".dbf", sep="")
+filename4 <- paste("./Output/GRID10kData_Source_", nieuw,"_Export_", today, ".csv", sep="")
+filename5 <- paste("./Output/GRID10kData_Source_", nieuw,"_Export_", today, ".dbf", sep="")
 write.csv2(presence2, filename4)
 write.dbf(presence2, filename5)
