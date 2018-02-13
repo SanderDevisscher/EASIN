@@ -12,16 +12,22 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r libraries}
 library(foreign)
 library(dplyr)
+library(readr)
 ```
 
 ## Read Data
 
 ```{r Read Data}
-fileroot <- "G://Mijn Drive/INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Co�rdinatie, voorbereiding, implementatie en opvolging/EASIN/Extras Analyse/AWS_Output/"
+Driveletter <- "D"
 
-filepath_EASIN <- paste(fileroot, "EASIN.dbf", sep="")
-filepath_Grid10k <- paste(fileroot, "GRID10k.dbf", sep="")
+fileroot <- paste(Driveletter, "://Projects/PRJ_Faunabeheer/INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging/EASIN_GIS/AWS Output/", sep="")
+fileroot2 <- paste(Driveletter, "://Projects/PRJ_Faunabeheer/INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging/EASIN_GIS/temp/", sep="")
+
+filepath_EASIN <- paste(fileroot2, "EASIN.dbf", sep="")
+filepath_Grid10k <- paste(fileroot2, "GRID10k.dbf", sep="")
 filepath_tbl_T0 <- paste(fileroot, "GRID_ALL.dbf", sep="")
+
+exists(filepath_tbl_T0)
 
 EASIN_raw <- read.dbf(filepath_EASIN)
 Grid10k_raw <- read.dbf(filepath_Grid10k)
@@ -47,7 +53,7 @@ for(c in CellCodes){
       temp3 <- subset(temp2, REFERENCE_ == r)
       Data_Partners <- unique(temp3$DATA_PARTN)
       for(d in Data_Partners){
-        temp5$CellCode <- c
+        temp5$CELLCODE <- c
         temp5$SPEC <- s
         temp5$REFERENCE_ <- r
         temp5$DATA_PARTN <- d
@@ -88,7 +94,7 @@ for(c in CellCodes){
   temp <- subset(tbl_T0, CellCode == c)
   Species <- unique(temp$SPEC)
   for(s in Species){
-    temp2$CellCode <- c
+    temp2$CELLCODE <- c
     temp2$SPEC <- s
     temp3 <- rbind(temp3, temp2)
   }
@@ -111,15 +117,13 @@ remove(s)
 
 ```{r Q_EASINandT0, Q_OnlyEasin, Q_OnlyT0}
 
-EASINandT0 <- merge(x = EASIN, y = tbl_T0, by.x = c("CellCode", "SPEC"), by.y = c("CellCode", "SPEC"))
+Samen <- merge(x = EASIN, y = tbl_T0, by.x = c("CELLCODE", "SPEC"), by.y = c("CELLCODE", "SPEC"), all=T)
+Samen$T0 <- ifelse(is.na(Samen$T0), 0,Samen$T0)
+Samen$EASIN <- ifelse(is.na(Samen$EASIN), 0,Samen$EASIN)
 
-OnlyEASIN <- merge(x = EASIN, y = tbl_T0, by = c("CellCode", "SPEC"), all.x = T)
-OnlyEASIN$T0 <- ifelse(is.na(OnlyEASIN$T0), 0,OnlyEASIN$T0)
-OnlyEASIN <- subset(OnlyEASIN, T0 == 0)
-
-OnlyT0 <- merge(x = EASIN, y = tbl_T0, by = c("CellCode", "SPEC"), all.y = T)
-OnlyT0$EASIN <- ifelse(is.na(OnlyT0$EASIN), 0,OnlyT0$EASIN)
-OnlyT0 <- subset(OnlyT0, EASIN == 0)
+EASINandT0 <- subset(Samen, T0 == 1 & EASIN == 1)
+OnlyEASIN <- subset(Samen, T0 == 0 & EASIN == 1)
+OnlyT0 <- subset(Samen, T0 == 1 & EASIN == 0)
 
 ALL_raw <- rbind(EASINandT0, OnlyEASIN)
 ALL_raw <- rbind(ALL_raw, OnlyT0)
@@ -128,9 +132,9 @@ ALL_raw$Accepted <- ifelse(ALL_raw$EASIN == 1 & ALL_raw$T0 == 1, "Y",
                        ifelse(ALL_raw$EASIN == 0 & ALL_raw$T0 == 1, "New",
                               ifelse(ALL_raw$EASIN == 1 & ALL_raw$T0 == 0, "N", NA)))
 
-ALL <-  merge(x = ALL_raw, y = Grid10k_raw)
+ALL <-  merge(x = ALL_raw, y = Grid10k_raw, by.x = "CELLCODE",by.y= "CellCode", all.x = T)
 
-ALL <- ALL[,c("CellCode", "SPEC", "REFERENCE_", "DATA_PARTN", "Accepted", "X", "Y")]
+ALL <- ALL[,c("CELLCODE", "SPEC", "REFERENCE_", "DATA_PARTN", "Accepted", "X", "Y")]
 ```
 
 
