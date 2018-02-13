@@ -136,6 +136,18 @@ ALL <-  merge(x = ALL_raw, y = Grid10k_raw, by.x = "CELLCODE",by.y= "CellCode", 
 
 ALL <- ALL[,c("CELLCODE", "SPEC", "REFERENCE_", "DATA_PARTN", "Accepted", "X", "Y")]
 ```
+```{r clean up}
+remove(Samen)
+remove(EASINandT0)
+remove(OnlyEASIN)
+remove(OnlyT0)
+```
+## Export
+```{r Export}
+exportpath <- paste(Driveletter, "://Projects/PRJ_Faunabeheer/INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging/EASIN_GIS/Input/ALL.csv", sep="")
+
+write.dbf(ALL, exportpath)
+```
 
 
 
