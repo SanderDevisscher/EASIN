@@ -62,6 +62,8 @@ Creates an empty feature class for outputs from Stap 1 to be appended in.
   
 Merges the outputs of Stap 1 GRID10k Link into a geodatabase file named GRID10k_Linked_ALL and a dbf file (GRID_ALL.dbf). This last file is used in the EASIN.accdb to link with the output from the `Extra MS_Belgium_CorrectNames`model (EASIN.dbf). 
 
+![Model](Stap2.png)
+
 ## MS Access
 Using the outputs from Extra MS_Belgium_CorrectNames and Stap 2 GRID10k Merge (2) 
 
