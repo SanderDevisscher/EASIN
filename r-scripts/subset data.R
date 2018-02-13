@@ -3,6 +3,7 @@ library(googlesheets)
 
 ####Data Importeren####
 update <- "N"
+Driveletter <- "D"
 TempLog <- data.frame(1)
 title <- gs_title(x="Iteration", verbose = T)
 Token <- gs_auth()
@@ -277,5 +278,14 @@ remove(temp3)
 library(foreign)
 filename4 <- paste("./Output/GRID10kData_Source_", nieuw,"_Export_", today, ".csv", sep="")
 filename5 <- paste("./Output/GRID10kData_Source_", nieuw,"_Export_", today, ".dbf", sep="")
+filename6 <- paste(Driveletter,
+                   "://Projects/PRJ_Faunabeheer/INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging/EASIN_GIS/Input/GRID10kData_Source_"
+                   , nieuw,"_Export_", today, ".csv", sep="")
+filename7 <- paste(Driveletter,
+                   "://Projects/PRJ_Faunabeheer/INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging/EASIN_GIS/Input/GRID10kData_Source_"
+                   , nieuw,"_Export_", today, ".dbf", sep="")
+
 write.csv2(presence2, filename4)
 write.dbf(presence2, filename5)
+write.csv2(presence2, filename6)
+write.dbf(presence2, filename7)
