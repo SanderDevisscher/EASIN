@@ -1,0 +1,35 @@
+---
+title: "Create Q_SPECIE"
+author: "Sander Devisscher"
+date: "15 februari 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r libraries}
+
+```
+
+
+```{r T0_Species}
+T0 <- Brondata[,c("X","gbifapi_acceptedScientificName")]
+T0$X <- NULL
+
+T0$SPEC <- gsub(" ", "_", T0_Species$gbifapi_acceptedScientificName, fixed = T )
+T0$SPEC <- gsub(".", "_", T0_Species$SPEC, fixed = T )
+T0$SPEC <- gsub(",", "_", T0_Species$SPEC, fixed = T )
+T0$SPEC <- gsub("&", "_", T0_Species$SPEC, fixed = T )
+T0$SPEC <- gsub("(", "_", T0_Species$SPEC, fixed = T ) 
+T0$SPEC <- gsub(")", "_", T0_Species$SPEC, fixed = T )
+
+table(T0$SPEC)
+
+
+```
+
+```{r}
+
+```
+
