@@ -42,7 +42,8 @@ The toolbox contains the following models:
 * Stap 4 GRID10k EASIN and T0 Link (2)
 * Stap 5 MS_Belgium_Check (2)
 * Extra MS_Belgium_CorrectNames => Changes species names from the EASIN baselayer with correct names and Outputs EASIN.dbf & MS_BELGIUM_Joined2
-* Extra Project UTM Layers => Projects the UTM1x1 and GRID10k layers to ETRS_1989_LAEA. Output: GRID10k_BEL_ETRS_1989_LAEA
+* Extra Project UTM Layers => Projects the UTM1x1 and GRID10k layers to ETRS_1989_LAEA. 
+  * Output: GRID10k_BEL_ETRS_1989_LAEA
 
 Extra's should be run when new layers are provided by EASIN or when in a rare case other projections are needed.
 
