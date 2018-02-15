@@ -23,7 +23,7 @@ Driveletter <- "D"
 fileroot <- paste(Driveletter, "://Projects/PRJ_Faunabeheer/INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging/EASIN_GIS/AWS Output/", sep="")
 fileroot2 <- paste(Driveletter, "://Projects/PRJ_Faunabeheer/INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging/EASIN_GIS/temp/", sep="")
 
-filepath_EASIN <- paste(fileroot2, "EASIN.dbf", sep="")
+filepath_EASIN <- paste(fileroot, "EASIN.dbf", sep="")
 filepath_Grid10k <- paste(fileroot2, "GRID10k.dbf", sep="")
 filepath_tbl_T0 <- paste(fileroot, "GRID_ALL.dbf", sep="")
 
