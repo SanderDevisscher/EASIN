@@ -9,27 +9,54 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 ```{r libraries}
+library(readr)
+library(foreign)
+library(dplyr)
+```
+```{r read existing Q_Specie}
+Q_Specie <- read_csv("G://Mijn Drive/INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging/EASIN/Data/EASIN files/Q_SPECIE.csv")
 
 ```
 
 
 ```{r T0_Species}
-T0 <- Brondata[,c("X","gbifapi_acceptedScientificName")]
+T0 <- read_csv2("./Output/GRID10kData_Source_05_02_18_Export_12_02_18.csv")
 T0$X <- NULL
 
-T0$SPEC <- gsub(" ", "_", T0_Species$gbifapi_acceptedScientificName, fixed = T )
-T0$SPEC <- gsub(".", "_", T0_Species$SPEC, fixed = T )
-T0$SPEC <- gsub(",", "_", T0_Species$SPEC, fixed = T )
-T0$SPEC <- gsub("&", "_", T0_Species$SPEC, fixed = T )
-T0$SPEC <- gsub("(", "_", T0_Species$SPEC, fixed = T ) 
-T0$SPEC <- gsub(")", "_", T0_Species$SPEC, fixed = T )
+SPEC_T0 <- unique(T0$species)
 
-table(T0$SPEC)
-
+T0_Species <- data.frame(SPEC_T0)
+T0_Species$SPEC <- gsub(" ", "_", T0_Species$SPEC_T0, fixed = T )
+T0_Species$SPEC <- gsub(".", "_", T0_Species$SPEC, fixed = T )
+T0_Species$SPEC <- gsub(",", "_", T0_Species$SPEC, fixed = T )
+T0_Species$SPEC <- gsub("&", "_", T0_Species$SPEC, fixed = T )
+T0_Species$SPEC <- gsub("(", "_", T0_Species$SPEC, fixed = T ) 
+T0_Species$SPEC <- gsub(")", "_", T0_Species$SPEC, fixed = T )
 
 ```
 
-```{r}
+```{r Nieuwe soorten in EASIN}
+Batchnummer <- 2
+EASIN_NEW <- read.dbf("G://Mijn Drive/INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging/EASIN/Data/EASIN files/Tweede batch/EASIN check/EASIN baseline check.dbf")
+SPEC_EASIN <- unique(EASIN_NEW$Species)
+temp <- data.frame(SPEC_EASIN)
+temp$Batch <- Batchnummer
 
+Q_Specie2 <- subset(Q_Specie, Batch == Batchnummer)
+temp2 <- anti_join(Q_Specie2, temp)
+if(nrow(temp2)>0){
+  Q_Specie <- append(Q_Specie, temp2)
+}
+
+print(subset(Q_Specie, is.na(SPEC)))
+
+temp3 <- merge(Q_Specie, T0_Species, by ="SPEC", all.y = T )
+temp3$Batch <- ifelse(temp3$SPEC == "Nyctereutes_procyonoides__Gray__1834_", 2, temp3$Batch)
+
+
+
+```
+```{r Export}
+write_csv(temp3, "G://Mijn Drive/INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging/EASIN/Data/EASIN files/Q_SPECIE.csv")
 ```
 
