@@ -147,10 +147,13 @@ EuConc$Day <- format(EuConc$eventDate2, "%d")
 
 temp_na <- subset(EuConc, year > 1999)
 temp_voor2016 <- subset(temp_na, year < 2016)
+temp_voor2017 <- subset(temp_na, year < 2017)
 temp_2016 <- subset(EuConc, year == 2016)
+temp_2017 <- subset(EuConc, year == 2017)
 temp_voorfeb16 <- subset(temp_2016, Month < 2)
+temp_voorsep17 <- subset(temp_2017, Month < 9)
 
-EuConc2 <- rbind(temp_voor2016, temp_voorfeb16)
+EuConc2 <- rbind(temp_voor2017, temp_voorfeb17)
 
 table(EuConc2$gbifapi_acceptedScientificName,EuConc2$euConcernStatus)
 table(EuConc2$gbifapi_acceptedScientificName, EuConc2$identificationVerificationStatus)
