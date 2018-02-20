@@ -92,7 +92,7 @@ Valid <- rbind(Valid1,Valid2)
 TempLog$OK_NOK <- nrow(Valid)#Expected: 242383 + 25661 =  268044/ Result:  268044 => OK
 table(Valid$identificationVerificationStatus, Valid$gbifapi_acceptedScientificName)
 table(Valid$basisOfRecord)
-table(Valid$euConcernStatus)
+table(Valid$gbifapi_acceptedScientificName, Valid$euConcernStatus)
 
 ####Subset according to euconcernstatus####
 
@@ -125,11 +125,14 @@ write.csv(NonListed, filename_NotListed)
 #Retain only records with at least Grid 10k square match, gbifapi_acceptedScientificName and year
 #Which are not preserved specimens
 
+table(EuConc_ruw$basisOfRecord)
 EuConc <- subset(EuConc_ruw, !is.na(gis_EUgrid_cellcode))
 EuConc <- subset(EuConc, gis_EUgrid_cellcode != "")
 EuConc <- subset(EuConc, !is.na(gbifapi_acceptedScientificName))
 EuConc <- subset(EuConc, !is.na(year))
+temp <- subset(EuConc, is.na(basisOfRecord))
 EuConc <- subset(EuConc, basisOfRecord != "PRESERVED_SPECIMEN")
+EuConc <- rbind(temp, EuConc)
 
 table(EuConc$gbifapi_acceptedScientificName,EuConc$euConcernStatus)
 
@@ -153,7 +156,7 @@ temp_2017 <- subset(EuConc, year == 2017)
 temp_voorfeb16 <- subset(temp_2016, Month < 2)
 temp_voorsep17 <- subset(temp_2017, Month < 9)
 
-EuConc2 <- rbind(temp_voor2017, temp_voorfeb17)
+EuConc2 <- rbind(temp_voor2017, temp_voorsep17)
 
 table(EuConc2$gbifapi_acceptedScientificName,EuConc2$euConcernStatus)
 table(EuConc2$gbifapi_acceptedScientificName, EuConc2$identificationVerificationStatus)
