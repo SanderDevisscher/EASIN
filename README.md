@@ -44,9 +44,8 @@ Input | Output
 
 ## Arcgis part I
 
-<I> T0_Toolbox.tbx
-Is an ESRI-arcgis toolbox containing the finished models used for post-script analysis.
-The toolbox contains the following models:
+*The tools to use in the post-script analysis can be found in the T0_Toolbox.tbx on AWS/citrix.
+filepath: Q:\Projects\PRJ_Faunabeheer\INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging\T0_Toolbox.tbx*
 
 * Stap 1 GRID10k Link
 * Stap 2 GRID10k Merge (2)
