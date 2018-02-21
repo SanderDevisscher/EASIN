@@ -74,7 +74,7 @@ Q:\Projects\PRJ_Faunabeheer\INBOPRJ-10217 - Monitoring exoten ikv EU- verordenin
 
 #### EXTRA: Empty GRID_Linked_ALL
 
-![Model](EXTRA Empty GRID_Linked_ALL.png)
+![Model](EXTRA_Empty_GRID_Linked_ALL.png)
 
 Creates an empty feature class for outputs from Stap 1 to be appended in. 
 
