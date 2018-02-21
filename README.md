@@ -97,7 +97,7 @@ Q:\Projects\PRJ_Faunabeheer\INBOPRJ-10217 - Monitoring exoten ikv EU- verordenin
 Using the outputs from Extra MS_Belgium_CorrectNames and Stap 2 GRID10k Merge (2) 
 
 
-<I> The MS Access part of the analysis will be transformed into R - script  in the near future </I>
+<I> The MS Access part of the analysis has been transformed into R - script  named ... </I>
 <I> see [issue #2](https://github.com/SanderDevisscher/EASIN/issues/2) </I>
 
 ## Arcgis part II
