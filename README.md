@@ -82,7 +82,7 @@ Q:\Projects\PRJ_Faunabeheer\INBOPRJ-10217 - Monitoring exoten ikv EU- verordenin
 
 #### Stap 2 GRID10k Merge (2)
 
-![Model](stap2.png)
+![Model](Stap2.png)
   
 Merges the outputs of Stap 1 into a geodatabase file named GRID10k_Linked_ALL and a dbf file (GRID_ALL.dbf). This last file is used in the EASIN.accdb to link with the output from the `Extra MS_Belgium_CorrectNames`model (EASIN.dbf). 
 
