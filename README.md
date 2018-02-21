@@ -1,18 +1,30 @@
 # EASIN Workflow
 ## Rationale
-To create an update to the memberstate T0 layer provided by EASIN (MS_BELGIUM.shp) using the data aggregated by the memberstate in their [T0 dataset](https://github.com/inbo/invasive-t0-occurrences). The update is provided by stating, in the column Accepted,  whether the squares provided by EASIN are correct (Y) or incorrect (N). New squares, those missing from the EASIN - Layer, should also be added with the value "New" in the Accepted column. 
+To create an update to the memberstate T0 layer provided by EASIN (MS_BELGIUM.shp) using the data aggregated by the memberstate in their [aggregated dataset](https://github.com/inbo/invasive-t0-occurrences). The update is provided by stating, in the column Accepted,  whether the squares provided by EASIN are correct (Y) or incorrect (N). New squares, those missing from the EASIN - Layer, should also be added with the value "New" in the Accepted column. 
 
 Since most of the squares in belgium would be "New", experts decided it would be easier to provide EASIN with a new layer, in a similar format, for EASIN to subsitute its layer with.  
 
 ## Scripts
-* Update Source 
-   * Downloads T0 dataset from github. 
-     * !Currently we're unable to download the .zip file from the T0 - dataset using R! Therefor the .zip should be downloaded manually into the private folder. The "Update Source" script will then unzip the .zip for further use.
-* subset data 
-  * Subsets the data from T0 dataset 
+### [Update Source](https://github.com/SanderDevisscher/EASIN/blob/master/r-scripts/Update%20Source.R) 
+   * Downloads [aggregated dataset](https://github.com/inbo/invasive-t0-occurrences) from github. 
+     * _!Currently we're unable to download the .zip file from the T0 - dataset using R! Therefor the .zip should be downloaded manually into the private folder. The "Update Source" script will then unzip the .zip for further use._
+     
+Input | Output
+-------|-------
+[aggregated dataset](https://github.com/inbo/invasive-t0-occurrences) | ./Output/T0_SourceData_dd_mm_yy.csv
+------ | [Iteration.gsheet](https://docs.google.com/spreadsheets/d/1kCENS0MpmjJXZEPdpxJB4XRaSS2ms63w8UqSA79Dh0c/edit#gid=1088427352) (=> Log)
+    
+### [subset data](https://github.com/SanderDevisscher/EASIN/blob/master/r-scripts/subset%20data.R) 
+  * Subsets data from output of Update Source script
     * Only Listed species
     * Only records with at least Grid10k cellcode (added in aggregation process, no cellcode means record with incorrect spatial reference)
-    * Only records from 01/01/2000 to 31/01/2016
+    * Only records from:
+    
+    Batch | Tn | Startdate | Enddate
+     -----|-----|-----------|--------
+    1st | 0 | 01/01/2000 | 31/01/2016 
+    2nd | 0 | 01/01/2000 | 31/08/2017
+    
     * Only records with correct validationstatus
     * Certain more common and recognisable species are non-propotionally not treated, under treatment or not treatable. Experts selected the following species to have all validation statuses included.
       * 1st batch
@@ -28,7 +40,7 @@ Since most of the squares in belgium would be "New", experts decided it would be
       * 2nd batch (to be reviewed by experts)
         * Alopochen aegypticus
     
-* <I> Dataexploration (Optional) </I>
+#### <I> Dataexploration (Optional) </I>
 
 ## Arcgis part I
 
