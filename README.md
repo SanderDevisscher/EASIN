@@ -74,6 +74,8 @@ Q:\Projects\PRJ_Faunabeheer\INBOPRJ-10217 - Monitoring exoten ikv EU- verordenin
 
 #### EXTRA: Empty GRID_Linked_ALL
 
+![Model](EXTRA Empty GRID_Linked_ALL.png)
+
 Creates an empty feature class for outputs from Stap 1 to be appended in. 
 
 Input | Output
@@ -99,4 +101,6 @@ Using the outputs from Extra MS_Belgium_CorrectNames and Stap 2 GRID10k Merge (2
 <I> see [issue #2](https://github.com/SanderDevisscher/EASIN/issues/2) </I>
 
 ## Arcgis part II
+
+###
 
