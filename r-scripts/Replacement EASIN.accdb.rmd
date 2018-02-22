@@ -38,7 +38,7 @@ tbl_T0_raw <- read.dbf(filepath_tbl_T0)
 ## Redux
 ```{r Q_EASIN_Redux}
 
-EASIN <- EASIN_raw[, c("CellCode", "SPEC", "REFERENCE_", "DATA_PARTN")]
+EASIN <- EASIN_raw[, c("CellCode", "SPEC", "ReferenceN", "DataPartne", "Batch")]
 
 CellCodes <- unique(EASIN$CellCode)
 temp5 <- data.frame(1)
@@ -48,15 +48,16 @@ for(c in CellCodes){
   Species <- unique(temp$SPEC)
   for(s in Species){
     temp2 <- subset(temp, SPEC == s)
-    References <- unique(temp2$REFERENCE_)
+    References <- unique(temp2$ReferenceN)
     for(r in References){
-      temp3 <- subset(temp2, REFERENCE_ == r)
-      Data_Partners <- unique(temp3$DATA_PARTN)
+      temp3 <- subset(temp2, ReferenceN == r)
+      Data_Partners <- unique(temp3$DataPartne)
       for(d in Data_Partners){
         temp5$CELLCODE <- c
         temp5$SPEC <- s
         temp5$REFERENCE_ <- r
         temp5$DATA_PARTN <- d
+        temp5$Batch <- temp3$Batch
         temp6 <- rbind(temp6, temp5)
       }
     }
@@ -85,7 +86,7 @@ remove(d)
 ```
 ```{r Q_T0_Redux}
 
-tbl_T0 <- tbl_T0_raw[, c("CellCode", "SPEC")]
+tbl_T0 <- tbl_T0_raw[, c("CellCode", "SPEC", "Batch")]
 
 CellCodes <- unique(tbl_T0$CellCode)
 temp2 <- data.frame(1)
@@ -134,7 +135,7 @@ ALL_raw$Accepted <- ifelse(ALL_raw$EASIN == 1 & ALL_raw$T0 == 1, "Y",
 
 ALL <-  merge(x = ALL_raw, y = Grid10k_raw, by.x = "CELLCODE",by.y= "CellCode", all.x = T)
 
-ALL <- ALL[,c("CELLCODE", "SPEC", "REFERENCE_", "DATA_PARTN", "Accepted", "X", "Y")]
+ALL <- ALL[,c("CELLCODE", "SPEC", "REFERENCE_", "DATA_PARTN", "Accepted", "X", "Y", "Batch")]
 ```
 ```{r clean up}
 remove(Samen)
