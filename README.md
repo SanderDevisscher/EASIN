@@ -40,8 +40,23 @@ Input | Output
         * Trachemys Agassiz, 1857
       * 2nd batch (to be reviewed by experts)
         * Alopochen aegypticus
-    
+
+Input | Output
+-------|-------
+
 #### <I> Dataexploration (Optional) </I>
+
+#### [Replacement EASIN.accdb](https://github.com/SanderDevisscher/EASIN/blob/master/r-scripts/Replacement%20EASIN.accdb.rmd)
+
+Replacement of the EASIN.accdb as described in [issue #2](https://github.com/SanderDevisscher/EASIN/issues/2) and under **MS Access**
+
+Input | Output
+-------|-------
+
+#### [Create Q_Specie](https://github.com/SanderDevisscher/EASIN/blob/master/r-scripts/Create%20Q_SPECIE.Rmd) 
+
+Input | Output
+-------|-------
 
 ## Arcgis part I
 
@@ -64,7 +79,14 @@ Extra's should be run when new layers are provided by EASIN or when in a rare ca
 #### Extra: MS Belgium CorrectNames
 
 Matches the shape provided by EASIN with the names used for the GIS models
-![Model]()
+
+![Model](EXTRA_MS_Belgium_CorrectNames.png)
+
+Input | Output
+-------|-------
+\\Client\G$\Mijn Drive\INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging\EASIN\Data\EASIN files\ **MS_BELGIUM_BatchX.shp** *(a shape provided by EASIN containing the presence data for the xth batch of species as present in EASIN. Everytime a new shape is provided the new shape has to be added to the model. all actions preformed on the other shapes should also be performed on the new one.)*| Q:\Projects\PRJ_Faunabeheer\INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging\EASIN_GIS\EASIN_temp.gdb\ **MS_BELGIUM_Joined_2**
+\\Client\G$\Mijn Drive\INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging\EASIN\Data\EASIN files\ **Q_SPECIE.csv** | Q:\Projects\PRJ_Faunabeheer\INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging\EASIN_GIS\AWS Output\ **EASIN.dbf**
+Q:\Projects\PRJ_Faunabeheer\INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging\EASIN_GIS\EASIN_temp.gdb\ **GRID10k_BEL_ETRS_1989_LAEA** | .
 
 #### Stap 1 GRID10k Link
 
