@@ -45,6 +45,8 @@ Input | Output
 
 ## Arcgis part I
 
+
+
 *The tools to use in the post-script analysis can be found in the T0_Toolbox.tbx on AWS/citrix.
 filepath: Q:\Projects\PRJ_Faunabeheer\INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging\T0_Toolbox.tbx*
 
@@ -58,6 +60,11 @@ filepath: Q:\Projects\PRJ_Faunabeheer\INBOPRJ-10217 - Monitoring exoten ikv EU- 
   * Output: GRID10k_BEL_ETRS_1989_LAEA
 
 Extra's should be run when new layers are provided by EASIN or when in a rare case other projections are needed.
+
+#### Extra: MS Belgium CorrectNames
+
+Matches the shape provided by EASIN with the names used for the GIS models
+![Model]()
 
 #### Stap 1 GRID10k Link
 
