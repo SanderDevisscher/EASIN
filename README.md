@@ -64,7 +64,7 @@ Iterates through the species (*%Value%*) in the script output (default: GRID10kD
 
 ![Model](Stap1.png)
 
-Prior to iteration species names had to be simplified (substitute all; .,"" ,() ,..., etc... for _) 
+Prior to iteration species names had to be simplified (substitute all; .,"" ,() ,..., etc... with _) 
 
 Input | Output
 -------|-------
@@ -74,7 +74,7 @@ Q:\Projects\PRJ_Faunabeheer\INBOPRJ-10217 - Monitoring exoten ikv EU- verordenin
 
 #### EXTRA: Empty GRID_Linked_ALL
 
-![Model](EXTRA _Empty_GRID_Linked_ALL.png)
+![Model](EXTRA_Empty_GRID_Linked_ALL.png)
 
 Creates an empty feature class for outputs from Stap 1 to be appended in. 
 
@@ -93,11 +93,11 @@ Input | Output
 Q:\Projects\PRJ_Faunabeheer\INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging\EASIN_GIS\temp\ **GRID10k_Linked_%Value%.shp** (Iterates through all GRID* polygon shapes in temp folder) | Q:\Projects\PRJ_Faunabeheer\INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging\EASIN_GIS\EASIN_temp.gdb\ **GRID_Linked_ALL**
 Q:\Projects\PRJ_Faunabeheer\INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging\EASIN_GIS\EASIN_temp.gdb\ **GRID_Linked_ALL** (Empty feature class as result from EXTRA: Empty GRID_Linked_ALL) | Q:\Projects\PRJ_Faunabeheer\INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging\EASIN_GIS\AWS Output\ **GRID_ALL.dbf **
 
-## MS Access => [Replacement EASIN.accdb.rmd](https://github.com/SanderDevisscher/EASIN/blob/master/r-scripts/Replacement%20EASIN.accdb.rmd)
+## MS Access 
 Using the outputs from Extra MS_Belgium_CorrectNames and Stap 2 GRID10k Merge (2) 
 
 
-<I> The MS Access part of the analysis has been transformed into R - script  named ... </I>
+<I> The MS Access part of the analysis has been transformed into R - script named [Replacement EASIN.accdb.rmd](https://github.com/SanderDevisscher/EASIN/blob/master/r-scripts/Replacement%20EASIN.accdb.rmd) </I>
 <I> see [issue #2](https://github.com/SanderDevisscher/EASIN/issues/2) </I>
 
 ## Arcgis part II
