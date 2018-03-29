@@ -5,7 +5,18 @@ date: "29 March 2018"
 output: pdf_document
 ---
 
-```{r}
+```{r load libraries}
+library(tidyverse)
+```
 
+```{r read final}
+final <- read_csv("./Private/Final_export_2018-03-29_14-58-50.csv")
+
+```
+
+```{r check matching}
+final %>%
+    select(gbifapi_scientificName, verbatimScientificName ) %>%
+    distinct()
 ```
 
