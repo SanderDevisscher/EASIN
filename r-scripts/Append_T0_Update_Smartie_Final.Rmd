@@ -15,4 +15,10 @@ T0 <- read_csv(file = "G://Mijn Drive/INBOPRJ-10217 - Monitoring exoten ikv EU- 
 aggregated_checklist <- read_delim("https://raw.githubusercontent.com/inbo/alien-species-checklist/master/data/processed/aggregated-checklist.tsv", 
     "\t", escape_double = FALSE, trim_ws = TRUE)
 ```
+```{r Merge SMARTIE and Checklist}
+temp <- SMARTIE
+temp$gbifapi_acceptedScientificName <- temp$gbifapi_scientificName
+temp$gbifapi_scientificName <- NULL
+SMARTIE2 <- merge(x= temp, y = aggregated_checklist, all.X = T)
+```
 
