@@ -15,6 +15,64 @@ T0 <- read_csv(file = "G://Mijn Drive/INBOPRJ-10217 - Monitoring exoten ikv EU- 
 aggregated_checklist <- read_delim("https://raw.githubusercontent.com/inbo/alien-species-checklist/master/data/processed/aggregated-checklist.tsv", 
     "\t", escape_double = FALSE, trim_ws = TRUE)
 ```
+```{r split SMARTIE}
+SMARTIE1 <- SMARTIE[0:65299,]
+SMARTIE2 <- SMARTIE[65300:nrow(SMARTIE),]
+SMARTIE3 <- SMARTIE2
+
+SMARTIE3$Fiche_ID <- NA
+SMARTIE3$FilenameID <- SMARTIE2$Fiche_ID
+SMARTIE3$Modified <- NA
+SMARTIE3$ObjectID <- NA
+SMARTIE3$ProviderID <- SMARTIE2$FilenameID
+SMARTIE3$StateProvince <- NA
+SMARTIE3$aanleverDatum <- SMARTIE2$Modified
+SMARTIE3$associatedTaxa <- NA
+SMARTIE3$basisOfRecord <- NA
+SMARTIE3$behavior <- NA
+SMARTIE3$canonicalName <- NA
+SMARTIE3$collectionCode <- NA
+SMARTIE3$collectionID <- NA
+SMARTIE3$coordinateUncertaintyInMeters <- SMARTIE2$ObjectID
+SMARTIE3$countryCode <- NA
+SMARTIE3$dataGeneralizations <- NA
+SMARTIE3$datasetName <- SMARTIE2$gbifapi_status
+SMARTIE3$dateIdentified <- NA
+SMARTIE3$date_length <- NA
+SMARTIE3$decimalLatitude <- SMARTIE2$eventDate
+SMARTIE3$decimalLongitude <- SMARTIE2$file_patch
+SMARTIE3$establishmentMeans <- NA
+SMARTIE3$eventDate <- SMARTIE2$associatedTaxa
+SMARTIE3$file_patch <- NA
+SMARTIE3$fips <- NA
+SMARTIE3$firstAppearance <- SMARTIE2$basisOfRecord
+SMARTIE3$gbifapi_matchType <- SMARTIE2$canonicalName
+SMARTIE3$gbifapi_rank <-  SMARTIE2$collectionCode
+SMARTIE3$gbifapi_scientificName <- SMARTIE2$collectionID
+SMARTIE3$gbifapi_species <- SMARTIE2$ifbl
+SMARTIE3$gbifapi_speciesKey <- SMARTIE2$countryCode
+SMARTIE3$gbifapi_status <- SMARTIE2$dataGeneralizations
+SMARTIE3$gbifapi_usageKey <- SMARTIE2$datasetName
+SMARTIE3$geodeticDatum <- SMARTIE2$dateIdentified
+SMARTIE3$habitat <- NA
+SMARTIE3$identificationRemarks <- NA
+SMARTIE3$identificationVerificationStatus <- NA #zit wel in brondataset
+SMARTIE3$identifiedBy <- NA
+SMARTIE3$ifbl <- NA
+SMARTIE3$index <- SMARTIE2$decimalLatitude
+SMARTIE3$individualCount <- SMARTIE2$decimalLongitude
+SMARTIE3$institutionCode <- NA
+SMARTIE3$lifeStage <- 
+
+
+
+
+
+
+
+```
+
+
 ```{r Merge SMARTIE and Checklist}
 temp <- SMARTIE
 temp$gbifapi_acceptedScientificName <- temp$gbifapi_scientificName
