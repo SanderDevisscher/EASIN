@@ -5,3 +5,12 @@ date: "3 April 2018"
 output: pdf_document
 ---
 
+```{r Libraries}
+library(tidyverse)
+```
+
+```{r Data}
+SMARTIE <- read_csv(file = "./Private/Final_export_2018-03-29_18-47-59.csv")
+T0 <- read_csv(file = "G://Mijn Drive/INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging/data/SMARTIE/T0 Update/invasive_EU_listed_and_considered_with_joins.csv")
+```
+
