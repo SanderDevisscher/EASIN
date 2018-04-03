@@ -10,13 +10,22 @@ library(tidyverse)
 ```
 
 ```{r Data}
-SMARTIE <- read_csv(file = "./Private/Final_export_2018-03-29_18-47-59.csv")
+SMARTIE <- read_csv(file = "./Private/Final_export_2018-03-29_18-47-59.csv", col_types = cols(.default = "c"))
 T0 <- read_csv(file = "G://Mijn Drive/INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging/data/SMARTIE/T0 Update/invasive_EU_listed_and_considered_with_joins.csv")
 aggregated_checklist <- read_delim("https://raw.githubusercontent.com/inbo/alien-species-checklist/master/data/processed/aggregated-checklist.tsv", 
     "\t", escape_double = FALSE, trim_ws = TRUE)
 ```
 ```{r split SMARTIE}
 SMARTIE1 <- SMARTIE[0:65299,]
+SMARTIE1$aanleverDatum <- as.Date(SMARTIE1$aanleverDatum)
+SMARTIE1$coordinateUncertaintyInMeters <- as.numeric(SMARTIE1$coordinateUncertaintyInMeters)
+SMARTIE1$date_length <- as.numeric(SMARTIE1$date_length)
+SMARTIE1$decimalLatitude <- as.numeric(SMARTIE1$decimalLatitude)
+SMARTIE1$decimalLongitude <- as.numeric(SMARTIE1$decimalLongitude)
+SMARTIE1$gbifapi_speciesKey <- as.numeric(SMARTIE1$gbifapi_speciesKey)
+SMARTIE1$gbifapi_usageKey <- as.numeric(SMARTIE1$gbifapi_usageKey)
+
+
 SMARTIE2 <- SMARTIE[65300:nrow(SMARTIE),]
 SMARTIE3 <- SMARTIE2
 
@@ -26,14 +35,14 @@ SMARTIE3$Modified <- NA
 SMARTIE3$ObjectID <- NA
 SMARTIE3$ProviderID <- SMARTIE2$FilenameID
 SMARTIE3$StateProvince <- NA
-SMARTIE3$aanleverDatum <- SMARTIE2$Modified
+SMARTIE3$aanleverDatum <- as.Date(SMARTIE2$Modified)
 SMARTIE3$associatedTaxa <- NA
 SMARTIE3$basisOfRecord <- NA
 SMARTIE3$behavior <- NA
 SMARTIE3$canonicalName <- NA
 SMARTIE3$collectionCode <- NA
 SMARTIE3$collectionID <- NA
-SMARTIE3$coordinateUncertaintyInMeters <- SMARTIE2$ObjectID
+SMARTIE3$coordinateUncertaintyInMeters <- as.numeric(SMARTIE2$ObjectID)
 SMARTIE3$countryCode <- NA
 SMARTIE3$dataGeneralizations <- NA
 SMARTIE3$datasetName <- SMARTIE2$gbifapi_status
@@ -62,8 +71,23 @@ SMARTIE3$ifbl <- NA
 SMARTIE3$index <- SMARTIE2$decimalLatitude
 SMARTIE3$individualCount <- SMARTIE2$decimalLongitude
 SMARTIE3$institutionCode <- NA
-SMARTIE3$lifeStage <- 
-
+SMARTIE3$lifeStage <- NA
+SMARTIE3$lifestage <- NA
+SMARTIE3$locality <- NA
+SMARTIE3$locationRemarks <- NA
+SMARTIE3$municipality <- NA
+SMARTIE3$occurrenceID <- NA
+SMARTIE3$occurrenceRemarks <- NA
+SMARTIE3$occurrenceStatus <- NA
+SMARTIE3$organismsQuantity <- NA
+SMARTIE3$organismsQuantityType <- NA
+SMARTIE3$ownerOrganization <- SMARTIE2$gbifapi_matchType
+SMARTIE3$recordNumber <- NA
+SMARTIE3$recordedBy <- NA
+SMARTIE3$reproductiveCondition <- NA
+SMARTIE3$samplingProtocol <- SMARTIE2$gbifapi_rank
+SMARTIE3$scientificName <- NA
+SMARTIE3$sex
 
 
 
