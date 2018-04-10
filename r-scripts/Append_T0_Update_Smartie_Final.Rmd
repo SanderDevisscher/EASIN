@@ -48,8 +48,8 @@ SMARTIE3$dataGeneralizations <- NA
 SMARTIE3$datasetName <- SMARTIE2$gbifapi_status
 SMARTIE3$dateIdentified <- NA
 SMARTIE3$date_length <- NA
-SMARTIE3$decimalLatitude <- SMARTIE2$eventDate
-SMARTIE3$decimalLongitude <- SMARTIE2$file_patch
+SMARTIE3$decimalLatitude <- as.numeric(SMARTIE2$eventDate)
+SMARTIE3$decimalLongitude <- as.numeric(SMARTIE2$file_patch)
 SMARTIE3$establishmentMeans <- NA
 SMARTIE3$eventDate <- SMARTIE2$associatedTaxa
 SMARTIE3$file_patch <- NA
@@ -65,7 +65,7 @@ SMARTIE3$gbifapi_usageKey <- SMARTIE2$datasetName
 SMARTIE3$geodeticDatum <- SMARTIE2$dateIdentified
 SMARTIE3$habitat <- NA
 SMARTIE3$identificationRemarks <- NA
-SMARTIE3$identificationVerificationStatus <- NA #zit wel in brondataset
+SMARTIE3$identificationVerificationStatus <- SMARTIE2$date_length
 SMARTIE3$identifiedBy <- NA
 SMARTIE3$ifbl <- NA
 SMARTIE3$index <- SMARTIE2$decimalLatitude
@@ -87,20 +87,53 @@ SMARTIE3$recordedBy <- NA
 SMARTIE3$reproductiveCondition <- NA
 SMARTIE3$samplingProtocol <- SMARTIE2$gbifapi_rank
 SMARTIE3$scientificName <- NA
-SMARTIE3$sex
+SMARTIE3$sex <- SMARTIE2$gbifapi_scientificName
+SMARTIE3$specificEpithet <- NA
+SMARTIE3$taxonRank <- NA
+SMARTIE3$uuid <- SMARTIE2$gbifapi_species
+SMARTIE3$verbatimCoordinateSystem <- SMARTIE2$gbifapi_speciesKey
+SMARTIE3$verbatimCoordinates <- NA
+SMARTIE3$verbatimDatasetName <- SMARTIE2$gbifapi_status
+SMARTIE3$verbatimElevation <- NA
+SMARTIE3$verbatimEventDate <- SMARTIE2$gbifapi_usageKey
+SMARTIE3$verbatimLatitude <- as.numeric(SMARTIE2$geodeticDatum)
+SMARTIE3$verbatimLocality <- SMARTIE2$habitat
+SMARTIE3$verbatimLongitude <- as.numeric(SMARTIE2$identificationRemarks)
+SMARTIE3$verbatimOccurrenceID <- SMARTIE2$identificationVerificationStatus
+SMARTIE3$verbatimSRS <- SMARTIE2$identifiedBy
+SMARTIE3$verbatimScientificName <- SMARTIE2$ifbl
+SMARTIE3$verbatimVernacularName <- SMARTIE2$individualCount
+SMARTIE3$vernacularName <- NA
 
+SMARTIE_FINAL <- rbind(SMARTIE1, SMARTIE3)
 
+No_Species <- subset(SMARTIE_FINAL, is.na(gbifapi_scientificName))
+No_Lat <- subset(SMARTIE_FINAL, is.na(decimalLatitude))
+Lat <- subset(SMARTIE_FINAL, !is.na(decimalLatitude))
+ if(nrow(No_Lat)>0){
+   No_Lat$decimalLatitude <- ifelse(!is.na(No_Lat$verbatimLatitude), No_Lat$verbatimLatitude, NA)
+   No_Lat$decimalLongitude <- ifelse(!is.na(No_Lat$verbatimLongitude), No_Lat$verbatimLongitude, NA)
+ }
+SMARTIE_FINAL <- rbind(No_Lat, Lat)
+No_Lon <- subset(SMARTIE_FINAL, is.na(decimalLongitude))
 
-
-
-
+SMARTIE_FINAL$decimalLatitude
+```
+```{r Cleanup after Smartie split}
+remove(SMARTIE1)
+remove(SMARTIE2)
+remove(SMARTIE3)
+remove(No_Lat)
+remove(Lat)
+remove(No_Lon)
+remove(No_Species)
+remove(No_verification)
 ```
 
-
 ```{r Merge SMARTIE and Checklist}
-temp <- SMARTIE
+temp <- SMARTIE_FINAL
 temp$gbifapi_acceptedScientificName <- temp$gbifapi_scientificName
 temp$gbifapi_scientificName <- NULL
-SMARTIE2 <- merge(x= temp, y = aggregated_checklist, all.X = T)
+SMARTIE_FINAL2 <- merge(x= temp, y = aggregated_checklist, all.X = T)
 ```
 
