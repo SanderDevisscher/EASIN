@@ -132,8 +132,18 @@ remove(No_verification)
 
 ```{r Merge SMARTIE and Checklist}
 temp <- SMARTIE_FINAL
-temp$gbifapi_acceptedScientificName <- temp$gbifapi_scientificName
-temp$gbifapi_scientificName <- NULL
-SMARTIE_FINAL2 <- merge(x= temp, y = aggregated_checklist, all.X = T)
+temp2 <- data.frame(aggregated_checklist)
+
+temp$gbifapi_scientificName <- ifelse(temp$gbifapi_scientificName == "Eichhornia crassipes Solms", "Eichhornia crassipes (Mart.) Solms", temp$gbifapi_scientificName)
+temp$gbifapi_scientificName <- ifelse(temp$gbifapi_scientificName == "Elodea nuttallii H.St.John", "Elodea nuttallii (Planch.) H.St.John", temp$gbifapi_scientificName)
+temp$gbifapi_scientificName <- ifelse(temp$gbifapi_scientificName == "Eriocheir sinensis H.Milne Edwards, 1853", "Eriocheir sinensis H. Milne Edwards, 1853", temp$gbifapi_scientificName)
+temp$gbifapi_scientificName <- ifelse(temp$gbifapi_scientificName == "Hydrocotyle ranunculoides L.f.", "Hydrocotyle ranunculoides L. fil.", temp$gbifapi_scientificName)
+temp$gbifapi_scientificName <- ifelse(temp$gbifapi_scientificName == "Ludwigia grandiflora (Michx.) Greuter & Burdet.", "Ludwigia grandiflora (Michaux) Greuter & Burdet
+", temp$gbifapi_scientificName)
+temp$gbifapi_scientificName <- ifelse(temp$gbifapi_scientificName == "Ludwigia peploides (Kunth) P.H.Raven", "Ludwigia peploides (Kunth) P. H. Raven", temp$gbifapi_scientificName)
+
+SMARTIE_FINAL2 <- merge(x= temp, y = temp2, by.x = "gbifapi_scientificName", by.y = "gbifapi_acceptedScientificName", all.x=T)
+temp3 <- subset(SMARTIE_FINAL2, is.na(euConcernStatus))
+table(temp3$gbifapi_scientificName)
 ```
 
