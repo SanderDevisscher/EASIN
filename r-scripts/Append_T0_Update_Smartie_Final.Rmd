@@ -138,8 +138,7 @@ temp$gbifapi_scientificName <- ifelse(temp$gbifapi_scientificName == "Eichhornia
 temp$gbifapi_scientificName <- ifelse(temp$gbifapi_scientificName == "Elodea nuttallii H.St.John", "Elodea nuttallii (Planch.) H.St.John", temp$gbifapi_scientificName)
 temp$gbifapi_scientificName <- ifelse(temp$gbifapi_scientificName == "Eriocheir sinensis H.Milne Edwards, 1853", "Eriocheir sinensis H. Milne Edwards, 1853", temp$gbifapi_scientificName)
 temp$gbifapi_scientificName <- ifelse(temp$gbifapi_scientificName == "Hydrocotyle ranunculoides L.f.", "Hydrocotyle ranunculoides L. fil.", temp$gbifapi_scientificName)
-temp$gbifapi_scientificName <- ifelse(temp$gbifapi_scientificName == "Ludwigia grandiflora (Michx.) Greuter & Burdet.", "Ludwigia grandiflora (Michaux) Greuter & Burdet
-", temp$gbifapi_scientificName)
+temp$gbifapi_scientificName <- ifelse(temp$gbifapi_scientificName == "Ludwigia grandiflora (Michx.) Greuter & Burdet.", "Ludwigia grandiflora (Michaux) Greuter & Burdet", temp$gbifapi_scientificName)
 temp$gbifapi_scientificName <- ifelse(temp$gbifapi_scientificName == "Ludwigia peploides (Kunth) P.H.Raven", "Ludwigia peploides (Kunth) P. H. Raven", temp$gbifapi_scientificName)
 
 SMARTIE_FINAL2 <- merge(x= temp, y = temp2, by.x = "gbifapi_scientificName", by.y = "gbifapi_acceptedScientificName", all.x=T)
