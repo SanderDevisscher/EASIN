@@ -168,3 +168,78 @@ remove(temp2)
 remove(temp3)
 ```
 
+```{r Set correct column names for merge}
+#Columns in SMARTIE_FINAL who do not appear in T0
+#SMARTIE_FINAL2$habitat <- SMARTIE_FINAL2$habitat.x
+SMARTIE_FINAL2$habitat.x <- NULL
+SMARTIE_FINAL2$habitat.y <- NULL
+SMARTIE_FINAL2$associatedTaxa <- NULL
+SMARTIE_FINAL2$Modified <- NULL
+SMARTIE_FINAL2$gbifapi_rank <- NULL
+SMARTIE_FINAL2$gbifapi_usageKey <- NULL
+SMARTIE_FINAL2$nativeRange <- NULL
+SMARTIE_FINAL2$collectionID <- NULL
+SMARTIE_FINAL2$ProviderID <- NULL
+SMARTIE_FINAL2$introductionPathway <- NULL
+SMARTIE_FINAL2$firstObservationYearBE <- NULL
+SMARTIE_FINAL2$gbifapi_status <- NULL
+SMARTIE_FINAL2$fips <- NULL
+SMARTIE_FINAL2$firstAppearance <- NULL
+SMARTIE_FINAL2$datasetName <- SMARTIE_FINAL2$datasetName.x
+SMARTIE_FINAL2$datasetName.x <- NULL
+SMARTIE_FINAL2$datasetName.y <- NULL
+SMARTIE_FINAL2$FilenameID <- NULL
+SMARTIE_FINAL2$firstObservationYearFL <- NULL
+SMARTIE_FINAL2$presenceWA <- NULL
+SMARTIE_FINAL2$presenceBE <- NULL
+SMARTIE_FINAL2$presenceBR <- NULL
+SMARTIE_FINAL2$presenceFL <- NULL
+SMARTIE_FINAL2$invasionStage <- NULL
+SMARTIE_FINAL2$reproductiveCondition <- NULL
+SMARTIE_FINAL2$gbifapi_species <- NULL
+SMARTIE_FINAL2$behavior <- NULL
+
+SMARTIE_FINAL2$lifeStage <- NULL
+SMARTIE_FINAL2$lifestage <- NULL
+#SMARTIE_FINAL2$index <- SMARTIE_FINAL2$index.x
+SMARTIE_FINAL2$index.x <- NULL
+SMARTIE_FINAL2$index.y <- NULL
+SMARTIE_FINAL2$ObjectID <- NULL
+SMARTIE_FINAL2$locationRemarks <- NULL
+SMARTIE_FINAL2$gbifapi_matchType <- NULL
+SMARTIE_FINAL2$StateProvince <- NULL
+SMARTIE_FINAL2$date_length <- NULL
+SMARTIE_FINAL2$uuid <- NULL
+SMARTIE_FINAL2$Fiche_ID <- NULL
+SMARTIE_FINAL2$identificationRemarks <- NULL
+SMARTIE_FINAL2$file_patch <- NULL
+SMARTIE_FINAL2$verbatimElevation <- NULL
+SMARTIE_FINAL2$gbifapi_scientificName <- NULL
+SMARTIE_FINAL2$ifbl <- NULL
+
+#Columns in T0 who do not appear in SMARTIE_FINAL
+SMARTIE_FINAL2$taxonKey <- SMARTIE_FINAL2$gbifapi_speciesKey
+SMARTIE_FINAL2$gbifapi_speciesKey <- NULL
+SMARTIE_FINAL2$geometry <- NA
+SMARTIE_FINAL2$year <- lubridate::year(SMARTIE_FINAL2$eventDate)
+SMARTIE_FINAL2$gis_utm1_code <- NA
+SMARTIE_FINAL2$type <- NA
+SMARTIE_FINAL2$scientificNameID <- NA
+SMARTIE_FINAL2$license <- NA
+SMARTIE_FINAL2$scientificNameAuthorship <- NA
+SMARTIE_FINAL2$source <- "SMARTIE"
+SMARTIE_FINAL2$accessRights <- NA
+SMARTIE_FINAL2$ownerInstitutionCode <- NA
+SMARTIE_FINAL2$gbifID <- NA
+SMARTIE_FINAL2$rightsHolder <- NA
+SMARTIE_FINAL2$language <- NA
+SMARTIE_FINAL2$waterBody <- NA
+SMARTIE_FINAL2$gis_EUgrid_cellcode <- NA
+SMARTIE_FINAL2$organismQuantityType <- NA
+SMARTIE_FINAL2$gis_bioregion_code <- NA
+
+
+setdiff(T0, SMARTIE_FINAL2)
+setdiff(SMARTIE_FINAL2, T0)
+```
+
