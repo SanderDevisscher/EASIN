@@ -131,18 +131,40 @@ remove(No_verification)
 ```
 
 ```{r Merge SMARTIE and Checklist}
+
+#euConcernstatus is missing from SMARTIE file and should be added using aggregated checklist
 temp <- SMARTIE_FINAL
 temp2 <- data.frame(aggregated_checklist)
+
+#Correct species name typo's
 
 temp$gbifapi_scientificName <- ifelse(temp$gbifapi_scientificName == "Eichhornia crassipes Solms", "Eichhornia crassipes (Mart.) Solms", temp$gbifapi_scientificName)
 temp$gbifapi_scientificName <- ifelse(temp$gbifapi_scientificName == "Elodea nuttallii H.St.John", "Elodea nuttallii (Planch.) H.St.John", temp$gbifapi_scientificName)
 temp$gbifapi_scientificName <- ifelse(temp$gbifapi_scientificName == "Eriocheir sinensis H.Milne Edwards, 1853", "Eriocheir sinensis H. Milne Edwards, 1853", temp$gbifapi_scientificName)
 temp$gbifapi_scientificName <- ifelse(temp$gbifapi_scientificName == "Hydrocotyle ranunculoides L.f.", "Hydrocotyle ranunculoides L. fil.", temp$gbifapi_scientificName)
-temp$gbifapi_scientificName <- ifelse(temp$gbifapi_scientificName == "Ludwigia grandiflora (Michx.) Greuter & Burdet.", "Ludwigia grandiflora (Michaux) Greuter & Burdet", temp$gbifapi_scientificName)
+temp$gbifapi_scientificName <- ifelse(temp$gbifapi_scientificName == "Ludwigia grandiflora (Michx.) Greuter & Burdet", "Ludwigia grandiflora (Michaux) Greuter & Burdet", temp$gbifapi_scientificName)
 temp$gbifapi_scientificName <- ifelse(temp$gbifapi_scientificName == "Ludwigia peploides (Kunth) P.H.Raven", "Ludwigia peploides (Kunth) P. H. Raven", temp$gbifapi_scientificName)
+temp$gbifapi_scientificName <- ifelse(temp$gbifapi_scientificName == "Myriophyllum aquaticum Verdc.", "Myriophyllum aquaticum (Vellozo) Verdcourt", temp$gbifapi_scientificName)
+temp$gbifapi_scientificName <- ifelse(temp$gbifapi_scientificName == "Persicaria perfoliata (L.) H.Gross", "Truellum perfoliatum (L.) Soják", temp$gbifapi_scientificName)
+temp$gbifapi_scientificName <- ifelse(temp$gbifapi_scientificName == "Trachemys scripta (Thunberg In Schoepff, 1792)", "Trachemys scripta Schoepff, 1792", temp$gbifapi_scientificName)
+temp$gbifapi_scientificName <- ifelse(temp$gbifapi_scientificName == "Trachemys scripta elegans (Wied, 1838)", "Trachemys scripta Schoepff, 1792", temp$gbifapi_scientificName)
+temp$gbifapi_scientificName <- ifelse(temp$gbifapi_scientificName == "Trachemys scripta scripta", "Trachemys scripta Schoepff, 1792", temp$gbifapi_scientificName)
+temp$gbifapi_scientificName <- ifelse(temp$gbifapi_scientificName == "Trachemys scripta troostii (Holbrook, 1836)", "Trachemys scripta Schoepff, 1792", temp$gbifapi_scientificName)
 
+#Merge SMARTIE to Checklist
 SMARTIE_FINAL2 <- merge(x= temp, y = temp2, by.x = "gbifapi_scientificName", by.y = "gbifapi_acceptedScientificName", all.x=T)
+
+#Set correct euConcernStatus
+SMARTIE_FINAL2$euConcernStatus <- ifelse(SMARTIE_FINAL2$gbifapi_scientificName == "Trachemys scripta Schoepff, 1792", "Listed", SMARTIE_FINAL2$euConcernStatus)
+
+#Detect errors
+#Remaining species should not be Listed, under consideration nor under preparation
 temp3 <- subset(SMARTIE_FINAL2, is.na(euConcernStatus))
 table(temp3$gbifapi_scientificName)
+```
+```{r Cleanup merge SMARTIE to Checklist}
+remove(temp)
+remove(temp2)
+remove(temp3)
 ```
 
