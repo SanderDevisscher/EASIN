@@ -198,7 +198,6 @@ SMARTIE_FINAL2$invasionStage <- NULL
 SMARTIE_FINAL2$reproductiveCondition <- NULL
 SMARTIE_FINAL2$gbifapi_species <- NULL
 SMARTIE_FINAL2$behavior <- NULL
-
 SMARTIE_FINAL2$lifeStage <- NULL
 SMARTIE_FINAL2$lifestage <- NULL
 #SMARTIE_FINAL2$index <- SMARTIE_FINAL2$index.x
@@ -214,30 +213,47 @@ SMARTIE_FINAL2$Fiche_ID <- NULL
 SMARTIE_FINAL2$identificationRemarks <- NULL
 SMARTIE_FINAL2$file_patch <- NULL
 SMARTIE_FINAL2$verbatimElevation <- NULL
-SMARTIE_FINAL2$gbifapi_scientificName <- NULL
+
 SMARTIE_FINAL2$ifbl <- NULL
 
 #Columns in T0 who do not appear in SMARTIE_FINAL
 SMARTIE_FINAL2$taxonKey <- SMARTIE_FINAL2$gbifapi_speciesKey
 SMARTIE_FINAL2$gbifapi_speciesKey <- NULL
-SMARTIE_FINAL2$geometry <- NA
+SMARTIE_FINAL2$geometry <- as.character(NA)
 SMARTIE_FINAL2$year <- lubridate::year(SMARTIE_FINAL2$eventDate)
-SMARTIE_FINAL2$gis_utm1_code <- NA
-SMARTIE_FINAL2$type <- NA
-SMARTIE_FINAL2$scientificNameID <- NA
-SMARTIE_FINAL2$license <- NA
-SMARTIE_FINAL2$scientificNameAuthorship <- NA
+SMARTIE_FINAL2$gis_utm1_code <- as.character(NA)
+SMARTIE_FINAL2$type <- as.character(NA)
+SMARTIE_FINAL2$scientificNameID <- as.character(NA)
+SMARTIE_FINAL2$license <- as.character(NA)
+SMARTIE_FINAL2$scientificNameAuthorship <- as.character(NA)
 SMARTIE_FINAL2$source <- "SMARTIE"
-SMARTIE_FINAL2$accessRights <- NA
-SMARTIE_FINAL2$ownerInstitutionCode <- NA
-SMARTIE_FINAL2$gbifID <- NA
-SMARTIE_FINAL2$rightsHolder <- NA
-SMARTIE_FINAL2$language <- NA
-SMARTIE_FINAL2$waterBody <- NA
-SMARTIE_FINAL2$gis_EUgrid_cellcode <- NA
-SMARTIE_FINAL2$organismQuantityType <- NA
-SMARTIE_FINAL2$gis_bioregion_code <- NA
+SMARTIE_FINAL2$accessRights <- as.character(NA)
+SMARTIE_FINAL2$ownerInstitutionCode <- as.character(NA)
+SMARTIE_FINAL2$gbifID <- as.character(NA)
+SMARTIE_FINAL2$rightsHolder <- as.character(NA)
+SMARTIE_FINAL2$language <- as.character(NA)
+SMARTIE_FINAL2$waterBody <- as.character(NA)
+SMARTIE_FINAL2$gis_EUgrid_cellcode <- as.character(NA)
+SMARTIE_FINAL2$organismQuantityType <- as.character(NA)
+SMARTIE_FINAL2$gis_bioregion_code <- as.character(NA)
+SMARTIE_FINAL2$organismQuantity <- as.character(NA)
+SMARTIE_FINAL2$lifeStage <- as.character(NA)
+SMARTIE_FINAL2$verbatimSamplingProtocol <- SMARTIE_FINAL2$samplingProtocol
+SMARTIE_FINAL2$datasetID <- as.character(NA)
+SMARTIE_FINAL2$verbatimTaxonID <- as.character(NA)
+SMARTIE_FINAL2$gis_bioregion <- as.character(NA)
+SMARTIE_FINAL2$georeferenceRemarks <- as.character(NA)
+SMARTIE_FINAL2$eventID <- as.character(NA)
+SMARTIE_FINAL2$gbifapi_acceptedScientificName <- SMARTIE_FINAL2$gbifapi_scientificName
+SMARTIE_FINAL2$gbifapi_scientificName <- NULL
+SMARTIE_FINAL2$scientificName_y <- as.character(NA)
+SMARTIE_FINAL2$scientificName_x <- as.character(NA)
+SMARTIE_FINAL2$dynamicProperties <- as.character(NA)
+SMARTIE_FINAL2$taxonID <- as.character(NA)
+SMARTIE_FINAL2$coordinatePrecision <- as.character(NA)
+SMARTIE_FINAL2$continent <- "Europe"
 
+#Set correct column types
 
 setdiff(T0, SMARTIE_FINAL2)
 setdiff(SMARTIE_FINAL2, T0)
