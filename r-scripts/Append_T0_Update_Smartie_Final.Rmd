@@ -217,7 +217,7 @@ SMARTIE_FINAL2$verbatimElevation <- NULL
 SMARTIE_FINAL2$ifbl <- NULL
 
 #Columns in T0 who do not appear in SMARTIE_FINAL
-SMARTIE_FINAL2$taxonKey <- SMARTIE_FINAL2$gbifapi_speciesKey
+SMARTIE_FINAL2$taxonKey <- as.integer(SMARTIE_FINAL2$gbifapi_speciesKey)
 SMARTIE_FINAL2$gbifapi_speciesKey <- NULL
 SMARTIE_FINAL2$geometry <- as.character(NA)
 SMARTIE_FINAL2$year <- lubridate::year(SMARTIE_FINAL2$eventDate)
@@ -229,7 +229,7 @@ SMARTIE_FINAL2$scientificNameAuthorship <- as.character(NA)
 SMARTIE_FINAL2$source <- "SMARTIE"
 SMARTIE_FINAL2$accessRights <- as.character(NA)
 SMARTIE_FINAL2$ownerInstitutionCode <- as.character(NA)
-SMARTIE_FINAL2$gbifID <- as.character(NA)
+SMARTIE_FINAL2$gbifID <- as.integer(NA)
 SMARTIE_FINAL2$rightsHolder <- as.character(NA)
 SMARTIE_FINAL2$language <- as.character(NA)
 SMARTIE_FINAL2$waterBody <- as.character(NA)
@@ -254,8 +254,31 @@ SMARTIE_FINAL2$coordinatePrecision <- as.character(NA)
 SMARTIE_FINAL2$continent <- "Europe"
 
 #Set correct column types
+SMARTIE_FINAL2$decimalLatitude <- as.numeric(SMARTIE_FINAL2$decimalLatitude)
+SMARTIE_FINAL2$decimalLongitude <- as.numeric(SMARTIE_FINAL2$decimalLongitude)
+SMARTIE_FINAL2$individualCount <- as.integer(SMARTIE_FINAL2$individualCount)
+SMARTIE_FINAL2$recordNumber <- as.integer(SMARTIE_FINAL2$recordNumber)
+SMARTIE_FINAL2$verbatimLatitude <- as.integer(SMARTIE_FINAL2$verbatimLatitude)
+SMARTIE_FINAL2$verbatimLongitude <- as.integer(SMARTIE_FINAL2$verbatimLongitude)
+SMARTIE_FINAL2$verbatimOccurrenceID <- as.integer(SMARTIE_FINAL2$verbatimOccurrenceID)
+SMARTIE_FINAL2$verbatimTaxonID <- as.integer(SMARTIE_FINAL2$verbatimTaxonID)
 
 setdiff(T0, SMARTIE_FINAL2)
 setdiff(SMARTIE_FINAL2, T0)
+```
+```{r Merge T0 and SMARTIE datasets}
+T0_SMARTIE_Merged <- rbind(T0, SMARTIE_FINAL2)
+
+T0_SMARTIE_Merged$gbifapi_acceptedScientificName <- ifelse(T0_SMARTIE_Merged$gbifapi_acceptedScientificName == "Trachemys scripta Schoepff, 1792", "Trachemys Agassiz, 1857", T0_SMARTIE_Merged$gbifapi_acceptedScientificName)
+
+table(T0_SMARTIE_Merged$gbifapi_acceptedScientificName)
+table(T0_SMARTIE_Merged$year)
+summary(T0_SMARTIE_Merged$decimalLatitude)
+summary(T0_SMARTIE_Merged$decimalLongitude)
+```
+```{r export data}
+today <- Sys.Date()
+fn <- paste("./Private/T0_SMARTIE_Merged_", today, ".csv", sep="")
+write_csv(T0_SMARTIE_Merged, fn)
 ```
 
