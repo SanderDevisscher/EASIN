@@ -1,5 +1,6 @@
 
 library(googlesheets)
+library(tidyverse)
 
 ####Data Importeren####
 update <- "N"
@@ -27,7 +28,7 @@ if(update == "J"){
   Brondata <- invasive_occ
   print("update filenames")
 }else{
-  Brondata <- read.csv(filename)
+  Brondata <- read_csv(filename)
   if(today!=nieuw){
     print("Data is not up to date! Last update from:")
     print(nieuw)
@@ -43,9 +44,42 @@ Brondata_bel <- subset(Brondata_bel, gis_utm1_code != "GS0588" | is.na(gis_utm1_
 TempLog$Netherlands <- TempLog$Import-nrow(Brondata_bel)
  
 #--------
-
-table(Brondata$gbifapi_acceptedScientificName,Brondata$euConcernStatus)
-table(Brondata$identificationVerificationStatus)
+table(Brondata_bel$gbifapi_acceptedScientificName,Brondata_bel$euConcernStatus)
+Brondata_bel$euConcernStatus <- ifelse(Brondata_bel$euConcernStatus == "Listed", "listed", Brondata_bel$euConcernStatus)
+table(Brondata_bel$gbifapi_acceptedScientificName,Brondata_bel$euConcernStatus)
+table(Brondata_bel$identificationVerificationStatus)
+Brondata_bel$identificationVerificationStatus <- ifelse(Brondata_bel$identificationVerificationStatus == "0.0", "0"
+                                                        ,Brondata_bel$identificationVerificationStatus)
+Brondata_bel$identificationVerificationStatus <- ifelse(Brondata_bel$identificationVerificationStatus == "1.0", "1"
+                                                        ,Brondata_bel$identificationVerificationStatus)
+Brondata_bel$identificationVerificationStatus <- ifelse(Brondata_bel$identificationVerificationStatus == "4.0", "4"
+                                                        ,Brondata_bel$identificationVerificationStatus)
+Brondata_bel$identificationVerificationStatus <- ifelse(Brondata_bel$identificationVerificationStatus == "5.0", "5"
+                                                        ,Brondata_bel$identificationVerificationStatus)
+Brondata_bel$identificationVerificationStatus <- ifelse(Brondata_bel$identificationVerificationStatus == "approved", "Goedgekeurd"
+                                                        ,Brondata_bel$identificationVerificationStatus)
+Brondata_bel$identificationVerificationStatus <- ifelse(Brondata_bel$identificationVerificationStatus == "approved based on expert opinion"
+                                                        , "Goedgekeurd op basis van expertoordeel"
+                                                        ,Brondata_bel$identificationVerificationStatus)
+Brondata_bel$identificationVerificationStatus <- ifelse(Brondata_bel$identificationVerificationStatus == "approved based on knowledge rules"
+                                                        , "Goedgekeurd op basis van kennisregels"
+                                                        ,Brondata_bel$identificationVerificationStatus)
+Brondata_bel$identificationVerificationStatus <- ifelse(Brondata_bel$identificationVerificationStatus == "approved based on proof"
+                                                        , "Goedgekeurd op basis van bewijsmateriaal"
+                                                        ,Brondata_bel$identificationVerificationStatus)
+Brondata_bel$identificationVerificationStatus <- ifelse(Brondata_bel$identificationVerificationStatus == "untreated"
+                                                        , "Onbehandeld"
+                                                        ,Brondata_bel$identificationVerificationStatus)
+Brondata_bel$identificationVerificationStatus <- ifelse(Brondata_bel$identificationVerificationStatus == "BIM-rejected"
+                                                        , "Afgekeurd"
+                                                        ,Brondata_bel$identificationVerificationStatus)
+Brondata_bel$identificationVerificationStatus <- ifelse(Brondata_bel$identificationVerificationStatus == "BIM-rejected"
+                                                        , "Afgekeurd"
+                                                        ,Brondata_bel$identificationVerificationStatus)
+Brondata_bel$identificationVerificationStatus <- ifelse(Brondata_bel$identificationVerificationStatus == "j"
+                                                        , "Goedgekeurd"
+                                                        ,Brondata_bel$identificationVerificationStatus)
+table(Brondata_bel$identificationVerificationStatus)
 
 ####Validation####
 #Certain more common and recognisable species are non-propotionally not treated, under treatment 
