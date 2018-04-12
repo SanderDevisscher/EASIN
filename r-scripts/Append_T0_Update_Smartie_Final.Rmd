@@ -155,7 +155,7 @@ temp$gbifapi_scientificName <- ifelse(temp$gbifapi_scientificName == "Trachemys 
 SMARTIE_FINAL2 <- merge(x= temp, y = temp2, by.x = "gbifapi_scientificName", by.y = "gbifapi_acceptedScientificName", all.x=T)
 
 #Set correct euConcernStatus
-SMARTIE_FINAL2$euConcernStatus <- ifelse(SMARTIE_FINAL2$gbifapi_scientificName == "Trachemys scripta Schoepff, 1792", "Listed", SMARTIE_FINAL2$euConcernStatus)
+SMARTIE_FINAL2$euConcernStatus <- ifelse(SMARTIE_FINAL2$gbifapi_scientificName == "Trachemys scripta Schoepff, 1792", "listed", SMARTIE_FINAL2$euConcernStatus)
 
 #Detect errors
 #Remaining species should not be Listed, under consideration nor under preparation
