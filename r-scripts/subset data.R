@@ -38,53 +38,55 @@ if(update == "J"){
 TempLog$Import <- nrow(Brondata)
 
 ####Remove data from the netherlands####
-Brondata_bel <- Brondata
-Brondata_bel <- subset(Brondata_bel, gis_utm1_code != "FS7090" | is.na(gis_utm1_code))
-Brondata_bel <- subset(Brondata_bel, gis_utm1_code != "GS0588" | is.na(gis_utm1_code))
-TempLog$Netherlands <- TempLog$Import-nrow(Brondata_bel)
+Brondata_backup <- Brondata
+Brondata <- subset(Brondata, gis_utm1_code != "FS7090" | is.na(gis_utm1_code))
+Brondata <- subset(Brondata, gis_utm1_code != "GS0588" | is.na(gis_utm1_code))
+TempLog$Netherlands <- TempLog$Import-nrow(Brondata)
  
 #--------
-table(Brondata_bel$gbifapi_acceptedScientificName,Brondata_bel$euConcernStatus)
-Brondata_bel$euConcernStatus <- ifelse(Brondata_bel$euConcernStatus == "Listed", "listed", Brondata_bel$euConcernStatus)
-table(Brondata_bel$gbifapi_acceptedScientificName,Brondata_bel$euConcernStatus)
-table(Brondata_bel$identificationVerificationStatus)
-Brondata_bel$identificationVerificationStatus <- ifelse(Brondata_bel$identificationVerificationStatus == "0.0", "0"
-                                                        ,Brondata_bel$identificationVerificationStatus)
-Brondata_bel$identificationVerificationStatus <- ifelse(Brondata_bel$identificationVerificationStatus == "1.0", "1"
-                                                        ,Brondata_bel$identificationVerificationStatus)
-Brondata_bel$identificationVerificationStatus <- ifelse(Brondata_bel$identificationVerificationStatus == "4.0", "4"
-                                                        ,Brondata_bel$identificationVerificationStatus)
-Brondata_bel$identificationVerificationStatus <- ifelse(Brondata_bel$identificationVerificationStatus == "5.0", "5"
-                                                        ,Brondata_bel$identificationVerificationStatus)
-Brondata_bel$identificationVerificationStatus <- ifelse(Brondata_bel$identificationVerificationStatus == "approved", "Goedgekeurd"
-                                                        ,Brondata_bel$identificationVerificationStatus)
-Brondata_bel$identificationVerificationStatus <- ifelse(Brondata_bel$identificationVerificationStatus == "approved based on expert opinion"
+table(Brondata$gbifapi_acceptedScientificName,Brondata$euConcernStatus)
+Brondata$euConcernStatus <- ifelse(Brondata$euConcernStatus == "Listed", "listed", Brondata$euConcernStatus)
+table(Brondata$gbifapi_acceptedScientificName,Brondata$euConcernStatus)
+table(Brondata$identificationVerificationStatus)
+Brondata$identificationVerificationStatus <- ifelse(Brondata$identificationVerificationStatus == "0.0", "0"
+                                                        ,Brondata$identificationVerificationStatus)
+Brondata$identificationVerificationStatus <- ifelse(Brondata$identificationVerificationStatus == "1.0", "1"
+                                                        ,Brondata$identificationVerificationStatus)
+Brondata$identificationVerificationStatus <- ifelse(Brondata$identificationVerificationStatus == "4.0", "4"
+                                                        ,Brondata$identificationVerificationStatus)
+Brondata$identificationVerificationStatus <- ifelse(Brondata$identificationVerificationStatus == "5.0", "5"
+                                                        ,Brondata$identificationVerificationStatus)
+Brondata$identificationVerificationStatus <- ifelse(Brondata$identificationVerificationStatus == "approved", "Goedgekeurd"
+                                                        ,Brondata$identificationVerificationStatus)
+Brondata$identificationVerificationStatus <- ifelse(Brondata$identificationVerificationStatus == "approved based on expert opinion"
                                                         , "Goedgekeurd op basis van expertoordeel"
-                                                        ,Brondata_bel$identificationVerificationStatus)
-Brondata_bel$identificationVerificationStatus <- ifelse(Brondata_bel$identificationVerificationStatus == "approved based on knowledge rules"
+                                                        ,Brondata$identificationVerificationStatus)
+Brondata$identificationVerificationStatus <- ifelse(Brondata$identificationVerificationStatus == "approved based on knowledge rules"
                                                         , "Goedgekeurd op basis van kennisregels"
-                                                        ,Brondata_bel$identificationVerificationStatus)
-Brondata_bel$identificationVerificationStatus <- ifelse(Brondata_bel$identificationVerificationStatus == "approved based on proof"
+                                                        ,Brondata$identificationVerificationStatus)
+Brondata$identificationVerificationStatus <- ifelse(Brondata$identificationVerificationStatus == "approved based on proof"
                                                         , "Goedgekeurd op basis van bewijsmateriaal"
-                                                        ,Brondata_bel$identificationVerificationStatus)
-Brondata_bel$identificationVerificationStatus <- ifelse(Brondata_bel$identificationVerificationStatus == "untreated"
+                                                        ,Brondata$identificationVerificationStatus)
+Brondata$identificationVerificationStatus <- ifelse(Brondata$identificationVerificationStatus == "untreated"
                                                         , "Onbehandeld"
-                                                        ,Brondata_bel$identificationVerificationStatus)
-Brondata_bel$identificationVerificationStatus <- ifelse(Brondata_bel$identificationVerificationStatus == "BIM-rejected"
+                                                        ,Brondata$identificationVerificationStatus)
+Brondata$identificationVerificationStatus <- ifelse(Brondata$identificationVerificationStatus == "BIM-rejected"
                                                         , "Afgekeurd"
-                                                        ,Brondata_bel$identificationVerificationStatus)
-Brondata_bel$identificationVerificationStatus <- ifelse(Brondata_bel$identificationVerificationStatus == "BIM-rejected"
+                                                        ,Brondata$identificationVerificationStatus)
+Brondata$identificationVerificationStatus <- ifelse(Brondata$identificationVerificationStatus == "BIM-rejected"
                                                         , "Afgekeurd"
-                                                        ,Brondata_bel$identificationVerificationStatus)
-Brondata_bel$identificationVerificationStatus <- ifelse(Brondata_bel$identificationVerificationStatus == "j"
+                                                        ,Brondata$identificationVerificationStatus)
+Brondata$identificationVerificationStatus <- ifelse(Brondata$identificationVerificationStatus == "j"
                                                         , "Goedgekeurd"
-                                                        ,Brondata_bel$identificationVerificationStatus)
-table(Brondata_bel$identificationVerificationStatus)
+                                                        ,Brondata$identificationVerificationStatus)
+table(Brondata$identificationVerificationStatus)
 
 ####Validation####
 #Certain more common and recognisable species are non-propotionally not treated, under treatment 
 #or not treatable.
 #Experts selected the following species to have all validation statuses included.
+
+
 
 table(Brondata$gbifapi_acceptedScientificName)
 temp_ok <- data.frame()
@@ -99,32 +101,41 @@ for(v in valid_soorten){
   temp <- subset(Brondata, gbifapi_acceptedScientificName == v)
   temp_ok <- rbind(temp_ok, temp)
 }
-temp_ok$gbifapi_acceptedScientificName <- factor(temp_ok$gbifapi_acceptedScientificName)
+#temp_ok$gbifapi_acceptedScientificName <- factor(temp_ok$gbifapi_acceptedScientificName)
 table(temp_ok$gbifapi_acceptedScientificName)
 table(temp_ok$identificationVerificationStatus)
-TempLog$temp_ok <- nrow(temp_ok) #242383
+TempLog$temp_ok <- nrow(temp_ok) #435463
 Valid2 <- temp_ok
 
 ###Remove non treated, under treatment, not treatable records from remaining species
 #Select harder to recognise and more rare species
+paste("expected: ", nrow(Brondata)-nrow(temp_ok), sep="")
 temp_nok <- subset(Brondata, !(gbifapi_acceptedScientificName %in% valid_soorten))
-TempLog$NOK_1_0 <- nrow(temp_nok)#Expected: 269728 - 242383 = 27345/ Result: 27345 => OK
+TempLog$NOK_1_0 <- nrow(temp_nok) #Expected: 465992 - 435463 = 27345/ Result: 27345 => OK
 table(temp_nok$identificationVerificationStatus)
+#Select NA's
+Valid3 <- subset(temp_nok,is.na(identificationVerificationStatus))
+TempLog$NOK_2_1 <- nrow(Valid3)
 #Remove "untreated" records
 Valid1 <- subset(temp_nok,identificationVerificationStatus != "Onbehandeld")
-TempLog$NOK_1_1 <- nrow(Valid1) #Expected: 27345 - 1312 = 26033/ Result: 26033 => OK
+TempLog$NOK_1_1 <- nrow(Valid1) #Expected: 30529 - 1544 - 22319 = 6666/ Result: 6666 => OK
+table(Valid1$identificationVerificationStatus)
 #Remove records "under treatement"
 Valid1 <- subset(Valid1,identificationVerificationStatus != "In behandeling")
-TempLog$NOK_1_2 <- nrow(Valid1)#Expected: 26033 - 13 = 26020/ Result: 26020 => OK
+TempLog$NOK_1_2 <- nrow(Valid1)#Expected: 6666 - 13 = 6653/ Result: 6653 => OK
 #Remove "unable to confirm" records 
-Valid1 <- subset(Valid1,identificationVerificationStatus != "Niet te beoordelen")
-TempLog$NOK_1_3 <- nrow(Valid1)#Expected: 26020 - 16 = 26004/ Result: 26004 => OK
+Valid1 <- subset(Valid1,identificationVerificationStatus != "Niet te beoordelen" )
+TempLog$NOK_1_3 <- nrow(Valid1)#Expected: 6653 - 16 = 6637/ Result: 6637 => OK
 Valid1 <- subset(Valid1,identificationVerificationStatus != 0)
-TempLog$NOK_1_4 <- nrow(Valid1)#Expected: 26004 - 343 = 25661/ Result: 25661 => OK
+TempLog$NOK_1_4 <- nrow(Valid1)#Expected: 6637 - 1076 = 5561/ Result: 5561 => OK
+#Remove "Rejected" records
+Valid1 <- subset(Valid1,identificationVerificationStatus != "Afgekeurd")
+TempLog$NOK_1_5 <- nrow(Valid1)#Expected: 5560 - 1 = 5560/ Result: 5560 => OK
 
 Valid <- data.frame() #Empty first
 Valid <- rbind(Valid1,Valid2)
-TempLog$OK_NOK <- nrow(Valid)#Expected: 242383 + 25661 =  268044/ Result:  268044 => OK
+TempLog$OK_NOK <- nrow(Valid)#Expected: 435463 + 5560 =  441023/ Result:  441023 => OK
+Valid <- rbind(Valid,Valid3)#Expected: 441023 + 22319 = 463342/ Result:  463342 => OK
 table(Valid$identificationVerificationStatus, Valid$gbifapi_acceptedScientificName)
 table(Valid$basisOfRecord)
 table(Valid$gbifapi_acceptedScientificName, Valid$euConcernStatus)
@@ -159,10 +170,10 @@ write.csv(NonListed, filename_NotListed)
 ####Clean-up EUConcern####
 #Retain only records with at least Grid 10k square match, gbifapi_acceptedScientificName and year
 #Which are not preserved specimens
-
+EuConc <- EuConc_ruw
 table(EuConc_ruw$basisOfRecord)
-EuConc <- subset(EuConc_ruw, !is.na(gis_EUgrid_cellcode))
-EuConc <- subset(EuConc, gis_EUgrid_cellcode != "")
+#EuConc <- subset(EuConc_ruw, !is.na(gis_EUgrid_cellcode))
+#EuConc <- subset(EuConc, gis_EUgrid_cellcode != "")
 EuConc <- subset(EuConc, !is.na(gbifapi_acceptedScientificName))
 EuConc <- subset(EuConc, !is.na(year))
 temp <- subset(EuConc, is.na(basisOfRecord))
