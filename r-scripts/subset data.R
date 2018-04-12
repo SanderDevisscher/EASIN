@@ -204,6 +204,7 @@ temp_voorsep17 <- subset(temp_2017, Month < 9)
 
 EuConc2 <- rbind(temp_voor2017, temp_voorsep17)
 
+table(EuConc2$year, EuConc2$Month)
 table(EuConc2$gbifapi_acceptedScientificName,EuConc2$euConcernStatus)
 table(EuConc2$gbifapi_acceptedScientificName, EuConc2$identificationVerificationStatus)
 
@@ -217,7 +218,7 @@ table(EuConc2$gbifapi_acceptedScientificName,EuConc2$euConcernStatus)
 
 doc_Listed <- data.frame(table(EuConc2$gbifapi_acceptedScientificName, EuConc2$identificationVerificationStatus))
 doc_Listed <- subset(doc_Listed, Freq != 0)
-write.csv2(doc_Listed, "//inbogerfiles/gerdata/OG_Faunabeheer/Projecten/Lopende projecten/INBOPRJ-10217-monitoring exoten/EASIN/Data/Overview_Species_Verificationstatus.csv")
+write_csv(doc_Listed, "./Private/Checkup/Overview_Species_Verificationstatus.csv")
 
 ####Remove incorrect squares####
 #During review of the maps produced some squares showed a presence for the species below while they shouldn't
