@@ -37,9 +37,10 @@ if(update == "J"){
 TempLog$Import <- nrow(Brondata)
 
 ####Remove data from the netherlands####
-Brondata <- subset(Brondata, gis_utm1_code != "FS7090" )
-Brondata <- subset(Brondata, gis_utm1_code != "GS0588" )
-TempLog$Netherlands <- TempLog$Import-nrow(Brondata)
+Brondata_bel <- Brondata
+Brondata_bel <- subset(Brondata_bel, gis_utm1_code != "FS7090" | is.na(gis_utm1_code))
+Brondata_bel <- subset(Brondata_bel, gis_utm1_code != "GS0588" | is.na(gis_utm1_code))
+TempLog$Netherlands <- TempLog$Import-nrow(Brondata_bel)
  
 #--------
 
