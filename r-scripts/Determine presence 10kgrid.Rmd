@@ -14,6 +14,7 @@ EuConc2 <- read_delim("Private/GRID10kData_Source_Export.txt",
     ";", escape_double = FALSE, locale = locale(decimal_mark = ",", 
         grouping_mark = "."), trim_ws = TRUE)
 get0("EuConc2_backup", ifnotfound = EuConc2_backup <- EuConc2)
+today <- Sys.Date()
 ```
 
 ```{r set correct colnames}
@@ -86,8 +87,8 @@ remove(temp2)
 ```
 
 ```{r Export Data 10k GRID}
-filename4 <- paste("./Output/GRID10kData_Batch2_", nieuw,"_Export_", today, ".csv", sep="")
-filename5 <- paste("./Output/GRID10kData_Batch2_", nieuw,"_Export_", today, ".dbf", sep="")
+filename4 <- paste("./Output/GRID10kData_Batch2_Export_", today,".csv", sep="")
+filename5 <- paste("./Output/GRID10kData_Batch2_Export_", today,".dbf", sep="")
 #filename6 <- paste(Driveletter,
  #                  "://Projects/PRJ_Faunabeheer/INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging/EASIN_GIS/Input/GRID10kData_Source_"
  #                  , nieuw,"_Export_", today, ".csv", sep="")
