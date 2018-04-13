@@ -1,0 +1,83 @@
+---
+title: "Determine presence 10kGrid"
+author: "Sander"
+date: "13 April 2018"
+output: html_document
+---
+```{r libraries}
+library(tidyverse)
+library(foreign)
+```
+
+```{r data}
+EuConc2 <- read_delim("Private/GRID10kData_Source_Export.txt", 
+    ";", escape_double = FALSE, locale = locale(decimal_mark = ",", 
+        grouping_mark = "."), trim_ws = TRUE)
+get0("EuConc2_backup", ifnotfound = EuConc2_backup <- EuConc2)
+```
+
+```{r set correct colnames}
+EuConc2 <- subset(EuConc2, !is.na(gbifapi_acceptedScientificName))
+EuConc2 <- subset(EuConc2, !is.na(CellCode))
+EuConc2$gis_EUgrid_cellcode <- EuConc2$CellCode
+No_Cellcode <- subset(EuConc2, is.na(gis_EUgrid_cellcode))
+if(nrow(No_Cellcode)>0){
+  stop("missing cellcodes")
+}else{
+  remove(No_Cellcode)
+}
+```
+
+
+```{r Determine presence 10kGrid}
+#For each individual 10km square the presence of species s is determined
+
+soorten <- unique(EuConc2$gbifapi_acceptedScientificName)
+print(soorten)
+presence2 <- data.frame()
+temp3 <- data.frame("x")
+
+for(s in soorten){
+  temp <- subset(EuConc2, gbifapi_acceptedScientificName == s)
+  GRID <- unique(temp$gis_EUgrid_cellcode)
+  for(g in GRID){
+    temp2 <- subset(temp, gis_EUgrid_cellcode == g) #Temporary 
+    temp3$EUgrid_cellcode <- g
+    temp3$species <- s
+    temp3$wnmn <- nrow(temp2)
+    presence2 <- rbind(presence2, temp3)
+  }
+}
+
+sum(presence2$wnmn)
+presence2$X.x. <- NULL
+#Should be equal to the number of observations of EuConc2
+#Expected: 36310/ Result: 36310 => OK 
+
+remove(temp)
+remove(temp2)
+remove(temp3)
+```
+
+```{r cleanup}
+remove(temp)
+remove(temp2)
+remove(temp3)
+```
+
+```{r Export Data 10k GRID}
+filename4 <- paste("./Output/GRID10kData_Source_", nieuw,"_Export_", today, ".csv", sep="")
+filename5 <- paste("./Output/GRID10kData_Source_", nieuw,"_Export_", today, ".dbf", sep="")
+#filename6 <- paste(Driveletter,
+ #                  "://Projects/PRJ_Faunabeheer/INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging/EASIN_GIS/Input/GRID10kData_Source_"
+ #                  , nieuw,"_Export_", today, ".csv", sep="")
+#filename7 <- paste(Driveletter,
+#                   "://Projects/PRJ_Faunabeheer/INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging/EASIN_GIS/Input/GRID10kData_Source_"
+ #                  , nieuw,"_Export_", today, ".dbf", sep="")
+
+write.csv2(presence2, filename4)
+write.dbf(presence2, filename5)
+#write.csv2(presence2, filename6)
+#write.dbf(presence2, filename7)
+```
+
