@@ -65,9 +65,29 @@ remove(temp2)
 remove(temp3)
 ```
 
+```{r species subset}
+batch2 <- c("Alopochen aegyptiaca (Linnaeus, 1766)", "Asclepias syriaca L.", "Elodea nuttallii (Planch.) H.St.John", "Gunnera tinctoria (Molina) Mirbel", "Heracleum mantegazzianum Sommier & Levier", "Impatiens glandulifera Royle", "Myriophyllum heterophyllum Michx.", "Nyctereutes procyonoides (Gray, 1834)", "Ondatra zibethicus (Linnaeus, 1766)")
+
+temp2 <- data.frame()
+
+for(b in batch2){
+  temp <- subset(presence2, species == b)
+  temp2 <- rbind(temp2, temp)
+}
+
+batch2_presence <- temp2
+table(batch2_presence$species)
+sum(batch2_presence$wnmn)
+```
+
+```{r cleanup}
+remove(temp)
+remove(temp2)
+```
+
 ```{r Export Data 10k GRID}
-filename4 <- paste("./Output/GRID10kData_Source_", nieuw,"_Export_", today, ".csv", sep="")
-filename5 <- paste("./Output/GRID10kData_Source_", nieuw,"_Export_", today, ".dbf", sep="")
+filename4 <- paste("./Output/GRID10kData_Batch2_", nieuw,"_Export_", today, ".csv", sep="")
+filename5 <- paste("./Output/GRID10kData_Batch2_", nieuw,"_Export_", today, ".dbf", sep="")
 #filename6 <- paste(Driveletter,
  #                  "://Projects/PRJ_Faunabeheer/INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging/EASIN_GIS/Input/GRID10kData_Source_"
  #                  , nieuw,"_Export_", today, ".csv", sep="")
@@ -75,8 +95,8 @@ filename5 <- paste("./Output/GRID10kData_Source_", nieuw,"_Export_", today, ".db
 #                   "://Projects/PRJ_Faunabeheer/INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging/EASIN_GIS/Input/GRID10kData_Source_"
  #                  , nieuw,"_Export_", today, ".dbf", sep="")
 
-write.csv2(presence2, filename4)
-write.dbf(presence2, filename5)
+write.csv2(batch2_presence, filename4)
+write.dbf(batch2_presence, filename5)
 #write.csv2(presence2, filename6)
 #write.dbf(presence2, filename7)
 ```
