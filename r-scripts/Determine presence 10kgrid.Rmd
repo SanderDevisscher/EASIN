@@ -31,11 +31,19 @@ if(nrow(No_Cellcode)>0){
 
 ```{r Record overview, eval=FALSE, include=FALSE}
 table(EuConc2$institutionCode, EuConc2$ownerOrganization)
+table(EuConc2$ownerOrganization)
 
 EuConc2 %>% mutate(ownerOrganization2 = case_when( institutionCode == "DEMNA-SPW" ~  "DEMNA-SPW",
                                                    institutionCode == "Natuurpunt" ~ "Natuurpunt",
                                                    institutionCode == "INBO" ~ "INBO",
                                                    is.na(ownerOrganization) ~ "INBO",
+                                                   ownerOrganization == "Natuurpunt Zoogdierenwerkgroep Vlaanderen" ~ "Natuurpunt", 
+                                                   ownerOrganization == "Provincie Oost-Vlaanderen - dienst Integraal Waterbeleid" ~ "Provincies",
+                                                   ownerOrganization == "Provincie Limburg - dienst waterlopen" ~ "Provincies", 
+                                                   ownerOrganization == "ProvANT" ~ "Provincies",
+                                                   ownerOrganization == "ProvOVL" ~ "Provincies",
+                                                   ownerOrganization == "VMM | INBO" ~ "VMM"
+                                                   
                        TRUE ~ ownerOrganization)) %>%
   group_by(gbifapi_acceptedScientificName, ownerOrganization2) %>% 
   select(gbifapi_acceptedScientificName, ownerOrganization2) %>%
@@ -43,8 +51,28 @@ EuConc2 %>% mutate(ownerOrganization2 = case_when( institutionCode == "DEMNA-SPW
 
 Overview$ownerOrganization2 <- ifelse(is.na(Overview$ownerOrganization2), "INBO", Overview$ownerOrganization2)
 
-write_csv(EuConc2, "./Private/Checkup/RawData.csv")
+#write_csv(EuConc2, "./Private/Checkup/RawData.csv")
 write_csv(Overview, "./Private/Checkup/Overview.csv")
+
+```
+```{r grid_overview, eval=FALSE, include=FALSE}
+EuConc2 %>% mutate(ownerOrganization2 = case_when( institutionCode == "DEMNA-SPW" ~  "DEMNA-SPW",
+                                                   institutionCode == "Natuurpunt" ~ "Natuurpunt",
+                                                   institutionCode == "INBO" ~ "INBO",
+                                                   is.na(ownerOrganization) ~ "INBO",
+                                                   ownerOrganization == "Natuurpunt Zoogdierenwerkgroep Vlaanderen" ~ "Natuurpunt", 
+                                                   ownerOrganization == "Provincie Oost-Vlaanderen - dienst Integraal Waterbeleid" ~ "Provincies",
+                                                   ownerOrganization == "Provincie Limburg - dienst waterlopen" ~ "Provincies", 
+                                                   ownerOrganization == "ProvANT" ~ "Provincies",
+                                                   ownerOrganization == "ProvOVL" ~ "Provincies",
+                                                   ownerOrganization == "VMM | INBO" ~ "VMM",
+                                                   
+                       TRUE ~ ownerOrganization)) %>%
+  group_by(gbifapi_acceptedScientificName, ownerOrganization2, gis_EUgrid_cellcode) %>% 
+  select(gbifapi_acceptedScientificName, ownerOrganization2, gis_EUgrid_cellcode) -> GirdOverview
+
+AantalGrids <- nrow(data.frame(unique(GirdOverview$gis_EUgrid_cellcode)))
+GirdOverview %>% 
 
 ```
 
