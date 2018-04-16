@@ -29,6 +29,25 @@ if(nrow(No_Cellcode)>0){
 }
 ```
 
+```{r Record overview}
+table(EuConc2$institutionCode, EuConc2$ownerOrganization)
+
+EuConc2 %>% mutate(ownerOrganization2 = case_when( institutionCode == "DEMNA-SPW" ~  "DEMNA-SPW",
+                                                   institutionCode == "Natuurpunt" ~ "Natuurpunt",
+                                                   institutionCode == "INBO" ~ "INBO",
+                                                   is.na(ownerOrganization) ~ "INBO",
+                       TRUE ~ ownerOrganization)) %>%
+  group_by(gbifapi_acceptedScientificName, ownerOrganization2) %>% 
+  select(gbifapi_acceptedScientificName, ownerOrganization2) %>%
+  summarise(n()) -> Overview
+
+Overview$ownerOrganization2 <- ifelse(is.na(Overview$ownerOrganization2), "INBO", Overview$ownerOrganization2)
+
+write_csv(EuConc2, "./Private/Checkup/RawData.csv")
+write_csv(Overview, "./Private/Checkup/Overview.csv")
+
+```
+
 
 ```{r Determine presence 10kGrid}
 #For each individual 10km square the presence of species s is determined
