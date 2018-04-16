@@ -29,7 +29,7 @@ if(nrow(No_Cellcode)>0){
 }
 ```
 
-```{r Record overview}
+```{r Record overview, eval=FALSE, include=FALSE}
 table(EuConc2$institutionCode, EuConc2$ownerOrganization)
 
 EuConc2 %>% mutate(ownerOrganization2 = case_when( institutionCode == "DEMNA-SPW" ~  "DEMNA-SPW",
