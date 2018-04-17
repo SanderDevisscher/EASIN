@@ -42,7 +42,7 @@ EuConc2 %>% mutate(ownerOrganization2 = case_when( institutionCode == "DEMNA-SPW
                                                    ownerOrganization == "Provincie Limburg - dienst waterlopen" ~ "Provincies", 
                                                    ownerOrganization == "ProvANT" ~ "Provincies",
                                                    ownerOrganization == "ProvOVL" ~ "Provincies",
-                                                   ownerOrganization == "VMM | INBO" ~ "VMM"
+                                                   ownerOrganization == "VMM | INBO" ~ "VMM",
                                                    
                        TRUE ~ ownerOrganization)) %>%
   group_by(gbifapi_acceptedScientificName, ownerOrganization2) %>% 
@@ -55,6 +55,7 @@ Overview$ownerOrganization2 <- ifelse(is.na(Overview$ownerOrganization2), "INBO"
 write_csv(Overview, "./Private/Checkup/Overview.csv")
 
 ```
+
 ```{r grid_overview, eval=FALSE, include=FALSE}
 EuConc2 %>% mutate(ownerOrganization2 = case_when( institutionCode == "DEMNA-SPW" ~  "DEMNA-SPW",
                                                    institutionCode == "Natuurpunt" ~ "Natuurpunt",
@@ -68,11 +69,38 @@ EuConc2 %>% mutate(ownerOrganization2 = case_when( institutionCode == "DEMNA-SPW
                                                    ownerOrganization == "VMM | INBO" ~ "VMM",
                                                    
                        TRUE ~ ownerOrganization)) %>%
-  group_by(gbifapi_acceptedScientificName, ownerOrganization2, gis_EUgrid_cellcode) %>% 
+  distinct(gbifapi_acceptedScientificName, ownerOrganization2, gis_EUgrid_cellcode) %>% 
   select(gbifapi_acceptedScientificName, ownerOrganization2, gis_EUgrid_cellcode) -> GirdOverview
 
-AantalGrids <- nrow(data.frame(unique(GirdOverview$gis_EUgrid_cellcode)))
-GirdOverview %>% 
+speciesGrids <- GirdOverview %>%
+            group_by(gbifapi_acceptedScientificName) %>%
+            summarise(totalGrids = n_distinct(gis_EUgrid_cellcode))
+uniqueGrids <- GirdOverview %>% 
+            group_by(gbifapi_acceptedScientificName, gis_EUgrid_cellcode) %>% 
+            summarise(numberOwners = n_distinct(ownerOrganization2)) %>% 
+            filter(numberOwners == 1) %>% 
+            left_join(GirdOverview , by= c("gis_EUgrid_cellcode", "gbifapi_acceptedScientificName"))
+
+allGrids <- GirdOverview %>% 
+            group_by(gbifapi_acceptedScientificName, gis_EUgrid_cellcode) %>% 
+            summarise(numberOwners = n_distinct(ownerOrganization2)) %>% 
+            left_join(GirdOverview , by= c("gis_EUgrid_cellcode", "gbifapi_acceptedScientificName"))
+
+ownerUniqueGrids <- uniqueGrids %>% 
+            group_by(ownerOrganization2, gbifapi_acceptedScientificName) %>% 
+            summarise(numberUniqueGrids = sum(numberOwners))
+
+ownerGrids <- allGrids %>% 
+            group_by(ownerOrganization2, gbifapi_acceptedScientificName) %>% 
+            summarise(numberGrids = n_distinct(gis_EUgrid_cellcode))
+
+ownerGridsOverview <- speciesGrids %>% 
+            full_join(ownerGrids, by = "gbifapi_acceptedScientificName") %>%
+            full_join(ownerUniqueGrids, by = c("gbifapi_acceptedScientificName", "ownerOrganization2")) %>%
+            mutate(percentageTotal = numberGrids/totalGrids) %>%
+            mutate(percentageUnique = numberUniqueGrids/totalGrids)
+            
+write_csv(ownerGridsOverview, "./Private/Checkup/ownerGridsOverview.csv")
 
 ```
 
