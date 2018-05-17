@@ -280,5 +280,7 @@ summary(T0_SMARTIE_Merged$decimalLongitude)
 today <- Sys.Date()
 fn <- paste("./Private/T0_SMARTIE_Merged_", today, ".csv", sep="")
 write_csv(T0_SMARTIE_Merged, fn)
+
+invasive_occ <- T0_SMARTIE_Merged
 ```
 
