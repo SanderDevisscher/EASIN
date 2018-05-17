@@ -16,6 +16,7 @@ Input | Output
 ------ | [Iteration.gsheet](https://docs.google.com/spreadsheets/d/1kCENS0MpmjJXZEPdpxJB4XRaSS2ms63w8UqSA79Dh0c/edit#gid=1088427352) (=> Log)
     
 ### [subset data](https://github.com/SanderDevisscher/EASIN/blob/master/r-scripts/subset%20data.R) 
+  * Reruns [Update Source](https://github.com/SanderDevisscher/EASIN/blob/master/r-scripts/Update%20Source.R) 
   * Subsets data from output of Update Source script
     * Only Listed species
     * Only records with at least Grid10k cellcode (added in aggregation process, no cellcode means record with incorrect spatial reference)
@@ -39,11 +40,15 @@ Input | Output
         * Pseudorasbora parva (Temminck & Schlegel, 1846)
         * Trachemys Agassiz, 1857
       * 2nd batch (to be reviewed by experts)
-        * Alopochen aegypticus
+        * Alopochen aegyptiaca (Linnaeus, 1766)
+        * Impatiens glandulifera Royle
+        * Heracleum mantegazzianum Sommier & Levier
+        * Ondatra zibethicus (Linnaeus, 1766)
 
 Input | Output
 -------|-------
-
+**invasive_occ** | ./Output/**Data_dd_mm_yy_Subsetted_dd_mm_yy.csv**
+| ./Output/**Data_dd_mm_yy_Subsetted_dd_mm_yy.dbf**
 #### <I> Dataexploration (Optional) </I>
 
 #### [Replacement EASIN.accdb](https://github.com/SanderDevisscher/EASIN/blob/master/r-scripts/Replacement%20EASIN.accdb.rmd)
