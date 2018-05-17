@@ -48,7 +48,7 @@ Input | Output
 Input | Output
 -------|-------
 **invasive_occ** | ./Output/**Data_dd_mm_yy_Subsetted_dd_mm_yy.csv**
-| ./Output/**Data_dd_mm_yy_Subsetted_dd_mm_yy.dbf**
+-------| ./Output/**Data_dd_mm_yy_Subsetted_dd_mm_yy.dbf**
 #### <I> Dataexploration (Optional) </I>
 
 #### [Replacement EASIN.accdb](https://github.com/SanderDevisscher/EASIN/blob/master/r-scripts/Replacement%20EASIN.accdb.rmd)
