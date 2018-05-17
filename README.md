@@ -2,12 +2,17 @@
 ## Rationale
 To create an update to the memberstate T0 layer provided by EASIN (MS_BELGIUM.shp) using the data aggregated by the memberstate in their [aggregated dataset](https://github.com/inbo/invasive-t0-occurrences). The update is provided by stating, in the column Accepted,  whether the squares provided by EASIN are correct (Y) or incorrect (N). New squares, those missing from the EASIN - Layer, should also be added with the value "New" in the Accepted column. 
 
-Since most of the squares in belgium would be "New", experts decided it would be easier to provide EASIN with a new layer, in a similar format, for EASIN to subsitute its layer with.  
+Since most of the squares in belgium would be "New", experts decided it would be easier to provide EASIN with a new layer, in a similar format, for EASIN to subsitute its layer with.
+
+For the first batch of species the data was aggregated using the [aggregator](https://github.com/inbo/invasive-t0-occurrences/tree/master). Due to the dynamic nature of the external data  we decided to use the [SMARTIE-tool](https://github.com/inbo/invasive-t0-occurrences/tree/smartie) for the second batch and further batches. Unlike the aggregator the SMARTIE-tool does not match the data with the 10k GRID. 
+Data from INBO and GBIF are still collected using the aggregator. 
+
+### R: [Append_T0_Update_Smartie_Final](https://github.com/SanderDevisscher/EASIN/blob/2nn_batch/r-scripts/Append_T0_Update_Smartie_Final.Rmd)
+  * Matches SMARTIE_Final to the [aggregated checklist](https://raw.githubusercontent.com/inbo/alien-species-checklist/master/data/processed/aggregated-checklist.tsv) to determine the euConcernStatus
+  * Appends the SMARTIE_Final to the T0_Update
 
 ### R: [Update Source](https://github.com/SanderDevisscher/EASIN/blob/master/r-scripts/Update%20Source.R) 
-   * Downloads [aggregated dataset](https://github.com/inbo/invasive-t0-occurrences) from github. 
-     * _!Currently we're unable to download the .zip file from the T0 - dataset using R! Therefor the .zip should be downloaded manually into the private folder. The "Update Source" script will then unzip the .zip for further use._
-     * _!Additionally due to the short time frame for the 2nd batch update, new datasets will be merged with the existing T0 dataset using the [SMARTIE-tool.](https://github.com/inbo/invasive-t0-occurrences/tree/smartie) 
+
      
 Input | Output
 -------|-------
@@ -54,8 +59,7 @@ Input | Output
 #### <I> R: Dataexploration (Optional) </I>
 
 ### ARCGIS: SubsettedDataToGRID10k
-For the first batch of species the data was aggregated using the [aggregator](https://github.com/inbo/invasive-t0-occurrences/tree/master). Due to the dynamic nature of the external data (data from INBO and GBIF are still collected using the aggregator) we decided to use the [SMARTIE-tool](https://github.com/inbo/invasive-t0-occurrences/tree/smartie) for the second batch and further batches. Unlike the aggregator the SMARTIE-tool does not match the data with the 10k GRID. 
-This model Matches the subsetted data to the 10k GRID 
+  * Matches the subsetted data to the 10k GRID 
 
 Input | Output
 -------|-------
