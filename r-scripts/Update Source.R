@@ -30,13 +30,13 @@ print(t)
 invasive_occ <- read_csv("./Private/T0_SMARTIE_Merged_2018-04-11.csv")
 
 print("step 3/8: Check success of import")
-if(exists("invasive_occ")){
-  print("import succesfull")
-}else{
-  print("import failed")
-  print("check for stale token")
-  stop("goto https://github.com/inbo/invasive-t0-occurrences/blob/master/data/processed/")
-}
+#if(exists("invasive_occ")){
+ # print("import succesfull")
+#}else{
+ # print("import failed")
+  #print("check for stale token")
+  #stop("goto https://github.com/inbo/invasive-t0-occurrences/blob/master/data/processed/")
+#}
 
 
 print("step 4/8: check the head of the data file")

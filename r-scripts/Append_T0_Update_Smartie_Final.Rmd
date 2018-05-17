@@ -213,7 +213,7 @@ SMARTIE_FINAL2$Fiche_ID <- NULL
 SMARTIE_FINAL2$identificationRemarks <- NULL
 SMARTIE_FINAL2$file_patch <- NULL
 SMARTIE_FINAL2$verbatimElevation <- NULL
-
+SMARTIE_FINAL2$gbifapi_scientificName <- NULL
 SMARTIE_FINAL2$ifbl <- NULL
 
 #Columns in T0 who do not appear in SMARTIE_FINAL

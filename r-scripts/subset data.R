@@ -237,7 +237,7 @@ remove(temp2)
 library(foreign)
 filename6 <- paste("./Output/Data_", nieuw,"_Subsetted_", today, ".csv", sep="")
 filename7 <- paste("./Output/Data_", nieuw,"_Subsetted_", today, ".dbf", sep="")
-write.csv2(EuConc2, filename6)
+readr::write_csv(EuConc2, filename6)
 write.dbf(EuConc2, filename7)
 
 ####Determine presence UTM1x1####
