@@ -155,7 +155,7 @@ temp$gbifapi_scientificName <- ifelse(temp$gbifapi_scientificName == "Trachemys 
 SMARTIE_FINAL2 <- merge(x= temp, y = temp2, by.x = "gbifapi_scientificName", by.y = "gbifapi_acceptedScientificName", all.x=T)
 
 #Set correct euConcernStatus
-SMARTIE_FINAL2$euConcernStatus <- ifelse(SMARTIE_FINAL2$gbifapi_scientificName == "Trachemys scripta Schoepff, 1792", "Listed", SMARTIE_FINAL2$euConcernStatus)
+SMARTIE_FINAL2$euConcernStatus <- ifelse(SMARTIE_FINAL2$gbifapi_scientificName == "Trachemys scripta Schoepff, 1792", "listed", SMARTIE_FINAL2$euConcernStatus)
 
 #Detect errors
 #Remaining species should not be Listed, under consideration nor under preparation
@@ -213,7 +213,7 @@ SMARTIE_FINAL2$Fiche_ID <- NULL
 SMARTIE_FINAL2$identificationRemarks <- NULL
 SMARTIE_FINAL2$file_patch <- NULL
 SMARTIE_FINAL2$verbatimElevation <- NULL
-
+SMARTIE_FINAL2$gbifapi_scientificName <- NULL
 SMARTIE_FINAL2$ifbl <- NULL
 
 #Columns in T0 who do not appear in SMARTIE_FINAL
@@ -280,5 +280,7 @@ summary(T0_SMARTIE_Merged$decimalLongitude)
 today <- Sys.Date()
 fn <- paste("./Private/T0_SMARTIE_Merged_", today, ".csv", sep="")
 write_csv(T0_SMARTIE_Merged, fn)
+
+invasive_occ <- T0_SMARTIE_Merged
 ```
 

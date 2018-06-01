@@ -1,0 +1,179 @@
+---
+title: "Determine presence 10kGrid"
+author: "Sander"
+date: "13 April 2018"
+output: html_document
+---
+```{r libraries}
+library(tidyverse)
+library(foreign)
+```
+
+```{r data}
+EuConc2 <- read_delim("Private/GRID10kData_Source_Export.txt", 
+    ";", escape_double = FALSE, locale = locale(decimal_mark = ",", 
+        grouping_mark = "."), trim_ws = TRUE)
+get0("EuConc2_backup", ifnotfound = EuConc2_backup <- EuConc2)
+today <- Sys.Date()
+```
+
+```{r set correct colnames}
+EuConc2 <- subset(EuConc2, !is.na(gbifapi_acceptedScientificName))
+EuConc2 <- subset(EuConc2, !is.na(CellCode))
+EuConc2$gis_EUgrid_cellcode <- EuConc2$CellCode
+No_Cellcode <- subset(EuConc2, is.na(gis_EUgrid_cellcode))
+if(nrow(No_Cellcode)>0){
+  stop("missing cellcodes")
+}else{
+  remove(No_Cellcode)
+}
+```
+
+```{r Record overview, eval=FALSE, include=FALSE}
+table(EuConc2$institutionCode, EuConc2$ownerOrganization)
+table(EuConc2$ownerOrganization)
+
+EuConc2 %>% mutate(ownerOrganization2 = case_when( institutionCode == "DEMNA-SPW" ~  "DEMNA-SPW",
+                                                   institutionCode == "Natuurpunt" ~ "Natuurpunt",
+                                                   institutionCode == "INBO" ~ "INBO",
+                                                   is.na(ownerOrganization) ~ "INBO",
+                                                   ownerOrganization == "Natuurpunt Zoogdierenwerkgroep Vlaanderen" ~ "Natuurpunt", 
+                                                   ownerOrganization == "Provincie Oost-Vlaanderen - dienst Integraal Waterbeleid" ~ "Provincies",
+                                                   ownerOrganization == "Provincie Limburg - dienst waterlopen" ~ "Provincies", 
+                                                   ownerOrganization == "ProvANT" ~ "Provincies",
+                                                   ownerOrganization == "ProvOVL" ~ "Provincies",
+                                                   ownerOrganization == "VMM | INBO" ~ "VMM",
+                                                   
+                       TRUE ~ ownerOrganization)) %>%
+  group_by(gbifapi_acceptedScientificName, ownerOrganization2) %>% 
+  select(gbifapi_acceptedScientificName, ownerOrganization2) %>%
+  summarise(n()) -> Overview
+
+Overview$ownerOrganization2 <- ifelse(is.na(Overview$ownerOrganization2), "INBO", Overview$ownerOrganization2)
+
+#write_csv(EuConc2, "./Private/Checkup/RawData.csv")
+write_csv(Overview, "./Private/Checkup/Overview.csv")
+
+```
+
+```{r grid_overview, eval=FALSE, include=FALSE}
+EuConc2 %>% mutate(ownerOrganization2 = case_when( institutionCode == "DEMNA-SPW" ~  "DEMNA-SPW",
+                                                   institutionCode == "Natuurpunt" ~ "Natuurpunt",
+                                                   institutionCode == "INBO" ~ "INBO",
+                                                   is.na(ownerOrganization) ~ "INBO",
+                                                   ownerOrganization == "Natuurpunt Zoogdierenwerkgroep Vlaanderen" ~ "Natuurpunt", 
+                                                   ownerOrganization == "Provincie Oost-Vlaanderen - dienst Integraal Waterbeleid" ~ "Provincies",
+                                                   ownerOrganization == "Provincie Limburg - dienst waterlopen" ~ "Provincies", 
+                                                   ownerOrganization == "ProvANT" ~ "Provincies",
+                                                   ownerOrganization == "ProvOVL" ~ "Provincies",
+                                                   ownerOrganization == "VMM | INBO" ~ "VMM",
+                                                   
+                       TRUE ~ ownerOrganization)) %>%
+  distinct(gbifapi_acceptedScientificName, ownerOrganization2, gis_EUgrid_cellcode) %>% 
+  select(gbifapi_acceptedScientificName, ownerOrganization2, gis_EUgrid_cellcode) -> GirdOverview
+
+speciesGrids <- GirdOverview %>%
+            group_by(gbifapi_acceptedScientificName) %>%
+            summarise(totalGrids = n_distinct(gis_EUgrid_cellcode))
+uniqueGrids <- GirdOverview %>% 
+            group_by(gbifapi_acceptedScientificName, gis_EUgrid_cellcode) %>% 
+            summarise(numberOwners = n_distinct(ownerOrganization2)) %>% 
+            filter(numberOwners == 1) %>% 
+            left_join(GirdOverview , by= c("gis_EUgrid_cellcode", "gbifapi_acceptedScientificName"))
+
+allGrids <- GirdOverview %>% 
+            group_by(gbifapi_acceptedScientificName, gis_EUgrid_cellcode) %>% 
+            summarise(numberOwners = n_distinct(ownerOrganization2)) %>% 
+            left_join(GirdOverview , by= c("gis_EUgrid_cellcode", "gbifapi_acceptedScientificName"))
+
+ownerUniqueGrids <- uniqueGrids %>% 
+            group_by(ownerOrganization2, gbifapi_acceptedScientificName) %>% 
+            summarise(numberUniqueGrids = sum(numberOwners))
+
+ownerGrids <- allGrids %>% 
+            group_by(ownerOrganization2, gbifapi_acceptedScientificName) %>% 
+            summarise(numberGrids = n_distinct(gis_EUgrid_cellcode))
+
+ownerGridsOverview <- speciesGrids %>% 
+            full_join(ownerGrids, by = "gbifapi_acceptedScientificName") %>%
+            full_join(ownerUniqueGrids, by = c("gbifapi_acceptedScientificName", "ownerOrganization2")) %>%
+            mutate(percentageTotal = numberGrids/totalGrids) %>%
+            mutate(percentageUnique = numberUniqueGrids/totalGrids)
+            
+write_csv(ownerGridsOverview, "./Private/Checkup/ownerGridsOverview.csv")
+
+```
+
+
+```{r Determine presence 10kGrid}
+#For each individual 10km square the presence of species s is determined
+
+soorten <- unique(EuConc2$gbifapi_acceptedScientificName)
+print(soorten)
+presence2 <- data.frame()
+temp3 <- data.frame("x")
+
+for(s in soorten){
+  temp <- subset(EuConc2, gbifapi_acceptedScientificName == s)
+  GRID <- unique(temp$gis_EUgrid_cellcode)
+  for(g in GRID){
+    temp2 <- subset(temp, gis_EUgrid_cellcode == g) #Temporary 
+    temp3$EUgrid_cellcode <- g
+    temp3$species <- s
+    temp3$wnmn <- nrow(temp2)
+    presence2 <- rbind(presence2, temp3)
+  }
+}
+
+sum(presence2$wnmn)
+presence2$X.x. <- NULL
+#Should be equal to the number of observations of EuConc2
+#Expected: 36310/ Result: 36310 => OK 
+
+remove(temp)
+remove(temp2)
+remove(temp3)
+```
+
+```{r cleanup}
+remove(temp)
+remove(temp2)
+remove(temp3)
+```
+
+```{r species subset}
+batch2 <- c("Alopochen aegyptiaca (Linnaeus, 1766)", "Asclepias syriaca L.", "Elodea nuttallii (Planch.) H.St.John", "Gunnera tinctoria (Molina) Mirbel", "Heracleum mantegazzianum Sommier & Levier", "Impatiens glandulifera Royle", "Myriophyllum heterophyllum Michx.", "Nyctereutes procyonoides (Gray, 1834)", "Ondatra zibethicus (Linnaeus, 1766)")
+
+temp2 <- data.frame()
+
+for(b in batch2){
+  temp <- subset(presence2, species == b)
+  temp2 <- rbind(temp2, temp)
+}
+
+batch2_presence <- temp2
+table(batch2_presence$species)
+sum(batch2_presence$wnmn)
+```
+
+```{r cleanup}
+remove(temp)
+remove(temp2)
+```
+
+```{r Export Data 10k GRID}
+filename4 <- paste("./Output/GRID10kData_Batch2_Export_", today,".csv", sep="")
+filename5 <- paste("./Output/GRID10kData_Batch2_Export_", today,".dbf", sep="")
+#filename6 <- paste(Driveletter,
+ #                  "://Projects/PRJ_Faunabeheer/INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging/EASIN_GIS/Input/GRID10kData_Source_"
+ #                  , nieuw,"_Export_", today, ".csv", sep="")
+#filename7 <- paste(Driveletter,
+#                   "://Projects/PRJ_Faunabeheer/INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging/EASIN_GIS/Input/GRID10kData_Source_"
+ #                  , nieuw,"_Export_", today, ".dbf", sep="")
+
+write.csv2(batch2_presence, filename4)
+write.dbf(batch2_presence, filename5)
+#write.csv2(presence2, filename6)
+#write.dbf(presence2, filename7)
+```
+

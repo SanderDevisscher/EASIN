@@ -13,18 +13,23 @@ knitr::opts_chunk$set(echo = TRUE)
 library(foreign)
 library(dplyr)
 library(readr)
+library(tidyverse)
+
+today <- Sys.Date()
 ```
 
 ## Read Data
 
 ```{r Read Data}
-Driveletter <- "D"
+Driveletter <- "C"
 
-fileroot <- paste(Driveletter, "://Projects/PRJ_Faunabeheer/INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging/EASIN_GIS/AWS Output/", sep="")
-fileroot2 <- paste(Driveletter, "://Projects/PRJ_Faunabeheer/INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging/EASIN_GIS/temp/", sep="")
+#fileroot <- paste(Driveletter, "://Projects/PRJ_Faunabeheer/INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging/EASIN_GIS/AWS Output/", sep="")
+fileroot <- paste(Driveletter, "://Users/sander_devisscher/Documents/GitHub/EASIN/EASIN/r-scripts/Private/AWS Output/", sep="")
+#fileroot2 <- paste(Driveletter, "://Projects/PRJ_Faunabeheer/INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging/EASIN_GIS/temp/", sep="")
 
 filepath_EASIN <- paste(fileroot, "EASIN.dbf", sep="")
-filepath_Grid10k <- paste(fileroot2, "GRID10k.dbf", sep="")
+#filepath_Grid10k <- paste(fileroot2, "GRID10k.dbf", sep="")
+filepath_Grid10k <- paste(fileroot, "GRID10k.dbf", sep="")
 filepath_tbl_T0 <- paste(fileroot, "GRID_ALL.dbf", sep="")
 
 exists(filepath_tbl_T0)
@@ -39,6 +44,7 @@ tbl_T0_raw <- read.dbf(filepath_tbl_T0)
 ```{r Q_EASIN_Redux}
 
 EASIN <- EASIN_raw[, c("CellCode", "SPEC", "ReferenceN", "DataPartne", "Batch")]
+EASIN <- subset(EASIN, Batch == 2)
 
 CellCodes <- unique(EASIN$CellCode)
 temp5 <- data.frame(1)
@@ -68,6 +74,7 @@ EASIN <- temp6
 EASIN$EASIN <- 1
 EASIN$X1 <- NULL
 ```
+
 ```{r Clean Up}
 remove(temp)
 remove(temp2)
@@ -84,6 +91,7 @@ remove(s)
 remove(d)
 
 ```
+
 ```{r Q_T0_Redux}
 
 tbl_T0 <- tbl_T0_raw[, c("CellCode", "SPEC", "Batch")]
@@ -105,6 +113,7 @@ tbl_T0 <- temp3
 tbl_T0$T0 <- 1
 
 ```
+
 ```{r Clean Up}
 remove(temp)
 remove(temp2)
@@ -135,8 +144,9 @@ ALL_raw$Accepted <- ifelse(ALL_raw$EASIN == 1 & ALL_raw$T0 == 1, "Y",
 
 ALL <-  merge(x = ALL_raw, y = Grid10k_raw, by.x = "CELLCODE",by.y= "CellCode", all.x = T)
 
-ALL <- ALL[,c("CELLCODE", "SPEC", "REFERENCE_", "DATA_PARTN", "Accepted", "X", "Y", "Batch")]
+ALL <- ALL[,c("CELLCODE", "SPEC", "REFERENCE_", "DATA_PARTN", "Accepted", "X", "Y", "EASIN", "T0")]
 ```
+
 ```{r clean up}
 remove(Samen)
 remove(EASINandT0)
@@ -145,7 +155,8 @@ remove(OnlyT0)
 ```
 ## Export
 ```{r Export}
-exportpath <- paste(Driveletter, "://Projects/PRJ_Faunabeheer/INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging/EASIN_GIS/Input/ALL.csv", sep="")
+#exportpath <- paste(Driveletter, "://Projects/PRJ_Faunabeheer/INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging/EASIN_GIS/Input/ALL.csv", sep="")
+exportpath <- paste(Driveletter, "://Users/sander_devisscher/Documents/GitHub/EASIN/EASIN/r-scripts/Private/AWS Input/ALL_",today,".dbf", sep="")
 
 write.dbf(ALL, exportpath)
 ```

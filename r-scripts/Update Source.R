@@ -2,39 +2,41 @@
 
 library(dplyr)
 library(googlesheets)
-library(readr)
+library(tidyverse)
 
 print("step 1/8: provide the path of the file containing the tokenfile")
 t <- Sys.time()
 print(t)
 #token everywhere 
-title <- gs_title(x="token_invasive", verbose = TRUE)
-Token <- gs_auth()
-gs_auth(token = Token)
-tokenfile <- gs_read(title)
-token <- tokenfile$Token
+#title <- gs_title(x="token_invasive", verbose = TRUE)
+#Token <- gs_auth()
+#gs_auth(token = Token)
+#tokenfile <- gs_read(title)
+#token <- tokenfile$Token
 
 
 print("step 2/8: read the datafile, taking into account the token in the URL")
 t <- Sys.time()
 print(t)
 
-if(file.exists("./Private/invasive_EU_listed_and_considered_with_joins.csv.zip")){
-  invasive_occ_unzip <- unzip("./Private/invasive_EU_listed_and_considered_with_joins.csv.zip", "invasive_EU_listed_and_considered_with_joins.csv")
-  invasive_occ <- read_csv(invasive_occ_unzip)
-  remove(invasive_occ_unzip)
-  }else{
-  print("goto https://github.com/inbo/invasive-t0-occurrences/blob/master/data/processed/invasive_EU_listed_and_considered_with_joins.csv.zip")
-}
+#if(file.exists("./Private/invasive_EU_listed_and_considered_with_joins.csv.zip")){
+ # invasive_occ_unzip <- unzip("./Private/invasive_EU_listed_and_considered_with_joins.csv.zip", "invasive_EU_listed_and_considered_with_joins.csv")
+  #invasive_occ <- read_csv(invasive_occ_unzip)
+#  remove(invasive_occ_unzip)
+ # }else{
+  #print("goto https://github.com/inbo/invasive-t0-occurrences/blob/master/data/processed/invasive_EU_listed_and_considered_with_joins.csv.zip")
+#}
+
+invasive_occ <- read_csv("./Private/T0_SMARTIE_Merged_2018-04-11.csv")
 
 print("step 3/8: Check success of import")
-if(exists("invasive_occ")){
-  print("import succesfull")
-}else{
-  print("import failed")
-  print("check for stale token")
-  stop("goto https://github.com/inbo/invasive-t0-occurrences/blob/master/data/processed/")
-}
+#if(exists("invasive_occ")){
+ # print("import succesfull")
+#}else{
+ # print("import failed")
+  #print("check for stale token")
+  #stop("goto https://github.com/inbo/invasive-t0-occurrences/blob/master/data/processed/")
+#}
 
 
 print("step 4/8: check the head of the data file")

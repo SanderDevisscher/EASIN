@@ -2,20 +2,25 @@
 ## Rationale
 To create an update to the memberstate T0 layer provided by EASIN (MS_BELGIUM.shp) using the data aggregated by the memberstate in their [aggregated dataset](https://github.com/inbo/invasive-t0-occurrences). The update is provided by stating, in the column Accepted,  whether the squares provided by EASIN are correct (Y) or incorrect (N). New squares, those missing from the EASIN - Layer, should also be added with the value "New" in the Accepted column. 
 
-Since most of the squares in belgium would be "New", experts decided it would be easier to provide EASIN with a new layer, in a similar format, for EASIN to subsitute its layer with.  
+Since most of the squares in belgium would be "New", experts decided it would be easier to provide EASIN with a new layer, in a similar format, for EASIN to subsitute its layer with.
 
-## Scripts
-### [Update Source](https://github.com/SanderDevisscher/EASIN/blob/master/r-scripts/Update%20Source.R) 
-   * Downloads [aggregated dataset](https://github.com/inbo/invasive-t0-occurrences) from github. 
-     * _!Currently we're unable to download the .zip file from the T0 - dataset using R! Therefor the .zip should be downloaded manually into the private folder. The "Update Source" script will then unzip the .zip for further use._
-     * _!Additionally due to the short time frame for the 2nd batch update, new datasets will be merged with the existing T0 dataset using the [SMARTIE-tool.](https://github.com/inbo/invasive-t0-occurrences/tree/smartie) 
+For the first batch of species the data was aggregated using the [aggregator](https://github.com/inbo/invasive-t0-occurrences/tree/master). Due to the dynamic nature of the external data  we decided to use the [SMARTIE-tool](https://github.com/inbo/invasive-t0-occurrences/tree/smartie) for the second batch and further batches. Unlike the aggregator the SMARTIE-tool does not match the data with the 10k GRID. 
+Data from INBO and GBIF are still collected using the aggregator. 
+
+### R: [Append_T0_Update_Smartie_Final](https://github.com/SanderDevisscher/EASIN/blob/2nn_batch/r-scripts/Append_T0_Update_Smartie_Final.Rmd)
+  * Matches SMARTIE_Final to the [aggregated checklist](https://raw.githubusercontent.com/inbo/alien-species-checklist/master/data/processed/aggregated-checklist.tsv) to determine the euConcernStatus
+  * Appends the SMARTIE_Final to the T0_Update
+
+### R: [Update Source](https://github.com/SanderDevisscher/EASIN/blob/master/r-scripts/Update%20Source.R) 
+
      
 Input | Output
 -------|-------
 [aggregated dataset](https://github.com/inbo/invasive-t0-occurrences) | ./Output/T0_SourceData_dd_mm_yy.csv
 ------ | [Iteration.gsheet](https://docs.google.com/spreadsheets/d/1kCENS0MpmjJXZEPdpxJB4XRaSS2ms63w8UqSA79Dh0c/edit#gid=1088427352) (=> Log)
     
-### [subset data](https://github.com/SanderDevisscher/EASIN/blob/master/r-scripts/subset%20data.R) 
+### R: [subset data](https://github.com/SanderDevisscher/EASIN/blob/master/r-scripts/subset%20data.R) 
+  * Reruns [Update Source](https://github.com/SanderDevisscher/EASIN/blob/master/r-scripts/Update%20Source.R) 
   * Subsets data from output of Update Source script
     * Only Listed species
     * Only records with at least Grid10k cellcode (added in aggregation process, no cellcode means record with incorrect spatial reference)
@@ -39,12 +44,30 @@ Input | Output
         * Pseudorasbora parva (Temminck & Schlegel, 1846)
         * Trachemys Agassiz, 1857
       * 2nd batch (to be reviewed by experts)
-        * Alopochen aegypticus
+        * Alopochen aegyptiaca (Linnaeus, 1766)
+        * Impatiens glandulifera Royle
+        * Heracleum mantegazzianum Sommier & Levier
+        * Ondatra zibethicus (Linnaeus, 1766)
 
 Input | Output
 -------|-------
+**invasive_occ** |./Output/**Data_dd_mm_yy_Subsetted_dd_mm_yy.csv** 
+-------| ./Output/**Data_dd_mm_yy_Subsetted_dd_mm_yy.dbf**
 
-#### <I> Dataexploration (Optional) </I>
+*./Output/Data_dd_mm_yy_Subsetted_dd_mm_yy.csv **SHOULD BE COPIED TO THIS AWS-PATH** *Q:\Projects\PRJ_Faunabeheer\INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging\EASIN_GIS\Input\Data_dd_mm_yy_Subsetted_dd_mm_yy.csv**
+
+#### <I> R: Dataexploration (Optional) </I>
+
+### ARCGIS: SubsettedDataToGRID10k
+  * Matches the subsetted data to the 10k GRID 
+
+Input | Output
+-------|-------
+Q:\Projects\PRJ_Faunabeheer\INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging\EASIN_GIS\Input\ **Data_dd_mm_yy_Subsetted_dd_mm_yy.csv** | Q:\Projects\PRJ_Faunabeheer\INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging\EASIN_GIS\EASIN_temp.gdb\ **GRID10kData_Source_Export_se**
+
+*Q:\Projects\PRJ_Faunabeheer\INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging\EASIN_GIS\EASIN_temp.gdb\GRID10kData_Source_Export_se **SHOULD BE EXPORTED TO THIS LOCAL-PATH** *.Private/GRID10kData_Source_Export.txt*
+
+### R: 
 
 #### [Replacement EASIN.accdb](https://github.com/SanderDevisscher/EASIN/blob/master/r-scripts/Replacement%20EASIN.accdb.rmd)
 
