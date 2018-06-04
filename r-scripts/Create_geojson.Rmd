@@ -1,0 +1,23 @@
+---
+title: "Create_GEOJSON"
+author: "Sander"
+date: "4 June 2018"
+output: html_document
+---
+
+```{r libraries}
+library(rgdal)
+library(spdplyr)
+library(geojsonio)
+library(rmapshaper)
+```
+
+```{r data inlezen}
+ias_Belgium_T0_shape <- readOGR("D://Projects/PRJ_Faunabeheer/INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging/EASIN_GIS/Output/EASIN_2ndBatch/ias_Belgium_t0_2018.shp")
+
+ias_Belgium_T0_shape$CellCode <- as.character(ias_Belgium_T0_shape$CellCode)
+ias_Belgium_T0_shape$REFERENCE_ <- as.character(ias_Belgium_T0_shape$REFERENCE_)
+ias_Belgium_T0_shape$DATA_PARTN <- as.character(ias_Belgium_T0_shape$DATA_PARTN)
+
+```
+
