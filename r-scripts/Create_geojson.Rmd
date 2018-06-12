@@ -10,6 +10,8 @@ library(rgdal)
 library(spdplyr)
 library(geojsonio)
 library(rmapshaper)
+library(tidyverse)
+library(leaflet)
 ```
 
 ```{r data inlezen}
@@ -18,6 +20,37 @@ ias_Belgium_T0_shape <- readOGR("D://Projects/PRJ_Faunabeheer/INBOPRJ-10217 - Mo
 ias_Belgium_T0_shape$CellCode <- as.character(ias_Belgium_T0_shape$CellCode)
 ias_Belgium_T0_shape$REFERENCE_ <- as.character(ias_Belgium_T0_shape$REFERENCE_)
 ias_Belgium_T0_shape$DATA_PARTN <- as.character(ias_Belgium_T0_shape$DATA_PARTN)
+ias_Belgium_T0_shape$Accepted <- as.character(ias_Belgium_T0_shape$Accepted)
+ias_Belgium_T0_shape$Species <- as.character(ias_Belgium_T0_shape$Species)
+ias_Belgium_T0_shape$Notes <- as.character(ias_Belgium_T0_shape$Notes)
+
+head(ias_Belgium_T0_shape)
+proj4string(ias_Belgium_T0_shape)
+```
+
+```{r Projecteren naar wgs84}
+crs_wgs84 <- CRS("+init=epsg:4326")
+
+ias_Belgium_T0_wgs <- spTransform(ias_Belgium_T0_shape, crs_wgs84)
+proj4string(ias_Belgium_T0_wgs)
+plot(ias_Belgium_T0_wgs)
+
+leaflet() %>%
+  addTiles() %>%
+  addPolygons(data = ias_Belgium_T0_wgs)
+  
+```
+
+```{r geojson wegschrijven}
+
+writeOGR(ias_Belgium_T0_wgs, "./Output/ias_Belgium_t0_2018.geojson", layer="ias_Belgium_t0_wgs", driver="GeoJSON",overwrite_layer=T)
+
+test <- readOGR( "./Output/ias_Belgium_t0_2018.geojson", stringsAsFactors=F)
+proj4string(test)
+
+leaflet() %>%
+  addTiles() %>%
+  addPolygons(data = test)
 
 ```
 
