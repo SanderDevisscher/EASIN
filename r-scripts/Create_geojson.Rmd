@@ -27,6 +27,7 @@ ias_Belgium_T0_shape$Notes <- as.character(ias_Belgium_T0_shape$Notes)
 head(ias_Belgium_T0_shape)
 proj4string(ias_Belgium_T0_shape)
 ```
+
 ```{r Projecteren naar wgs84}
 crs_wgs84 <- CRS("+init=epsg:4326")
 
