@@ -103,7 +103,7 @@ Extra's should be run when new layers are provided by EASIN or when in a rare ca
 
 Matches the shape provided by EASIN with the names used for the GIS models
 
-![Model](EASIN/GIS-modellen/GISEXTRA_MS_Belgium_CorrectNames.png)
+![Model](./GIS-modellen/EXTRA_MS_Belgium_CorrectNames.png)
 
 Input | Output
 -------|-------
