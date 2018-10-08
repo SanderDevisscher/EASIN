@@ -11,7 +11,8 @@ library(tidyverse)
 
 ```{r Data}
 SMARTIE <- read_csv(file = "./Private/Final_export_2018-03-29_18-47-59.csv", col_types = cols(.default = "c"))
-T0 <- read_csv(file = "G://Mijn Drive/INBOPRJ-10217 - Monitoring exoten ikv EU- verordening IAS  Coördinatie, voorbereiding, implementatie en opvolging/data/SMARTIE/T0 Update/invasive_EU_listed_and_considered_with_joins.csv")
+T0 <- read_csv(file = "./Private/invasive_EU_listed_and_considered_with_joins.csv")
+
 aggregated_checklist <- read_delim("https://raw.githubusercontent.com/inbo/alien-species-checklist/master/data/processed/aggregated-checklist.tsv", 
     "\t", escape_double = FALSE, trim_ws = TRUE)
 ```
@@ -252,6 +253,7 @@ SMARTIE_FINAL2$dynamicProperties <- as.character(NA)
 SMARTIE_FINAL2$taxonID <- as.character(NA)
 SMARTIE_FINAL2$coordinatePrecision <- as.character(NA)
 SMARTIE_FINAL2$continent <- "Europe"
+SMARTIE_FINAL2$gbifapi_scientificName.y <- NULL
 
 #Set correct column types
 SMARTIE_FINAL2$decimalLatitude <- as.numeric(SMARTIE_FINAL2$decimalLatitude)
