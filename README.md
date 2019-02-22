@@ -30,6 +30,7 @@ Input | Output
      -----|-----|-----------|--------
     1st | 0 | 01/01/2000 | 31/01/2016 
     2nd | 0 | 01/01/2000 | 31/08/2017
+    3rd | 1 | 01/01/2015 | 31/12/2018
     
     * Only records with correct validationstatus
     * Certain more common and recognisable species are non-propotionally not treated, under treatment or not treatable. Experts selected the following species to have all validation statuses included.
